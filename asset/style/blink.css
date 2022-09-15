@@ -387,8 +387,8 @@ a {
 
 @media (max-width: 480px) {
   .blink-logo{
-    width:60px;
-    height:70px;
+    width:120px;
+    height:100px;
   }
   .blink-main h2{
     font-size:42px;
@@ -427,10 +427,12 @@ a {
     width:320px;
     height:270px;
   }
-  .block-guide .title{
-    font-size:32px;
+  .block-guide .title,
+  .block-illust .title{
+    font-size:28px;
   }
-  .block-guide .description{
+  .block-guide .description,
+  .block-illust .description{
     font-size:24px;
     line-height:28px;
   }
@@ -442,7 +444,7 @@ a {
     height:200px;
   }
   .illust-result{
-    width:320px;
+    width:300px;
     height:216px;
   }
   .illust-preference{
@@ -458,15 +460,41 @@ a {
     font-size: 13px;
     line-height: 1.2;
   }
+  .illust-demo-01,
+  .illust-demo-02,
+  .illust-demo-03{
+    width:300px;
+    height:200px;
+  }
+  .illust-patent{
+    width:320px;
+  }
+  .blink-whatif{
+    width:320px;
+  }
+  .block-whatif{
+    font-size: 28px;
+    line-height: 40px;
+  }
 }
 
 @media (max-width: 320px){
   .blink-ctrl{display:none;}
-  .block-whoisblink{font-size:30px;}
+  .block-whoisblink{font-size:24px;}
   .blink-whois{width:190px;}
   .blink-keyboard{width:240px; height:190px;}
   .block-install{font-size:28px; line-height:1.2}
-  .block-guide .title{font-size:24px;}
+  .blink-listen{width:220px; height:190px;}
+  .block-guide .title,
+  .block-illust .title{
+    font-size:24px;
+  }
+  .block-guide .description,
+  .block-illust .description{
+    font-size:20px;
+    line-height:28px;
+  }
+  .illust-patent{width:240px;height:130px;}
   .guide-usage{width:220px;height:60px;}
   .illust-usage{width: 240px; height: 170px;}
   .illust-result{width: 240px; height: 170px;}
