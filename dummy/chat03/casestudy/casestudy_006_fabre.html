@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="단비AI에서 싹튼 챗봇에 대한 이야기를 공유합니다.">
+    <meta name="keywords" content="blogcasestudycase-study,  case-study">
+    <title>버그채집봇 파브르 | danbee.Ai Document</title>
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/syntax.css">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="https://doc.danbee.ai/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/modern-business.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/customstyles.css">
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/boxshadowproperties.css">
+    <!-- most color styles are extracted out to here -->
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/theme-danbee.css">
+
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/magnific-popup.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="js/jquery.navgoco.min.js"></script>
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Anchor.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+    <script src="js/toc.js"></script>
+    <script src="js/customscripts.js"></script>
+
+    <!-- <link rel="shortcut icon" href="https://doc.danbee.ai/images/favicon.ico"> -->
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://doc.danbee.ai/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://doc.danbee.ai/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://doc.danbee.ai/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://doc.danbee.ai/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://doc.danbee.ai/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://doc.danbee.ai/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://doc.danbee.ai/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://doc.danbee.ai/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://doc.danbee.ai/images/favicon/apple-icon-180x180.png">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="https://doc.danbee.ai/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="https://doc.danbee.ai/images/favicon/android-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="https://doc.danbee.ai/images/favicon/android-icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://doc.danbee.ai/images/favicon/android-icon-48x48.png">
+    <link rel="icon" type="image/png" sizes="36x36" href="https://doc.danbee.ai/images/favicon/android-icon-36x36.png">
+
+    <link rel="icon" type="image/png" sizes="96x96" href="https://doc.danbee.ai/images/favicon/android-icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://doc.danbee.ai/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://doc.danbee.ai/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://doc.danbee.ai/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://doc.danbee.ai/images/favicon/favicon-16x16.png">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta name="msapplication-TileColor" content="#ffffff ">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="alternate" type="application/rss+xml" title="document" href="http://doc.danbee.Ai/feed.xml">
+
+    <!-- flexslider -->
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/flexslider.css" type="text/css" media="screen" />
+    <script src="js/jquery.flexslider-min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <!--ella style add-->
+    <style>
+        #frogue-container * {
+            font-family: "Noto Sans KR","Apple SD Gothic Neo","Nanum Barun Gothic",Helvetica,Arial,"Malgun Gothic","맑은 고딕","돋움",Dotum,sans-serif !important;
+            -webkit-box-sizing: content-box; box-sizing: content-box;
+        }
+        #frogue-talkpop input {color: #000; padding: 1% 2% !important;}
+        .frogue-talkpop-info-container {height: 27px !important;}
+        .frogue-talkpop-info-container span {padding: 2px 12px !important;}
+    </style>
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo-graphic" href="https://doc.danbee.ai" title="doc.danbee.ai 홈으로"><img src="https://doc.danbee.ai/images/img_logo.svg" alt="danbee.Ai"/>
+                <span class="projectTitle">단비Ai 도큐먼트</span> </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+
+
+
+                <li><a href="index.html">블로그</a></li>
+
+
+
+                <li><a href="tutorial_home.html">튜토리얼</a></li>
+
+
+
+                <li><a href="manual_home_composition.html">매뉴얼</a></li>
+
+
+
+                <li><a href="https://danbee.ai/pricing.html" target="_blank">가격정책</a></li>
+
+
+
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+
+
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" >
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        SimpleJekyllSearch.init({
+                            searchInput: document.getElementById('search-input'),
+                            resultsContainer: document.getElementById('results-container'),
+                            dataSource: 'search.json',
+                            searchResultTemplate: '<li><a href="{url}" title="버그채집봇 파브르">{title}</a></li>',
+                            noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                        })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div id="main" style="padding-top:60px">
+        <!-- Content Row -->
+        <div class="row">
+
+
+            <!-- Sidebar Column -->
+            <div class="col-xl-3 col-lg-3 col-md-3" id="tg-sb-sidebar">
+
+
+                <ul id="mysidebar" class="nav">
+                    <li class="sidebarTitle">danbee.Ai Doc 1.0</li>
+
+
+
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/faq/faq_00_gateway.html"><span></span>시작하기</a>
+                        <ul>
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/faq/faq_00_gateway.html">FAQ, 가장 자주 묻는 문의</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/blog/blog_000_landing.html"><span></span>챗봇UX</a>
+                        <ul>
+
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/blog/blog_000_landing.html">HCI의 흐름에서 보는 챗봇의 미래</a></li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="subfolders">
+                        <a href="https://keyview.danbee.ai/chat03/casestudy/casestudy_006_fabre.html"><span></span>케이스스터디</a>
+                        <ul>
+                            <li class="active"><a href="https://keyview.danbee.ai/chat03/casestudy/casestudy_006_fabre.html">단비챗봇, 버그채집봇 파브르</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/folder3/advanced_choice_bot.html"><span></span>예제를 통해 빠르게 경험하기</a>
+                        <ul>
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/folder3/advanced_choice_bot.html">샘플 - 선택장애제거봇, 초이</a></li>
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/folder4/advanced_decision_tree_bot.html">샘플 - 의사결정나무봇, 디트</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#"><span></span>챗봇 제작 단계</a>
+                        <ul>
+
+
+                            <li>
+                                <a href="https://keyview.danbee.ai/chat03/chatflow/chatflow.html"><span></span>대화흐름</a>
+                                <ul>
+
+
+
+                                    <li><a href="https://keyview.danbee.ai/chat03/chatflow/chatflow.html">대화흐름 기본 설명</a></li>
+
+
+
+
+
+                                    <li><a href="https://keyview.danbee.ai/chat03/parameter/parameter.html">파라미터</a></li>
+
+
+
+
+
+
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <!-- if you aren't using the accordion, uncomment this block:
+                       <p class="external">
+                           <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+                       </p>
+                       -->
+                </ul>
+
+                <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+                <script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+
+
+
+            <!-- Content Column -->
+            <div class="col-xl-7 col-lg-7 col-md-9" id="tg-sb-content">
+                <div class="post-header">
+                    <h1 class="post-title-main">버그채집봇 파브르</h1>
+                </div>
+
+
+                <div class="post-content">
+
+
+                    <div class="summary">단비AI에서 싹튼 챗봇에 대한 이야기를 공유합니다.</div>
+
+
+
+                    <div class="center-toc" >
+
+                        <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+                        <script>
+                            $( document ).ready(function() {
+                                // Handler for .ready() called.
+
+                                $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+                                /* this offset helps account for the space taken up by the floating toolbar. */
+                                $('#toc').on('click', 'a', function() {
+                                    var target = $(this.getAttribute('href'))
+                                        , scroll_target = target.offset().top
+
+                                    $(window).scrollTop(scroll_target - 10);
+                                    return false
+                                })
+
+                            });
+                        </script>
+
+                        <div id="toc"></div>
+
+                    </div>
+
+
+
+
+
+                    <!--     <a target="_blank" href="https://github.com/danbeeai/document/blob/gh-pages/pages/blog//casestudy_006_fabre.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+                    <a target="_blank" href="https://github.com/danbeeai/document/blob/gh-pages//pages/casestudy/casestudy_006_fabre.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> 깃허브 수정요청</a>
+
+
+
+
+
+
+                    <h2 id="버그-개선사항과-문의사항을-대신-접수받아주는-챗봇">버그, 개선사항과 문의사항을 대신 접수받아주는 챗봇</h2>
+                    <p>버그나 개선사항이 발견된 그곳에서 바로 접수를 할 수 있다면, IT담당자들은 귀한 사용자의 제보를 실시간으로 받을 수 있습니다.
+                        버그채집봇, 파브르는 이를 위한 챗봇입니다.</p>
+
+                    <p>지금 danbee.Ai에 로그인하면 일하고 있는 모습을 보실 수 있습니다.</p>
+
+                    <h3 id="버그채집봇-파브르-만나보기">버그채집봇 파브르 만나보기</h3>
+                    <p>파브르의 능력과 적용하는 방법은 튜토리얼로 제공되고 있습니다.
+                        지금 확인해보세요!
+                        <a href="https://doc.danbee.ai/advanced_bug_hunting_fabre.html">파브르 만나보기</a> <br /><br />
+                        <a href="https://frogue.danbee.ai/?chatbot_id=4064be4c-a3d1-4663-aa2e-ca9d2d852518">파브르 한번 써보기</a><br /></p>
+
+                    <figure><img class="docimage border" src="https://doc.danbee.ai/images/tutorial/sample_fabre/fabre_01_welcome.PNG" alt="" /></figure>
+
+                    <hr />
+
+                    <h2 id="함께해요-챗봇시대">함께해요! 챗봇시대:)</h2>
+                    <p>모든 사물, 디지털 매체와 말이 통하는 시대! 단비Ai와 함께 반드시 오게될 챗봇시대를 열어갔으면 좋겠습니다. <br />
+                        지금 여러분만의 챗봇을 🌱싹틔우세요!
+                        <br />
+                        <a class="button-cta" target="_blank" href="https://danbee.ai/landing.html" title="인공지능 챗봇빌더 단비Ai 홈페이지 바로가기">인공지능 챗봇빌더 단비Ai 시작하기</a></p>
+
+                    <h3 id="혹시-서비스-소개서를-찾고-있나요">혹시 서비스 소개서를 찾고 있나요?</h3>
+                    <p>단비Ai 서비스 소개서는 아래 링크를 클릭해 다운로드 하실 수 있습니다.
+                        <br />
+                        <a class="button-cta" target="_blank" href="https://doc.danbee.ai/assets/단비에이아이_서비스소개서_2020_v2.3.pdf" title="서비스 소개서 다운로드">서비스 소개서 다운로드</a></p>
+
+                    <h3 id="부족한-부분을-알려주세요">부족한 부분을 알려주세요!</h3>
+                    <p>꼼꼼히 빠짐없이 정리하기위해 늘 노력하고 있습니다.
+                        아래와 같이 의견을 주시면 적극적으로 개선하겠습니다.</p>
+
+                    <ol>
+                        <li>메뉴얼 하단에 댓글 또는 <a href="mailto:contact@danbee.ai">contact@danbee.ai</a>에 이메일 보내기</li>
+                        <li>단비Ai 플랫폼 내에 일하고 있는 [단비Ai 직원, 파브르]에게 문의사항 접수</li>
+                        <li>깃허브를 써보신 경험이 있다면! 제목 아래 [깃허브 수정요청] 버튼을 클릭!</li>
+                    </ol>
+
+                    <!--
+                    ### 사람은 단비를 만들고, 단비는 챗봇을 싹틔운다.
+                    함께할 멋진 *개발자*와 *기획자*를 찾습니다. 어쩌면 💧단비가 여러분이 찾던 직장일 지도 모르죠?
+
+                    - 단비아이엔씨 채용공고 [살펴보기](https://www.rocketpunch.com/companies/danbeeinc/jobs)
+                     -->
+                    <!-- 콘텐츠 페이지 맨 하단에 들어가는 영역임. 여기를 최신화 하면 전체가 파릇파릇 -->
+
+
+                    <div class="tags">
+
+                        <b>Tags: </b>
+
+
+
+                        <a href="tag_blog.html" class="btn btn-default navbar-btn cursorNorm" role="button">blog</a>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <ul class="posts posts--previous-next">
+
+
+                    </ul>
+
+
+
+
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                         */
+
+                        var disqus_config = function () {
+                            this.page.url = "http://doc.danbee.Ai/casestudy_006_fabre.html";  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = "casestudy_006_fabre.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+
+                        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                            var d = document, s = d.createElement('script');
+
+                            s.src = 'https://danbeeai.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+                </div>
+
+                <hr class="shaded"/>
+
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            &copy;2020 danbee Inc. All rights reserved. <br />
+                            업데이트 : Apr 14, 2020
+                        </div>
+                        <div class="col-lg-6 footer">
+                            <img src="https://doc.danbee.ai/images/danbee_logo.png" alt="danbee.Ai"/>
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+
+            <div class="col-xl-2 col-lg-2 side-toc">
+
+                <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+                <script>
+                    $( document ).ready(function() {
+                        // Handler for .ready() called.
+
+                        $('#toc_side').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+                        /* this offset helps account for the space taken up by the floating toolbar. */
+                        $('#toc_side').on('click', 'a', function() {
+                            var target = $(this.getAttribute('href'))
+                                , scroll_target = target.offset().top
+
+                            $(window).scrollTop(scroll_target - 10);
+                            return false
+                        })
+
+                    });
+                </script>
+
+                <div id="toc_side"> <ul><li><a href="#버그-개선사항과-문의사항을-대신-접수받아주는-챗봇">버그, 개선사항과 문의사항을 대신 접수받아주는 챗봇</a><a class="anchorjs-link " href="#버그-개선사항과-문의사항을-대신-접수받아주는-챗봇" aria-label="Anchor link for: 버그 개선사항과 문의사항을 대신 접수받아주는 챗봇" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a><ul><li><a href="#버그채집봇-파브르-만나보기">버그채집봇 파브르 만나보기</a><a class="anchorjs-link " href="#버그채집봇-파브르-만나보기" aria-label="Anchor link for: 버그채집봇 파브르 만나보기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li></ul></li><li><a href="#함께해요-챗봇시대">함께해요! 챗봇시대:)</a><a class="anchorjs-link " href="#함께해요-챗봇시대" aria-label="Anchor link for: 함께해요 챗봇시대" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a><ul><li><a href="#혹시-서비스-소개서를-찾고-있나요">혹시 서비스 소개서를 찾고 있나요?</a><a class="anchorjs-link " href="#혹시-서비스-소개서를-찾고-있나요" aria-label="Anchor link for: 혹시 서비스 소개서를 찾고 있나요" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#부족한-부분을-알려주세요">부족한 부분을 알려주세요!</a><a class="anchorjs-link " href="#부족한-부분을-알려주세요" aria-label="Anchor link for: 부족한 부분을 알려주세요" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li></ul></li></ul></div>
+
+            </div>
+
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#main -->
+</div>
+
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "fade",
+            directionNav: true,
+            slideshowSpeed: 5000,
+            animationSpeed: 600,
+            slideshow: true,
+            slideshowSpeed: 7000,
+            pauseOnAction: true,
+            pauseOnHover: true,
+            controlNav : true,
+            itemWidth:400,
+            touch: true
+        });
+
+        $('.post-content figure > img').replaceWith(function () {
+            return ''
+                + '<a href="' + $(this).attr('src') + '" class="mg-link">'
+                + '<img src="' + $(this).attr('src') + '" width="'
+                + $(this).attr('width') + '"' + '/></a>'
+                + '<figcaption class="caption">' + $(this).attr('alt') + '</figcaption>'
+                + '';
+        });
+
+        $('.mg-link').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true
+        });
+    });
+</script>
+
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-91561921-4','auto');ga('require','displayfeatures');ga('send','pageview', window.location.href);</script>
+
+
+<div id="frogue-container"
+     class="position-right-bottom"
+     data-chatbot="a3e7230e-d0c7-4f7f-8817-4b79273d58d5"
+     data-user=""
+></div>
+
+<script>
+    (function(d, s, id){
+        if (d.getElementById(id)) {
+            var elem = d.getElementById(id);
+            elem.parentElement.removeChild(elem);
+        }
+        setTimeout(function() {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            js = d.createElement(s); js.id = id;
+            js.src = "https:\/\/keyview.danbee.ai/js/plugins/keyview-embed/keyview-embed.min.js";
+            //js.src="../../static/js/plugins/keyview-embed/keyview-embed.js"; // localhost test용
+            fjs.parentNode.insertBefore(js, fjs);
+        }, 1000);
+    }(document, 'script', 'frogue-embed'));
+</script>
+
+
+</body>
+
+</html>

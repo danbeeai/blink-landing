@@ -1,0 +1,1149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+
+
+
+    <meta http-equiv="Content-Type" 		content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible"  	content="IE=Edge" />
+    <meta http-equiv="Content-Script-Type"  content="text/javascript" />
+
+    <title>회의실 예약</title>
+    <meta name="author" content="한국철도공사" />
+    <meta name="copyright" content="300-720 대전광역시 동구 중앙로 240" />
+
+    <script type="text/javascript" src="/com/selectKorailCoMessage.do"></script>
+
+    <!-- 메뉴관련 -->
+    <script type="text/javascript" src="/js/common/korailMenu.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu1.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu2.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu3.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu4.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu5.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu6.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu7.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu8.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu9.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu10.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu11.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu12.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu13.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu14.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu15.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu16.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu17.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu18.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu19.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu20.js"></script>
+    <script type="text/javascript" src="/js/egovframework/korail/common/menu21.js"></script>
+
+    <script type="text/javascript" src="/js/jquery.ui/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui/jquery-ui-1.9.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui/jquery.ui.core.js"></script>
+    <!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.button.js"></script>		-->
+    <!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.tabs.js"></script>			-->
+    <!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.mouse.js"></script>		-->
+    <!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.draggable.js"></script>	-->
+    <!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.droppable.js"></script>	-->
+    <!-- <script type="text/javascript" src="/js/common/korailJquery.cookie.js"></script>  		-->
+    <script type="text/javascript" src="/js/common/korailCommon.js"></script>
+    <script type="text/javascript" src="/js/common/korailCommonUtil.js"></script>
+    <script type="text/javascript" src="/js/common/korailWindow.js"></script>
+
+    <script src="/js/jquery.plainmodal/jquery.plainmodal.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/js/jquery.plainmodal/jquery.plainmodal.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/css/jquery.ui/jquery.ui.all.css" />
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/css/korail.css" />
+
+    <script>
+        function fn_chk_loginMsg(m_url) {
+            var event = window.event || e ;
+            var url = location.href;
+            var menuURI = m_url;
+
+
+            if (confirm("코레일멤버십 로그인 후 이용 가능합니다.\n\n계속하시겠습니까?")) {
+                location.href = menuURI;
+                return false;
+            } else {
+                if (event.stopImmediatePropagation) {
+                    event.stopImmediatePropagation();
+                } else {
+                    location.href = url;
+                    return false;
+                }
+            }
+
+        }
+    </script>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/css/basic.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.letskorail.com/css/sub_prd.css" />
+
+    <script type="text/javascript" src="/docs/2007/js/common.js"    ></script>
+    <script type="text/javascript">
+        var Depth1="0";
+        var Depth2="0";
+        var Depth3="2";
+        var Depth4="0";
+        var Depth2_tms="100";
+
+        var NowDate = '20200331';
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            kAlert('<div style="text-align:center;">-코로나19 심각단계 격상에 따른-<br/>'+'<strong>임대회의실 운영 <span style="color:red;">잠정중단 </span>알림</strong><br/><br/>'
+                + '임대회의실을 이용하시는 고객여러분께 알려드립니다.<br/>'
+                + '한국철도는 코로나19의 확산방지를 위해 자체방역 및 <br/>위생관리에 철저를 기하고 있습니다.<br/>'
+                + '그러나 코로나19 위기경보의 심각단계 격상에 따라<br/>'
+                + '한국철도 임대회의실을 이용하시는 고객여러분의<br/>'
+                + '감염예방과 확산 방지를 위하여 전국 기차역의<br/>'
+                + '임대회의실 운영을 잠정 중단합니다.<br/><br/>'
+                + '고객여러분의 양해와 협조에 감사드립니다.<br/><br/>'
+                + '※ 문의(예약 취소, 수수료, 기타) : 해당역 및 본사 담당자'
+                + '</div>'
+                , '회의실 이용 중지 안내');
+        });
+
+        function goInq(){
+            //alert("회의실 예약관리시스템의 보완을 위해 일시 사용을 중단하오니 양해하여 주시기 바랍니다.");
+            //return;
+
+            document.form1.txtInqStartDt.value = document.form1.txtInqDt.value.replace(/-/gi,'');
+            document.form1.txtInqEndDt  .value = document.form1.txtInqStartDt.value;
+
+
+
+            if (document.form1.txtInqStartDt.value < NowDate){
+                alert("현재일자보다 이전입니다.");
+                return;
+            }
+
+            var strMrkDayBit = eval('document.form1.txtMrkDayBit_'+document.form1.selCnfStnCd.selectedIndex).value;
+            var tmpMrkDayBit = strMrkDayBit;
+            if (strMrkDayBit.length >= 9)
+                tmpMrkDayBit = strMrkDayBit.substring(0,7)+strMrkDayBit.substring(8,9);
+
+            document.form1.txtMrkDayBit.value = tmpMrkDayBit;
+
+            //alert('txtMrkDayBit='+document.form1.txtMrkDayBit .value);
+
+            document.form1.txtStnNm.value = document.form1.selCnfStnCd[document.form1.selCnfStnCd.selectedIndex].text;
+
+            /*
+            if (document.form1.txtStnNm.value == "용산"){
+                kAlert('용산역 회의실 이전 및 신규조성에 따라 실별 면적, 사용가능 최대인원 및<br />'
+                           +'임대료 등 기본정보가 변경되었으니 이용에 참고하시기 바랍니다.<br />','용산역 회의실 임대료 변경 안내');
+            }
+            */
+
+            /* if (document.form1.txtStnNm.value == "동대구"){
+                kAlert('동대구역 임대 회의실 공사로 인해 3월 1일(금)부터 3월 8일(금)까지<br />'
+                           +'이용이 불가함을 알려드립니다. 이용에 불편을 드려 대단히 죄송합니다.<br />'
+                           +'* 상기 일정 변경 시, 다시 공지해 드리겠습니다.','동대구역 임대 회의실 공사 알림');
+            } */
+
+            /* if (document.form1.txtStnNm.value == "광명"){
+                kAlert('광명역 대회의실 시설물 교체 등 환경이 개선됨에 따라<br />'
+                        +'임대료가 2017. 11. 11.(토) 00시부터 변경될 예정입니다. (이용일 기준)<br />'
+                        +'자세한 사항은 광명역 회의실(☎02)899-9272) 담당자에게 문의하여 주시기 바랍니다. <br />');
+            }  */
+
+            if('20200331' < 20170701 ){
+                if (document.form1.txtStnNm.value == "서울"){
+                    kAlert('서울역 대회의실의 리모델링 및 물가상승률을 반영하여, 회의실 임대료를 <br />'
+                        +'`17. 6. 15(목)부터 다음과 같이 인상하오니 이용에 참고하시기 바랍니다.<br /> <img src="https://www.letskorail.com/images/seoul_20170530.png" alt="임대료변경" /><br />'
+                        +'`17. 6. 15(목) 이전 예약 완료 건은 인상 전 임대료 적용.<br />','서울역 회의실 임대료 변경 안내');
+                }
+            }
+
+            /*
+            if (document.form1.txtStnNm.value == "신도림"){
+                kAlert('(1) 회의실명 : 대회의실, 제1소회의실, 제2소회의실<br />'
+                      +'(2) 할 인 률 : 30%<br />'
+                      +'(3) 할인기간 : 2018. 1. 22.　~ 3. 31.까지(이용일 기준)<br />'
+                      +'자세한 사항은 신도림역 회의실(☎ 02-2639-3262) 담당자에게 문의하여 주시기 바랍니다.','신도림역 임대회의실 오픈 기념 할인 이벤트 시행 알림');
+            }
+            */
+
+            /*
+            if (document.form1.txtStnNm.value == "대전") {
+                kAlert('<div style="padding-left:40px;">이용일 기준 ’19.06.10.부터 <strong>대전충남본부(대전역)의 회의실명</strong>이 다음과 같이<br/>'
+                       + '변경되오니 이용에 착오 없으시길 바랍니다.<br/>'
+                    + '&nbsp;<span style="color:red;">※ 기존에 예약하신 분들께서는 이용 전 회의실명을 재확인 부탁드립니다.</span><br/></div>'
+                       + '<div style="text-align:center;"><table style="border: 1px solid #000;width:200px;margin-left:auto;margin-right:auto;margin-top:20px;margin-bottom:20px;">'
+                       + '<tr><td style="border-bottom: 1px dashed;background-color:#E7F4F6;">기존</td><td style="border-bottom: 1px dashed;background-color:#E7F4F6;border-top: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">변경</td></tr>'
+                       + '<tr><td style="border-bottom: 1px dashed">인경실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">우암홀</td></tr>'
+                       + '<tr><td style="border-bottom: 1px dashed">경희실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">매화실</td></tr>'
+                       + '<tr><td style="border-bottom: 1px dashed">광희실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">난초실</td></tr>'
+                       + '<tr><td style="border-bottom: 1px dashed">창의실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">국화실</td></tr>'
+                       + '<tr><td style="border-bottom: 1px dashed">혜화실</td><td style="border-bottom: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">대나무실</td></tr>'
+                       + '</table>'
+                       + '※ 회의실명의 유래 ※<br/>'
+                       + '대전을 대표하는 우암 송시열 선생의 학식과 인품을 나타내는 사군자를<br/>'
+                       + '인용하여 대전의 관문인 대전충남본부(대전역)의 회의실명 선정</div>'
+                       , '이용안내');
+            }
+            */
+
+            /*
+            if (document.form1.txtStnNm.value == "서대전"){
+                kAlert('휠체어(전동휠체어포함)이용 고객께서는 반드시 회의실 예약 전에<br />'
+                           +'서대전역 회의실 담당자(042-259-2348)와 통화하시기 바랍니다. <br />','서대전역 회의실 안내');
+            }
+
+            if (document.form1.txtStnNm.value == "천안아산"){
+                kAlert('∎ 주말(토·일요일) 및 공휴일은 회의실 운영을 하지 않으니 이용에 착오 없으시길 바랍니다.<br/><br/>'
+                      +'※ 기타 문의사항은 천안아산역(041-549-6788)으로 문의하여 주시기 바랍니다.','주말 및 공휴일 회의실 미운영 알림');
+            }
+            */
+
+            /*
+            if (document.form1.txtStnNm.value == "천안아산") {
+                kAlert('<div style="text-align:center;"><strong>천안아산역 회의실 이용 및 명칭 변경 안내</strong></div><br/>'
+                    + '<div style="padding-left:40px;">1. 주말(토·일요일) 및 공휴일은 회의실 운영을 하지 않으니 이용에 착오<br/>'
+                    + '&nbsp;&nbsp;없으시길 바랍니다.<br/>'
+                    + '&nbsp;&nbsp;※ 기타 문의사항은 천안아산역(041-549-6788)으로 문의하여 주시기 바랍니다.<br/><br/>'
+                    + '2. 이용일 기준 ’19.06.10.부터 <strong>천안아산역 회의실명</strong>이 다음과 같이<br/>'
+                    + '&nbsp;&nbsp;변경되오니 이용에 착오 없으시길 바랍니다.<br/>'
+                    + '&nbsp;&nbsp;<span style="color:red;">※ 기존에 예약하신 분들께서는 이용 전 회의실명을 재확인 부탁드립니다.</span><br/</div>'
+                    + '<div style="text-align:center;"><table style="border: 1px solid #000;width:200px;margin-left:auto;margin-right:auto;margin-top:20px;margin-bottom:20px;">'
+                    + '<tr><td style="border-bottom: 1px dashed;background-color:#E7F4F6;">기존</td><td style="border-bottom: 1px dashed;background-color:#E7F4F6;border-top: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">변경</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">키로실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">201호</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">아로실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">202호</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">치요실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">203호</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">뭉클실</td><td style="border-bottom: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">별실</td></tr>'
+                    + '</table></div>'
+                    , '이용안내');
+            }
+
+            if (document.form1.txtStnNm.value == "서대전") {
+                kAlert('<div style="text-align:center;"><strong>서대전역 회의실 이용 및 명칭 변경 안내</strong></div><br/>'
+                    + '<div style="padding-left:40px;">1. 휠체어(전동휠체어포함)이용 고객께서는 반드시 회의실 예약 전<br />'
+                           +'&nbsp;&nbsp;서대전역 회의실 담당자(042-259-2348)와 통화하시기 바랍니다.<br/><br/>'
+                    + '2. 이용일 기준 ’19.06.10.부터 <strong>서대전역 회의실명</strong>이 다음과 같이<br/>'
+                    + '&nbsp;&nbsp;변경되오니 이용에 착오 없으시길 바랍니다.<br/>'
+                    + '&nbsp;&nbsp;<span style="color:red;">※ 기존에 예약하신 분들께서는 이용 전 회의실명을 재확인 부탁드립니다.</span><br/></div>'
+                    + '<div style="text-align:center;"><table style="border: 1px solid #000;width:200px;margin-left:auto;margin-right:auto;margin-top:20px;margin-bottom:20px;">'
+                    + '<tr><td style="border-bottom: 1px dashed;background-color:#E7F4F6;">기존</td><td style="border-bottom: 1px dashed;background-color:#E7F4F6;border-top: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">변경</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">장미실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">좌동</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">목련실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">좌동</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">백합실</td><td style="border-bottom: 1px dashed;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">좌동</td></tr>'
+                    + '<tr><td style="border-bottom: 1px dashed">매화실</td><td style="border-bottom: 2px #0000ff solid;border-left: 2px #0000ff solid;border-right: 2px #0000ff solid;">목화실</td></tr>'
+                    + '</table></div>'
+                    , '이용안내');
+            }
+            */
+
+            if('20200331' < 20200303 ){
+                if (document.form1.txtStnNm.value == "서대전"){
+                    kAlert('<div style="text-align:center;"><strong>노트북 대여중지 알림</strong></div><br/>'
+                        + '<div style="padding-left:40px;">원활한 회의실 관리를 위하여 <span style="color:blue;">2020.2.3.(월)</span>부터 <span style="color:blue;">노트북 대여</span>를 중단합니다.<br/><br/>'
+                        + '노트북을 사용하실 분은 따로 준비하시기 바랍니다.<br/><br/>'
+                        + '&nbsp;&nbsp;※  기타 문의사항은 서대전역 (042-259-2348)으로 연락 주시기 바랍니다.</div>'
+                        , '이용안내');
+                }
+            }
+
+            document.getElementById('SearchItem').height = "850px";
+            document.form1.action = "/htm/htm21000/sw_htm21411_i1Svt.do";
+            document.form1.target = "SearchItem";
+            document.form1.submit();
+        }
+
+        function fn_chgCnfStnCd(){
+            var varStnNm = document.form1.selCnfStnCd[document.form1.selCnfStnCd.selectedIndex].text;
+
+            if('20200331' < 20170116 ){
+                if(varStnNm == '영등포'){
+                    kAlert('영등포역 화장실 개보수 공사로 인해 회의실 이용 시 소음과 진동이 발생되고 있으니,<br />'
+                        +'회의실을 이용하고자 하시는 고객님께서는 영등포역 회의실 담당자에게 문의 후 <br />'
+                        +'예약(02-2639-3312, 3305)해 주시기 바랍니다.', '이용안내');
+                }
+            }
+
+            /*
+              if(varStnNm == '광명'){
+                kAlert('광명역 회의실 시설물 교체 및 사용가능 인원이 증가됨에 따라<br />'
+                        +' 임대료가 2017. 6. 1.(목) 00시부터 변경될  예정입니다.<br /><br />'
+                           +'자세한 사항은 광명역 회의실(☎02-899-9272) 담당자에게 문의하여 주시기 바랍니다.','알림');
+                }
+            */
+            var ifm = document.getElementById("SearchItem").contentWindow.document;
+            ifm.open();
+            ifm.close();
+        }
+
+        // 팝업
+        var move_index = 0;
+        var objLayerPopup =document.getElementById('theLayer');
+        var objLayerBack  ="";
+
+        function layer_popup_move_start(obj){
+            move_index = 1;
+            posX = parseInt(objLayerPopup.style.left) - event.clientX;
+            posY = parseInt(objLayerPopup.style.top ) - event.clientY;
+
+            // 2015.04.09 특정 IE버전의 경우(ex.IE8) 투명도가 복귀되지 않는 문제가 발생하여 옵션 제거하기로 함
+            // objLayerPopup.style.filter="alpha(opacity=30)";
+
+            document.onmousemove = layer_popup_move;
+        }
+
+        function layer_popup_move_end(index){
+            // 2015.04.09 특정 IE버전의 경우(ex.IE8) 투명도가 복귀되지 않는 문제가 발생하여 옵션 제거하기로 함
+            // objLayerPopup.style.filter="alpha(opacity=100)";
+            move_index = 0;
+        }
+
+        function layer_popup_move(obj){
+            if (move_index <= 0)
+                return;
+
+            objLayerPopup.style.left = posX + event.clientX + "px";
+            objLayerPopup.style.top  = posY + event.clientY + "px";
+
+            syncBorder();
+            return false;
+        }
+
+        function closeWin(){
+            //if (document.getElementById("hidToday").checked){
+            //  setCookie("pop_help", "done" , 1);
+            //}
+
+            var checkId = document.getElementById('chkShRqAgree');
+            if(!checkId.checked){
+                alert('유의사항에 동의하지 않으셨습니다.');
+                checkId.focus();
+                return;
+            }
+            objLayerPopup.style.display = "none";
+            objLayerBack.style.display = "none";
+        }
+
+        function centerWindow(){
+            objLayerPopup = document.getElementById('theLayer' );
+            objLayerBack  = document.getElementById('ifmBorder');
+
+            objLayerPopup.style.display = "block";
+            objLayerBack .style.display = "block";
+
+            var xMax = document.body.clientWidth ;
+            var yMax = document.body.clientHeight;
+
+            var tblWidth  = document.getElementById("tblLayer").width;
+            var tblHeight = document.getElementById("tblLayer").width;
+
+            var xOffset = (xMax-tblWidth )/2;
+            var yOffset = (yMax-tblHeight)/2;
+
+            //중심에서 오른쪽으로 20, 아래로 40픽셀에 항상 위치하는 레이어
+            //objLayerPopup.style.top  = yOffset;// - 100;
+            //objLayerPopup.style.left = xOffset;// + 100;
+
+            objLayerPopup.style.top  = '320px';
+            objLayerPopup.style.left = '310px';
+
+            objLayerBack.style.height = (objLayerPopup.offsetHeight - 54 )+"px";
+
+            syncBorder();
+        }
+
+        function syncBorder(){
+            objLayerBack.style.top  = objLayerPopup.style.top ;
+            objLayerBack.style.left = objLayerPopup.style.left;
+        }
+
+        function doResize(o){
+            var frameBody = o.contentWindow.document.body;
+            //o.style.width  = frameBody.scrollWidth + (frameBody.offsetWidth-frameBody.clientWidth);
+            //o.style.height = frameBody.scrollHeight + (frameBody.offsetHeight-frameBody.clientHeight);
+        }
+
+        function fn_onload(){
+
+            centerWindow();
+
+        }
+    </script>
+
+    <style type="text/css">
+        #theLayer {display: none !important;}
+    </style>
+</head>
+<body onLoad="fn_onload();">
+<div id="wrap">
+
+    <script type="text/javascript" src="/js/pwdConfirm/pwdConfirmYn.js?v=1585618490236"></script>
+    <script type="text/javascript">
+        var NowDateSpecial = parseInt('202003311034',10);
+
+        function selectSubMenu(sub_id){
+            for(var i=1; i<=6; i++){
+                //if(i != 6 && i != 7 )document.getElementById("lnb_sub0"+i).style.display="none";
+                document.getElementById("lnb_s0"+i).style.display="none";
+            }
+            if(sub_id != "")document.getElementById(sub_id).style.display="block";
+        }
+
+        function closeSubMenu(sub_id){
+            if(sub_id != "")document.getElementById(sub_id).style.display="none";
+        }
+
+        function selectQck(qck_id){
+            if(qck_id != "")document.getElementById(qck_id).style.display="block";
+        }
+
+        function closeQck(qck_id){
+            if(qck_id != "")document.getElementById(qck_id).style.display="none";
+        }
+
+        // 통합검색
+        function fn_searchHead() {
+            var frm = document.searchHeadForm;
+
+            if( frm.searchTerm.value == "" ) {
+                alert( "검색어를 입력하세요." );
+                frm.searchTerm.focus();
+                return;
+            }
+            frm.action = "/totalSearch.do";
+            frm.submit();
+        }
+
+        // 검색대상 목록 보여주기
+        function fn_collectView() {
+            document.getElementById('collectList').style.display="block";
+        }
+
+        function fn_collectSelect(collectionName) {
+            document.searchHeadForm.collectionName.value = collectionName;
+            document.getElementById('collectionField').innerHtml = "";
+            var field = "";
+            if(collectionName == "Total") {
+                field = "통합검색";
+            } else if(collectionName == "IR_KORAIL") {
+                field = "기업홍보";
+            } else if(collectionName == "IR_KIDS") {
+                field = "어린이";
+            } else if(collectionName == "IR_LANGUAGE") {
+                field = "외국어";
+            } else if(collectionName == "NAVER") {
+                field = "네이버";
+            }
+
+            document.getElementById('collectionField').innerHtml = field;
+        }
+
+        $(document).ready(function(){
+
+            fn_sp_logo_chk();
+
+            //beta bar 색상변경 15.10.12
+            if (pub2.indexOf('beta.letskorail.com') != -1 ||
+                pub3.indexOf('beta.letskorail.com') != -1 ||
+                pub6.indexOf('beta.letskorail.com') != -1 ||
+                pub7.indexOf('beta.letskorail.com') != -1 ){
+                $("body").css("background", "#efefef url(https://www.letskorail.com/images/body_bg_1.gif) repeat-x");
+                $(".h_cont h1").css("background", "url(https://www.letskorail.com/images/lets_logo_beta.gif) no-repeat 0 0");
+            }
+
+            /*
+             * 언어 선택 레이어 영역 제어
+             * 2014.01.20 명진추가
+             */
+            /*
+            $('.lang_slt01').bind('mouseover focusin', function(){
+                $("#lang_list").show();
+            });
+            $('.lang_slt01').bind('mouseout focusout', function(){
+                $("#lang_list").hide();
+            });
+            */
+        });
+
+        //즐겨찾기 추가
+        function favoritemark(){
+            var browser = navigator.userAgent.toLowerCase();
+            var title = "코레일 홈페이지";
+            var url = location.href;
+
+            /*
+            if(window.sidebar){     //firefox
+                window.sidebar.addPanel(title, url, "");
+            }else if(window.opera && window.print){ //opera
+                var elem = document.createElement("a");
+                elem.setAttribute("href", url);
+                elem.setAttribute("title", title);
+                elem.setAttribute("rel", "sidebar");
+                elem.click();
+            }
+            */
+
+            if(document.all){   //ie
+                window.external.AddFavorite(url, title);
+            }else{
+                alert("해당 브라우저는 즐겨찾기 추가기능이 지원되지 않습니다. \n\n Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+            }
+        }
+
+        function cmntLink(){
+            if (pwdConfirmYn=="Y"){
+                alert('비밀번호를 변경 후 이용해주시기 바랍니다.');
+            }else{
+                m_main_ct_link();
+            }
+        }
+    </script>
+
+    <div id="skip">
+        <dl>
+            <dt>페이지 본문으로 이동하기</dt>
+            <dd><a href="#container">본문으로 바로가기</a></dd>
+        </dl>
+    </div>
+
+    <hr />
+
+    <div id="header">
+        <!-- header -->
+        <div class="h_cont">
+            <h1><a href="#" onclick="return m_main_prd_link()"><img src="https://www.letskorail.com/images/lets_logo.gif" alt="Let's Korail" /></a></h1>
+            <div class="gnb">
+                <ul class="gnb_list">
+                    <li><a href="#" onclick="return m_main_prd_link()"><img src="https://www.letskorail.com/images/gnb_home.gif" alt="HOME" /></a></li>
+
+
+
+
+                    <li><a href="#" onclick="return m_login_link()"><img src="https://www.letskorail.com/images/gnb_login.gif" alt="로그인" /></a></li>
+
+
+
+
+                    <li><a href="#" onclick="return m_membership_link()"><img src="https://www.letskorail.com/images/gnb_mems.gif" alt="코레일멤버십" /></a></li>
+                    <li><a href="#" onclick="return m_com_cs12_5_2_link()"><img src="https://www.letskorail.com/images/gnb_tieup.gif" alt="승차권제휴할인" /></a></li>
+                    <li><a href="#" onclick="return m_prd_cart_main_link()"><img src="https://www.letskorail.com/images/gnb_sh_basket.gif" alt="장바구니" /></a></li>
+                    <li><a href="#" onclick="return m_prd_mypage_main_link()"><img src="https://www.letskorail.com/images/gnb_my.gif" alt="마이페이지" /></a></li>
+                    <li><a href="#" onclick="return m_com_cs12_3_1_link()"><img src="https://www.letskorail.com/images/gnb_customer.gif" alt="철도고객센터" /></a></li>
+                    <li><a href="#" onclick="return m_menuPrd20_1_1_link()"><img src="https://www.letskorail.com/images/gnb_sitm.gif" alt="사이트맵" /></a></li>
+                    <li><a href="javascript:favoritemark();"><img src="https://www.letskorail.com/images/gnb_enjoy.gif" alt="즐겨찾기" /></a></li>
+                    <li class="lang_slt01" onmouseover="$('#lang_list').show();" onmouseout="$('#lang_list').hide();">
+                        <div class="lang">
+                            <h2><a href="#"><img src="https://www.letskorail.com/images/tit_lang.gif" alt="LANGUAGE"/></a></h2>
+                            <ul class="lang_list" id="lang_list">
+                                <li><a href="#" onclick="return m_main_eng_link();">ENGLISH</a></li>
+                                <li><a href="#" onclick="return m_main_china_link();">中國語</a></li>
+                                <li><a href="#" onclick="return m_main_japan_link();">日本語</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li><a href="http://info.korail.com/mbs/www/" target="_blank"><img src="https://www.letskorail.com/images/gnb_ir.gif" alt="코레일홈페이지" /></a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="h_bar">
+            <div class="m_sch">
+                <form name="searchHeadForm" method="post" action="">
+                    <input type="hidden" name="collectionName" value="Total" />
+
+                    <fieldset>
+                        <legend>통합검색영역</legend>
+                        <div class="sch_area">
+                            <h2><a href="#">통합검색<span><img src="https://www.letskorail.com/images/btn_sel.gif" alt="선택"/></span></a></h2>
+                            <ul id="collectList" style="display:none;z-index:10;">
+                                <li><a href="#" onclick="fn_collectSelect('Total');">통합검색</a></li>
+                                <li><a href="#" onclick="fn_collectSelect('IR_KORAIL');">기업홍보</a></li>
+                                <li><a href="#" onclick="fn_collectSelect('IR_KIDS');">어린이</a></li>
+                                <li><a href="#" onclick="fn_collectSelect('IR_LANGUAGE');">외국어</a></li>
+                                <li><a href="#" onclick="fn_collectSelect('NAVER');">네이버</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <label for="keyword">검색어입력</label>
+                            <input type="text" id="keyword" name="searchTerm" value="" class="txt_m" onkeydown="if(event.keyCode == 13) fn_searchHead();" autocomplete="off" style="ime-mode:active"/><input type="image" src="https://www.letskorail.com/images/btn_sch.gif" alt="검색" class="btn_sch" onclick="fn_searchHead();"/>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+
+            <div style="float: left; margin: 18px 0px 0px 20px; color: rgb(255, 255, 255); font-size: 14px; font-weight: bold;">
+
+            </div>
+
+            <div class="main_mu">
+                <ul>
+                    <li class="tit_mu01" style="display: none;"><a href="#" onclick="return m_main_prd_link()" class="selected">여행상품</a></li>
+                    <li class="tit_mu02" style="display: none;"><a href="#" onclick="return m_main_ct_link()">커뮤니티</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lnb"><!-- lnb -->
+            <h2 class="blind">여행상품</h2>
+            <div class="lnb_m01" onmouseover="selectSubMenu('lnb_s01')">
+                <h3 class="first"><a href="#" onclick="return m_menuPrd1_1_1_link()"><img src="https://www.letskorail.com/images/lnb_mu01_01.gif" alt="승차권" /></a></h3>
+                <div class="lnb_s" id="lnb_s01" onmouseout="closeSubMenu('lnb_s01')">
+                    <div class="lnb_sm01">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd1_1_1_link()">승차권예약</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_1_link()">일반승차권</a></dd>
+
+                            <dd><a href="#" onclick="return m_menuPrd1_1_2_link()">할인승차권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_3_link()">4인 동반석</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_4_link()">관광 열차</a></dd>
+
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd1_2_1_link()">발권/취소/변경</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_1_link()">발권/취소(반환)</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_2_link()">예약변경</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_3_link()">이용내역/영수증출력</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_5_link()">도시락영수증출력</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_4_link()">인터넷반환접수</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd1_3_0_link()">정기승차권</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_3_1_link()">정기승차권 조회</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_3_2_link()">정기승차권 발급</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd1_4_3_link()">미등록고객서비스</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_1_link()">승차권예약</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_1_link()">발권/취소(반환)</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_5_link()">받은승차권 예약취소</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_2_link()">승차권재발권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_3_link()">이용내역/영수증출력</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_2_1_link()">이용안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2014-12-11 메뉴 재구성 시작 -->
+            <div class="lnb_m04" onmouseover="selectSubMenu('lnb_s04')">
+                <h3><a href="#" onclick="return m_menuPrd4_1_11_link()"><img src="https://www.letskorail.com/images/lnb_mu01_02_02.gif" alt="관광열차 "/></a></h3>
+                <div class="lnb_s"  id="lnb_s04" onmouseout="closeSubMenu('lnb_s04')">
+                    <div class="lnb_sm04">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd4_1_11_link()">중부내륙관광열차</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_1_11_link()">O·V-train 추천여행</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_1_3_link()">O·V-train 소개</a></dd>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_2_0_link()">정선아리랑열차</a></dt><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_2_1_link()">A-train 추천여행</a></dd><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_2_2_link()">A-train 소개</a></dd><!-- 신규생성 -->
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd4_3_0_link()">남도해양열차</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_3_1_link()">S-train 추천여행</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_3_2_link()">S-train 소개</a></dd>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_4_0_link()">서해금빛열차</a></dt><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_4_1_link()">West gold-train 추천여행</a></dd><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_4_2_link()">West gold-train 소개</a></dd><!-- 신규생성 -->
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd4_5_0_link()">평화열차 DMZ</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_5_1_link()">DMZ-train 추천여행</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_5_2_link()">DMZ-train 소개</a></dd>
+                        </dl>
+                        <dl class="sm_no">
+                            <dt><a href="#" onclick="return m_menuPrd4_7_0_link()">레일크루즈해랑</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_10_0_link()">바다열차</a></dt>
+                        </dl>
+                        <dl class="sm_no">
+                            <dt><a href="#" onclick="return m_menuPrd4_6_0_link()">교육열차</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_9_0_link()">국악와인열차</a></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lnb_m03" onmouseover="selectSubMenu('lnb_s03')">
+                <h3><a href="#" onclick="return m_menuPrd21_0_0_link()"><img src="https://www.letskorail.com/images/menu_new01.gif" alt="자유여행"/></a></h3>
+                <div class="lnb_s" id="lnb_s03" onmouseout="closeSubMenu('lnb_s03')">
+                    <div class="lnb_sm03">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd21_2_0_link()">국내여행패스</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd21_2_16_0_link()">팔도레일패스-호남</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd21_2_2_0_link()">하나로</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd21_2_1_0_link()">내일로</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_2_3_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. *기존 발권한 패스(바우처) 이용 가능'>나드리 패스</a></dd>  -->
+                            <dd><a href="#" onclick="return m_menuPrd21_2_4_0_link()">문화누리패스</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_2_5_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. * 기존 발권한 패스(바우처) 이용 가능'>DMZ Pass</a></dd>  -->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_2_6_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. * 기존 발권한 패스(바우처) 이용 가능'>365 미즈레일</a></dd> -->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_2_8_0_link()">하나로강원패스</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd21_2_9_0_link()">오레일패스</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd21_3_0_link()">해외여행패스</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd21_3_1_0_link()">일본패스</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd21_3_2_0_link()">유럽패스</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd21_1_0_link()">기차여행 만들기</a></dt>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd21_5_0_link()">호텔예약</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd21_6_0_link()">렌터카예약</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_6_1_link()">카셰어링YOUCAR</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd21_6_2_link()">롯데렌터카</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_6_3_link()">AJ렌터카</a></dd> -->
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="lnb_m02" onmouseover="selectSubMenu('lnb_s02')">
+                <h3><a href="#" onclick="return m_menuPrd2_3_link()"><img src="https://www.letskorail.com/images/menu_new02.gif" alt="여행상품" onmouseover="selectSubMenu('lnb_s02')" /></a></h3>
+                <div class="lnb_s" id="lnb_s02" onmouseout="closeSubMenu('lnb_s02')">
+                    <div class="lnb_sm02"><!-- lnb_sm06 -->
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd2_1_1_link()">테마패키지</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_2_link()">베스트기차여행</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_1_3_link()">레일그린</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd2_1_13_link()">우리지역 대표상품</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_12_link()">으뜸촌 기차여행</a></dd> -->
+                            <!--<dd><a href="#" onclick="return m_menuPrd2_1_11_link()">세계유산백제</a></dd>-->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_4_link()">농가명품</a></dd> -->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_6_link()">팔도장터</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_1_7_link()">KTX-서울로</a></dd> -->
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd2_8_0_link()">KTX + 연계서비스</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd2_8_1_link()">레일텔</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_8_2_link()">레일시티투어</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_8_3_link()">레일쉽-일본</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd2_8_4_link()">레일쉽-제주도</a></dd>
+                            <!--<dd><a href="#" onclick="return m_menuPrd21_4_5_link()">레일쉽-울릉도</a></dd>-->
+                            <!--
+                              <dd>&nbsp;</dd>
+                             <dt><a href="#" onclick="return m_menuPrd2_8_8_link()">특가패키지</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd2_8_8_link()">파격할인 관광상품</a></dd>
+                            -->
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd2_3_1_link()">국내패키지</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_1_link()">수도권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_2_link()">강원권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_3_link()">충청권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_4_link()">경상권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_5_link()">전라권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_6_link()">제주권</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd2_2_0_link()">해외패키지</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_2_1_link()">코레일관광개발</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_2_2_link()">모두투어</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_2_3_link()">하나투어</a></dd> 
+                            <dd>&nbsp;</dd>
+                            -->
+                            <dt><a href="#" onclick="return m_menuPrd2_4_0_link()">이달의 기차여행</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a  href="#" onclick="return m_menuPrd2_9_0_link()">여행상품 예약확인</a></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="lnb_m05" onmouseover="selectSubMenu('lnb_s05')">
+                <h3 style="padding-left:61px;"><a href="#" onclick="return m_com_cs12_1_1_link()"><img src="https://www.letskorail.com/images/lnb_mu01_08.gif" alt="종합이용안내" onmouseover="selectSubMenu('lnb_s05')"/></a></h3>
+                <div class="lnb_s" id="lnb_s05" onmouseout="closeSubMenu('lnb_s05')">
+                    <div class="lnb_sm08" style="width:1133px;">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_com_cs12_1_1_link()">할인 및 부가서비스</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_2_1_link()">승차권 이용안내</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_2_4_link()">교통약자 배려서비스</a></dt>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_1_5_link()">전철이용안내/지연증명</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_7_1_link()">유실물</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="http://info.korail.com/mbs/www/jsp/voc/login" target="_blank">고객의소리 접수/조회</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_3_1_link()">철도고객센터</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_4_1_link()">광고안내</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_5_2_link()">승차권 제휴할인 안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lnb_m06" onmouseover="selectSubMenu('lnb_s06')">
+                <h3 class="last" style="margin:19px 0 0 57px;"><a href="#" onclick="return m_menuPrd9_1_1_link()"><img src="https://www.letskorail.com/images/lnb_mu01_09.gif" alt="기차역 정보" onmouseover="selectSubMenu('lnb_s06')"/></a></h3>
+                <div class="lnb_s" id="lnb_s06" onmouseout="closeSubMenu('lnb_s06')">
+                    <div class="lnb_sm09">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd9_1_1_link()">기차역 안내</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_1_link()">KTX역</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_2_link()">일반철도</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_3_link()">광역철도</a></dd>
+                        </dl>
+                        <dl class="last">
+                            <!--15.11.07 ojs : 메뉴 삭제
+                                                        <dt><a href="#" onclick="return m_menuPrd9_2_1_link()">환승역 조회</a></dt>
+                                                        <dd>&nbsp;</dd>
+                             -->
+                            <dt><a href="http://info.korail.com/mbs/www/subview.jsp?id=www_020110010000" target="_blank" >철도 노선안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div><!-- //lnb -->
+        <!-- //header -->
+    </div>
+    <div id="container">
+        <!-- container -->
+        <div id="contents">
+            <!-- contents -->
+            <div class="content">
+                <!-- title --><div class="s_visual
+
+tra08">
+
+
+
+
+                <p class="location"><a href='#' onclick="m_main_prd_link();">홈</a> &gt; <a href="#" onclick="return m_menuPrd8_1_1_link();">회의실</a> &gt; <a href="#" onclick="return m_menuPrd8_2_1_link();">회의실 예약</a> </p>
+
+
+                <h3 class="title" id="ebizPrdPageTitle">회의실 예약</h3>
+
+            </div><!-- //title -->
+
+                <form name="form1" method="post" action="">
+                    <input type="hidden" name="txtMrkDayBit" value=''/>
+                    <input type="hidden" name="radInqFlg" value="0"/>
+
+                    <div class="cont_info">
+                        <!-- cont_info -->
+
+                        <input type="hidden" name="txtMrkDayBit_0" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_1" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_2" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_3" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_4" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_5" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_6" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_7" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_8" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_9" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_10" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_11" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_12" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_13" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_14" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_15" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_16" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_17" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_18" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_19" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_20" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_21" value='1111111111'/>
+
+                        <input type="hidden" name="txtMrkDayBit_22" value='1111111111'/>
+
+
+                        <ol class="step">
+                            <li><img src="https://www.letskorail.com/images/prd/m08_step_1_on.gif" alt="회의실 조회 현재단계" /></li>
+                            <li><img src="https://www.letskorail.com/images/prd/m08_step_2_off.gif" alt="회의실 예약" /></li>
+                            <li><img src="https://www.letskorail.com/images/prd/m08_step_3_off.gif" alt="회의실 결제" /></li>
+                            <li><img src="https://www.letskorail.com/images/prd/m08_step_4_off.gif" alt="회의실 확인" /></li>
+                        </ol>
+
+                        <h4 class="c_tit">회의실 이용안내</h4>
+                        <div class="list_round">
+                            <div class="middle_bg">
+                                <ul class="list_col">
+                                    <li>기본임대 시간은 2시간이며, 1시간 단위로 연장할 수 있습니다.</li>
+                                    <li><strong>회의실에는 음식물을 반입하실 수 없습니다.</strong></li>
+                                    <li>
+                                        결제완료 후 예약을 취소하시는 경우 다음과 같이 취소 수수료가 발생합니다.
+                                        <ul>
+                                            <li>이용일 기준 7일 이전 : 전액 환불</li>
+                                            <li>이용일 기준 6일~3일 이전 : 납부금액의 10%</li>
+                                            <li>이용일 기준 2일~1일 이전 : 납부금액의 50%</li>
+                                            <li>이용일 당일 : 환불 없음</li>
+                                        </ul>
+                                    </li>
+                                    <li>이용일 7일전까지(7일 이내에 예약 시에는 금일 중) 결제하셔야 합니다.</li>
+                                    <li>결제변경은 해당 회의실 이용시간 전까지 가능합니다.</li>
+                                    <li>회의실 예약은 로그인후 사용 가능합니다.</li>
+                                    <li><a href="/ebizprd/EbizPrdRoomHtm21351.do?confer-01&nval=25"><span>인재개발원(의왕)</span></a> 회의실은 전화예약 바랍니다.</li>
+                                    <li>회의실 변경은 사용일 1일 전까지 가능합니다.(해당역 담당자 전화 신청 필수)(단, 회의실 임대일 연장 변경, 사용시간 단축은 <br>취소수수료 기준 적용) </li>
+                                    <li>도청감지장치 등 정보보안 설비는 미설치되어 있으니 이용 전 참고바랍니다.</li>
+                                    <li>주차는 해당역 유료 주차장을 이용하시기 바랍니다.(역별 주차요금 상이)</li>
+                                    <li>예약 전 기타 문의사항(현금결제, 사전준비시간, 휠체어 진입여부 등)은 각 회의실 담당자에게 문의 바랍니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="c_tit">이용일자 &amp; 기차역 선택</h4>
+                        <div class="form_select" id="ScriptDiv">
+                            <img src="https://www.letskorail.com/images/prd/t8_text1.png" alt="선택후 조회버튼 클릭" class="img_text" />
+                            <div>
+                                <ul>
+                                    <li>
+
+                                        <strong><label for="useDay">이용일자</label></strong>
+                                        <input type="text" class="datepicker2" name="txtInqDt" id="useDay" value="2020-04-02" style="width:145px"/>
+
+                                        <input type="hidden" name="txtInqStartDt" value=""/>
+                                        <input type="hidden" name="txtInqEndDt"   value=""/>
+                                    </li>
+                                    <li>
+                                        <strong><label for="terminal">기차역</label></strong>
+                                        <input type="hidden" name="txtStnNm"   value=""/>
+                                        <select name="selCnfStnCd" id="terminal" onChange="fn_chgCnfStnCd();">
+
+                                            <option value='M000000000VA' >본사(대전역동광장)</option>
+
+
+                                        </select>
+                                    </li>
+                                </ul>
+                                <a href="#"><img src="https://www.letskorail.com/images/btn_search.png" alt="조회" /></a>
+                            </div>
+                        </div>
+
+                        <iframe name="SearchItem" id="SearchItem" frameborder="0" height="0px" onload="doResize(this);" scrolling="no" style="overflow:hidden; width:100%;"></iframe>
+                        <iframe id="ifmBorder" title="ifmBorder" style="position:absolute;display:none;z-index:1;width:500px;left:0;top:0;filter:alpha(opacity=0);" frameborder="0" scrolling="no"></iframe>
+
+                        <div class="ban_btm01">
+                            <a href="/common/imageLink.do?adAreaCd=AREA19"><img src="https://www.letskorail.com/file/AD/AREA19.gif" alt="광고" width="800" height="80"/></a>
+                        </div>
+
+                        <!-- //cont_info -->
+                    </div>
+                </form>
+
+                <!-- //content -->
+            </div>
+
+            <div id="snv">
+                <!-- sub nav -->
+
+                <script type="text/javascript" src="/js/pwdConfirm/pwdConfirmYn.js?v=202003311034"></script>
+                <script>
+                    $(document).ready(function(){
+                        fn_sp_left_chk();
+                    });
+
+                </script>
+
+
+                <!-- left memu -->
+                <h3>회의실<span>LET'S KORAIL TRAIN</span></h3>
+                <ul class="snv_mu">
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat04/meetingRoom/reservation.html" onclick="return m_menuPrd8_1_1_link()" class="selected">회의실 예약</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return m_menuPrd8_2_1_link()" >예약내역확인</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return m_menuPrd8_2_2_link()" >과거 예약내역확인</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return m_menuPrd8_3_1_link()" >회의실 현황</a>
+                        <ul class="snv_smu" >
+                            <li><a href="#" onclick="return m_menuPrd8_3_1_link()" >회의실 이용안내</a></li>
+                            <li><a href="#" onclick="return m_menuPrd8_3_2_link()" >회의실 운영역</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="ban_lef">
+                    <!-- 회의실 예약 -->
+                    <a href="/common/imageLink.do?adAreaCd=AREA56"><img src="https://www.letskorail.com/file/AD/AREA56.gif" alt="광고" width="150" height="80"/></a>
+
+                </div>
+                <!-- //left memu -->
+
+                <!-- //sub nav -->
+            </div>
+            <!-- //contents -->
+        </div>
+        <!-- //container -->
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/egovframework/korail/ebizprd/prd_main/prd_main_cmm.js"></script>
+<script>
+    $(document).ready(function(){
+        fn_brnImg_chk();
+    });
+</script>
+<div class="banner">
+    <div class="ban_box">
+        <ul>
+            <li><img id="imgShwChk1" src="https://www.letskorail.com/images/ban01.gif" /></li>
+            <li><img id="imgShwChk2" src="https://www.letskorail.com/images/ban02.gif" /></li>
+            <li><img id="imgShwChk3" src="https://www.letskorail.com/images/ban03.gif" /></li>
+            <li><img id="imgShwChk4" src="https://www.letskorail.com/images/ban04.gif" /></li>
+            <li><img id="imgShwChk5" src="https://www.letskorail.com/images/ban05.gif" /></li>
+            <li><img id="imgShwChk6" src="https://www.letskorail.com/images/ban06.gif" /></li>
+            <li><img id="imgShwChk7" src="https://www.letskorail.com/images/ban07.gif" /></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <!-- footer -->
+
+    <div class="f_box">
+        <div class="f_info">
+            <ul>
+                <li><a href="#" onclick="return m_menuPrd14_1_1_link()"><img src="https://www.letskorail.com/images/f_info01.gif" alt="고객서비스헌장" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_2_1_link()"><img src="https://www.letskorail.com/images/f_info02.gif" alt="보도자료" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_9_1_link()"><img src="https://www.letskorail.com/images/f_info12.gif" alt="홈페이지이용약관" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_3_1_link()"><img src="https://www.letskorail.com/images/f_info03.gif" alt="여객운송약관/부속약관" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_4_1_link()"><img src="https://www.letskorail.com/images/f_info04.gif" alt="정보공개" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_5_1_link()"><img src="https://www.letskorail.com/images/f_info05.gif" alt="개인정보처리방침" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_6_1_link()"><img src="https://www.letskorail.com/images/f_info06.gif" alt="이메일무단수집거부" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_7_1_link()"><img src="https://www.letskorail.com/images/f_info07.gif" alt="광고안내" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd14_8_1_link()"><img src="https://www.letskorail.com/images/f_info08.gif" alt="저작권정책" /></a></li>
+                <!-- <li><a href="#" onclick="return m_menuPrd15_1_1_link()"><img src="/images/f_info11.gif" alt="유실물찾기" /></a></li> -->
+                <li><a href="#" onclick="return m_menuPrd17_1_1_link()"><img src="https://www.letskorail.com/images/f_info09.gif" alt="러브포인트" /></a></li>
+                <li><a href="#" onclick="return m_menuPrd16_1_1_link()"><img src="https://www.letskorail.com/images/f_info10.gif" alt="이벤트" /></a></li>
+            </ul>
+            <div class="korail_fmy">
+                <fieldset>
+                    <legend>코레일관련 사이트 바로가기</legend>
+                    <label for="selectsite" class="blind">코레일관련 사이트 바로가기</label>
+                    <select id="selectsite" name="selectsite">
+                        <option value="#" selected="selected">코레일 Family</option>
+
+                        <option value="http://info.korail.com/mbs/www/">코레일 홈페이지</option>
+
+                        <option value="http://logis.korail.go.kr">물류정보</option>
+                        <!-- <option value="http://www.naksanresort.co.kr">코레일 낙산연수원</option> -->
+                        <option value="http://info.korail.com/mbs/www/subview.jsp?id=www_030502000000">윤리경영</option>
+                        <option value="http://info.korail.com/mbs/company/jsp/member/login.jsp">이사회커뮤니티</option>
+                        <option value="http://ebid.korail.com">조달ㆍ입찰</option>
+                        <option value="http://railroadmuseum.co.kr">철도박물관</option>
+                        <option value="http://news.korail.com/">코레일뉴스</option>
+                        <option value="http://webzine.korail.com/">코레일웹진</option>
+                        <!-- <option value="http://photo.korail.com" >사진으로 보는 코레일</option>
+                        <option value="http://www.trainshop.co.kr" >트레인샵</option>
+                        <option value="http://raildream.korail.com" >퇴직지원 포털사이트</option> -->
+                    </select>&nbsp;<input type="image" src="https://www.letskorail.com/images/btn_go_sel.gif" alt="검색" onclick="openBaseWindow(document.getElementById('selectsite').value,'selectsite')"/>
+                </fieldset>
+            </div>
+        </div>
+        <div class="f_cont">
+            <h6><img src="https://www.letskorail.com/images/f_logo.gif" alt="KORAIL 여행 나만의 여행플랜~!" /></h6>
+            <div class="add">
+                <address><img src="https://www.letskorail.com/images/f_add.gif" alt="(34618) 대전광역시 동구 중앙로 240 TEL:1544-7788" /></address>
+                <p class="copy"><img src="https://www.letskorail.com/images/f_copy.gif" alt="Copyright ⓒ 2014 By KOREA RAILROAD All Rights Reserved." /></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+</div>
+
+<!-- 팝업 -->
+<div id="theLayer" style="position:absolute;display:none;z-index:99;top:0px;left:0px" >
+    <div class="popup_ly" id="tblLayer" onMouseDown="layer_popup_move_start('theLayer')" onMouseUp="layer_popup_move_end('theLayer');">
+        <div class="header">
+            <h1>회의실 이용안내</h1>
+            <a href="javascript:closeWin();" class="pop_close" title="팝업 닫기">닫기</a>
+        </div>
+        <div class="cont">
+            <!-- popup content -->
+            <p>한국철도공사의 약관 및 내규에 의해 <strong>회의실 임대 시 아래의 제한사항</strong>을 위반한 경우 임대계약이 취소됨을 알려드립니다.</p>
+            <div class="list_round_dob_c">
+                <div class="middle_bg aln_l">
+                    <!-- content -->
+                    <ol>
+                        <li>① 법령 또는 사회적 통념을 위반하는 내용의 행사 </li>
+                        <li>② 호화, 사치, 퇴폐풍조를 유발하여 사회적 문제 발생의 우려가 있는 행사 </li>
+                        <li>③ 철도공사의 시설 및 설비를 심각히 훼손할 우려가 있는 행사 </li>
+                        <li>④ 철도공사의 업무에 지장을 초래할 우려가 있을때 </li>
+                        <li>⑤ 기타 회의실을 사용하기에 부적합하다고 판단되는 행사 </li>
+                    </ol>
+                    <span>예시) 정당행사, 정치활동, 종교행사, 물품판매, 미풍양속 저해 행사 등</span>
+                    <!-- //content -->
+                </div>
+            </div>
+            <div class="btn_r"><input type="checkbox" name="chkShRqAgree" id="chkShRqAgree" title="이용동의" /><label for="chkShRqAgree" >&nbsp; 위의 유의사항에 동의합니다.</label>
+                <a href="javascript:closeWin();"><img src="https://www.letskorail.com/images/btn_close_s.gif" alt="닫기" /></a></div>
+            <!-- //popup content -->
+        </div>
+    </div>
+</div>
+
+<div id="frogue-container"
+     class="position-right-bottom"
+     data-chatbot="a3e7230e-d0c7-4f7f-8817-4b79273d58d5"
+     data-user=""
+></div>
+
+<script>
+    (function(d, s, id){
+        if (d.getElementById(id)) {
+            var elem = d.getElementById(id);
+            elem.parentElement.removeChild(elem);
+        }
+        setTimeout(function() {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            js = d.createElement(s); js.id = id;
+            js.src = "https:\/\/keyview.danbee.ai/js/plugins/keyview-embed/keyview-embed.min.js";
+            // js.src="../../assets/ui-sample/frogue-embed.js"; // localhost test용
+            fjs.parentNode.insertBefore(js, fjs);
+        }, 1000);
+    }(document, 'script', 'frogue-embed'));
+</script>
+</body>
+</html>
+

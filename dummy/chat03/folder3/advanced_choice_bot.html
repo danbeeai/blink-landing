@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="선택을 도와주는 샘플챗봇을 살펴보고, 살짝 수정해보는 실습을 해봅시다. 챗봇 페르소나에 대해서도 한번 생각해보아요.">
+    <meta name="keywords" content="tutorialadvanced,  선택장애">
+    <title>선택장애제거, 캡틴초이 살펴보기 | danbee.Ai Document</title>
+    <link rel="stylesheet" href="css/syntax.css">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/modern-business.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/customstyles.css">
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/boxshadowproperties.css">
+    <!-- most color styles are extracted out to here -->
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/theme-danbee.css">
+
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/magnific-popup.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="js/jquery.navgoco.min.js"></script>
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Anchor.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+    <script src="js/toc.js"></script>
+    <script src="js/customscripts.js"></script>
+
+    <!-- <link rel="shortcut icon" href="https://doc.danbee.ai/images/favicon.ico"> -->
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://doc.danbee.ai/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://doc.danbee.ai/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://doc.danbee.ai/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://doc.danbee.ai/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://doc.danbee.ai/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://doc.danbee.ai/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://doc.danbee.ai/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://doc.danbee.ai/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://doc.danbee.ai/images/favicon/apple-icon-180x180.png">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="https://doc.danbee.ai/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="https://doc.danbee.ai/images/favicon/android-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="https://doc.danbee.ai/images/favicon/android-icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://doc.danbee.ai/images/favicon/android-icon-48x48.png">
+    <link rel="icon" type="image/png" sizes="36x36" href="https://doc.danbee.ai/images/favicon/android-icon-36x36.png">
+
+    <link rel="icon" type="image/png" sizes="96x96" href="https://doc.danbee.ai/images/favicon/android-icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://doc.danbee.ai/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://doc.danbee.ai/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://doc.danbee.ai/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://doc.danbee.ai/images/favicon/favicon-16x16.png">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta name="msapplication-TileColor" content="#ffffff ">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="alternate" type="application/rss+xml" title="document" href="http://doc.danbee.Ai/feed.xml">
+
+    <!-- flexslider -->
+    <link rel="stylesheet" href="https://doc.danbee.ai/css/flexslider.css" type="text/css" media="screen" />
+    <script src="js/jquery.flexslider-min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+
+    <style>
+        #frogue-container * {
+            font-family: "Noto Sans KR","Apple SD Gothic Neo","Nanum Barun Gothic",Helvetica,Arial,"Malgun Gothic","맑은 고딕","돋움",Dotum,sans-serif !important;
+            -webkit-box-sizing: content-box; box-sizing: content-box;
+        }
+        #frogue-talkpop input {color: #000; padding: 1% 2% !important;}
+        .frogue-talkpop-info-container {height: 27px !important;}
+        .frogue-talkpop-info-container span {padding: 2px 12px !important;}
+    </style>
+
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo-graphic" href="https://doc.danbee.ai" title="doc.danbee.ai 홈으로"><img src="https://doc.danbee.ai/images/img_logo.svg" alt="danbee.Ai"/>
+                <span class="projectTitle">단비Ai 도큐먼트</span> </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+
+
+
+                <li><a href="index.html">블로그</a></li>
+
+
+
+                <li><a href="tutorial_home.html">튜토리얼</a></li>
+
+
+
+                <li><a href="manual_home_composition.html">매뉴얼</a></li>
+
+
+
+                <li><a href="https://danbee.ai/pricing.html" target="_blank">가격정책</a></li>
+
+
+
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+
+
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" >
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        SimpleJekyllSearch.init({
+                            searchInput: document.getElementById('search-input'),
+                            resultsContainer: document.getElementById('results-container'),
+                            dataSource: 'search.json',
+                            searchResultTemplate: '<li><a href="{url}" title="선택장애제거, 캡틴초이 살펴보기">{title}</a></li>',
+                            noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                        })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div id="main" style="padding-top:60px">
+        <!-- Content Row -->
+        <div class="row">
+
+
+            <!-- Sidebar Column -->
+            <div class="col-xl-3 col-lg-3 col-md-3" id="tg-sb-sidebar">
+
+
+                <ul id="mysidebar" class="nav">
+                    <li class="sidebarTitle">danbee.Ai Doc 1.0</li>
+
+
+
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/faq/faq_00_gateway.html"><span></span>시작하기</a>
+                        <ul>
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/faq/faq_00_gateway.html">FAQ, 가장 자주 묻는 문의</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/blog/blog_000_landing.html"><span></span>챗봇UX</a>
+                        <ul>
+
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/blog/blog_000_landing.html">HCI의 흐름에서 보는 챗봇의 미래</a></li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="https://keyview.danbee.ai/chat03/casestudy/casestudy_006_fabre.html"><span></span>케이스스터디</a>
+                        <ul>
+                            <li><a href="https://keyview.danbee.ai/chat03/casestudy/casestudy_006_fabre.html">단비챗봇, 버그채집봇 파브르</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="subfolders">
+                        <a href="https://keyview.danbee.ai/chat03/folder3/advanced_choice_bot.html"><span></span>예제를 통해 빠르게 경험하기</a>
+                        <ul>
+
+
+                            <li class="active"><a href="https://keyview.danbee.ai/chat03/folder3/advanced_choice_bot.html">샘플 - 선택장애제거봇, 초이</a></li>
+
+
+                            <li><a href="https://keyview.danbee.ai/chat03/folder4/advanced_decision_tree_bot.html">샘플 - 의사결정나무봇, 디트</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#"><span></span>챗봇 제작 단계</a>
+                        <ul>
+
+
+                            <li>
+                                <a href="https://keyview.danbee.ai/chat03/chatflow/chatflow.html"><span></span>대화흐름</a>
+                                <ul>
+
+
+
+                                    <li><a href="https://keyview.danbee.ai/chat03/chatflow/chatflow.html">대화흐름 기본 설명</a></li>
+
+
+
+
+
+                                    <li><a href="https://keyview.danbee.ai/chat03/parameter/parameter.html">파라미터</a></li>
+
+
+
+
+
+
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <!-- if you aren't using the accordion, uncomment this block:
+                       <p class="external">
+                           <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+                       </p>
+                       -->
+                </ul>
+
+                <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+                <script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+
+
+
+            <!-- Content Column -->
+            <div class="col-xl-7 col-lg-7 col-md-9" id="tg-sb-content">
+                <div class="post-header">
+                    <h1 class="post-title-main">선택장애제거, 캡틴초이 살펴보기</h1>
+                </div>
+
+
+                <div class="post-content">
+
+
+                    <div class="summary">선택을 도와주는 샘플챗봇을 살펴보고, 살짝 수정해보는 실습을 해봅시다. 챗봇 페르소나에 대해서도 한번 생각해보아요.</div>
+
+
+
+                    <div class="center-toc" >
+
+                        <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+                        <script>
+                            $( document ).ready(function() {
+                                // Handler for .ready() called.
+
+                                $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+                                /* this offset helps account for the space taken up by the floating toolbar. */
+                                $('#toc').on('click', 'a', function() {
+                                    var target = $(this.getAttribute('href'))
+                                        , scroll_target = target.offset().top
+
+                                    $(window).scrollTop(scroll_target - 10);
+                                    return false
+                                })
+
+                            });
+                        </script>
+
+                        <div id="toc"></div>
+
+                    </div>
+
+
+
+
+
+                    <!--     <a target="_blank" href="https://github.com/danbeeai/document/blob/gh-pages/pages///advanced_choice_bot.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+                    <a target="_blank" href="https://github.com/danbeeai/document/blob/gh-pages//pages/tutorial/T11_advanced_choice_bot.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> 깃허브 수정요청</a>
+
+
+
+
+
+
+                    <h2 id="샘플챗봇-살펴보기">샘플챗봇 살펴보기</h2>
+                    <p>지금부터는 이미 만들어져있는 챗봇들을 살펴보면서 챗봇을 만드는 요령을 익힐 수 있습니다.
+                        단비에이아이에 로그인한 후, 챗봇목록화면에서 “Sample Chatbot 가져오기”를 클릭하면 이미 만들어진 챗봇을 자신의 계정으로 복사해올 수 있습니다.
+                        자신이 만들고자 하는 챗봇과 유사한 모델을 가져와서 조금씩 수정해보시기 바랍니다.</p>
+
+                    <p>가장 먼저 소개하려고 하는 챗봇은 선택결단봇, “캡틴초이” 입니다.</p>
+
+                    <h2 id="선택결단봇-캡틴초이-살펴보기">선택결단봇, 캡틴초이 살펴보기</h2>
+                    <p>우리의 인생은 우리의 선택들이 이어져 만들어진다고 해도 과언이 아닙니다. <br />
+                        가볍게는 점심메뉴, 오늘 입고갈 의상에 대해서 결단이 필요하고 <br />
+                        무거운 주제는 대학전공을 무엇으로 할 것인가, 배우자로 누구를 선택할 것인가와 같은 큰 선택도 있겠습니다.<br />
+                        쉽게 선택을 하지 못하는 이유는 ‘그럴만해서’ 그런 것입니다. <br />
+                        선택지들이 다 비슷하거나 딱히 취향이 없거나 단순히 고민할 힘이 없거나. <br />
+                        이렇게 애메한 상황에 캡틴초이에게 물어봅시다.<br />
+                        <br />
+                        캡틴초이는 결단력있는 우주전함 선장입니다. <br />
+                        캡틴초이는 선택장애로 고민되는 문제를 시원하게 선택해줍니다. <br /></p>
+
+                    <p><strong>Sample Chatbot 가져오기</strong> 를 통해 <strong>선택결단봇, 캡틴초이</strong> 을 가져오면 챗봇을 확인할 수 있습니다. <br /></p>
+
+                    <p><span class="link"><a href="http://pf.kakao.com/_hHxjxoC">선택결단봇, 캡틴초이를 카카오톡에서 만나보기</a></span><br /></p>
+
+                    <p><span class="link"><a href="https://frogue.danbee.ai/?chatbot_id=bb5c9c5f-0505-444d-8e84-13b132fbaedd">선택결단봇, 캡틴초이를 프로그(Frogue)에서 만나보기</a></span><br /></p>
+
+                    <p><span class="link"><a href="/samplebot.html#%EC%83%98%ED%94%8C%EC%B1%97%EB%B4%87-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0">Sample Chatbot 가져오는 방법 확인하기</a></span><br /></p>
+
+                    <figure><img class="docimage" src="https://doc.danbee.ai/images/tutorial/sample_captainchoi/captainchoi_kakao.png" alt="" /><figcaption>카카오톡에서 미소 짓는 캡틴초이</figcaption></figure>
+
+                    <p>선택에 대한 고민이 될때마다 꺼내어 써보시길! <br /><br /></p>
+
+                    <h3 id="캡틴초이를-만들게된-배경">캡틴초이를 만들게된 배경</h3>
+
+                    <p>캡틴초이를 만든 배경을 소개할까 합니다.<br /></p>
+
+                    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>단비 개발팀이 점심시간에 중국집에 가게 되었습니다.
+어떤 중국집은 짬뽕을 잘하고, 어떤 중국집은 짜장을 잘합니다.
+그런데 단비 개발팀이 가는 중국집은 둘다 잘하는 집입니다.
+
+개발자들 중에 짜장이나 짬뽕 하나만을 고집하는 분도 있지만
+둘다 잘 드시는 분도 있습니다. 그 분은 고민에 빠집니다.
+
+에라이 짬짜면(?) 할 수도 있겠지만 안타깝게도 짬짜면은 없는 집입니다.
+사실 아무거나 먹으면 되는데... 주문받는 아주머니는 초조한 시선을 보냅니다.
+
+이때 그 개발자는 옆 개발자에게 물어보는 선택을 합니다.
+"짬뽕 먹을까? 짜장면 먹을까?"
+
+옆에 있던 개발자는 짜장면 먹으라고 했습니다.
+선택장애가 왔던 개발자는 그 이야기를 듣고 추천과 반대로 짬뽕을 선택했습니다. 하하하.
+</code></pre></div></div>
+
+                    <p>짜장면과 짬뽕을 다 먹어갈때즈음.<br />
+                        단비 개발팀은 이런 사소하지만 고민되는 상황에서 즐겁고 가볍게 도움줄 수 있는<br />
+                        캐주얼 일상 챗봇을 만들어보기로 했습니다.<br /></p>
+
+                    <h3 id="챗봇의-목적">챗봇의 목적</h3>
+                    <p>우선 챗봇이 할 일을 명확히 합니다. 목적!
+                        선택에 대한 고통을 덜어주기 위해 확실히 정해주는 것입니다.</p>
+
+                    <h3 id="챗봇의-업무-분석">챗봇의 업무 분석</h3>
+
+                    <p>선택은 어렵고 결과는 무섭(?)지만,
+                        결단하는 과정은 생각보다 간단합니다. <br /></p>
+
+                    <ol>
+                        <li>선택을 해야할 때라고 생각한다.</li>
+                        <li>선택지로 만든다. (이때 영 아닌 애들이 정리됩니다.)</li>
+                        <li>선택지별로 장단점을 확인한다.</li>
+                        <li>우리의 목표, 취향, 가지고 있는 리소스에 맞추어 선택한다.</li>
+                    </ol>
+
+                    <p>짜장면과 짬뽕사건처럼, 결국 최종 선택은 본인이 하고, 챗봇은 그것을 도와주는 역할을 할 수 있겠네요.
+                        결국 <strong>선택도우미 = 추천서비스</strong> 라는 것을 알 수 있습니다.</p>
+
+                    <h3 id="챗봇-수준-정의">챗봇 수준 정의</h3>
+                    <p>중국음식을 선택해달라고 한다거나 점심메뉴를 선택해달라고 구체적으로 이야기 할 수도 있지만,
+                        좀더 범용적으로 쓸 수 있게 해보자는 의견이 컸습니다.
+                        더 만들기도 쉽고 자주 쓸 수 있을 것 같다는 것이죠.
+                        만장일치로 린(Lean)하게 간단하게 시작하자고 합의하였습니다.<br /></p>
+
+                    <p>추천도 제대로 하려면 무척 일이 많습니다.</p>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>수준</th>
+                            <th>수준설명</th>
+                            <th>사례</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>사용자의 취향이나 상황은 관심없고 몇 가지 선택지를 주면, 그 중에서 선택해줌</td>
+                            <td>옆에 있던 개발자의 짜장면 추천 수준</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>사용자의 취향이나 상황은 관심없고 뭔가 새로운거에 관심있는지 확인하고 싶음</td>
+                            <td>레스토랑의 New 메뉴 수준</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>사용자의 취향이나 상황은 모르지만 뭐가 요즘 뜨는지 잘 앎</td>
+                            <td>레스토랑 Hot 메뉴 수준</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>사용자의 취향이나 상황은 모르지만 뭐가 인기있는지는 잘 앎</td>
+                            <td>레스토랑 Best 메뉴 수준</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>사용자의 취향이나 상황은 모르지만 대화가 가능함</td>
+                            <td>질문을 통한 추천, 스무고개 수준</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>사용자의 취향에 대해서 미리 알고 있고 상황도 알고 있고 추천해줄 데이터가 매우 풍부함</td>
+                            <td>빅데이터 클러스터링, 넷플릭스 수준</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p>1단계로 가기로 했습니다. 저희는 챗봇을 만들 수 있는 클라우드 서비스를 제공하지만,
+                        아쉽게도 고객에 대한 데이터나 제공할 수 있는 서비스나 콘텐츠는 없기 때문입니다.</p>
+
+                    <h3 id="챗봇-페르소나-정의">챗봇 페르소나 정의</h3>
+                    <p>챗봇의 캐릭터를 잘 잡아주면, 사용자를 보다 즐겁게 해줄 수 있습니다.
+                        우리는 막무가내 무대뽀로 적은 정보로 빠르고 확실하게 결단내리는 존재가 누군지 3분간 브레인스토밍을 했습니다.
+                        그 결과, 두둥, 해적선 선장이 그런 성격이라는 것을 알게 되었습니다.</p>
+
+                    <p>그리고 선택을 도와주는 선장이므로 초이스에서 “초이”를 따와서 캡틴초이 라는 이름을 짓게 되었습니다.
+                        이에 어울리는 얼굴도 과감하게 10분만에! 그리고 말투도 샘플로 몇개 적어보았습니다. (반갑네. 선택하시게나.)</p>
+
+                    <p>캡틴초이는 카카오톡에 연결해서 공개하기로 하였습니다. 카카오톡에서는 처음에 “시작하기”를 탭하여 대화를 시작하게 되어있습니다.
+                        시작하기를 선택하면 인사를 하고, 시작을 유도하는 것이지요.</p>
+
+                    <h3 id="챗봇-대화흐름-메인시나리오-설계">챗봇 대화흐름 메인시나리오 설계</h3>
+
+                    <p>캡틴초이의 대화흐름을 설계할 차례입니다.
+                        대화흐름을 설계하는 것은 서비스를 설계하는 것과 유사합니다. GUI중심의 모바일이나 웹애플리케이션 등의 서비스 디자인은 주로 “UI를 그리면서” 한다면, 대화중심인 챗봇 서비스는 “대화스크립트를 쓰면서” 가닥을 잡아나갑니다. 다른 서비스 디자인과 마찬가지로 “메인시나리오”를 가장 먼저 만듭니다. 메인시나리오가 고객을 만족시키면, 나머지 시나리오를 만드는 것이지요. <br /></p>
+
+                    <p>그냥 자기가 영화/드라마 시나리오 작가가 되었다고 생각하고 자신이 만든 챗봇의 페르소나와 고객의 페르소나를 떠올리며 타자기를 쳐내려가면 되겠습니다.</p>
+
+                    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 캡틴초이 : 만나서 반갑네, 난 선택장애를 없애줄 캡틴초이라고 하네! 뭘 고를지 모르겠다고? 내가 골라주지!
+ 사용자   : 다음주에 소개팅 가는데 원피스가 나을까? 아니면 블라우스에 짧은 바지 입고갈까?
+ 캡틴초이 : 원피스가 좋겠네! 난 이상하게 해적이라서 그런지 원피스가 좋아!
+</code></pre></div></div>
+
+                    <p>아주 이상적인 시나리오가 나왔습니다.
+                        하지만 안타깝게도 이런 고차원적인 표현은 알아듣고
+                        사용자가 이야기한 단어를 기반으로 위트있는 대답을 하려면
+                        상당히 학습을 많이 시켜야 합니다.</p>
+
+                    <p>우리의 리소스는 한정되어 있고 범용적이고 쉽게 만들 수 있는 챗봇으로 수준을 정한 만큼 시나리오를 수정해봅니다.</p>
+
+                    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 캡틴초이 : 반갑네! 뭘 선택할지 고민이 된다고? 날 불러주게!
+ 사용자   : 초이!
+ 캡틴초이 : 오! 뭘선택할지 고민이 있나보구만? 몇 가지 중에 고민인가?
+ 사용자   : 두 가지
+ 캡틴초이 : 1번째 옵션이 뭔가?
+ 사용자   : 원피스
+ 캡틴초이 : 2번째 옵션이 뭔가?
+ 사용자   : 블라우스에 짧은 바지
+ 캡틴초이 : 좋아 선택했어! 투피스로 정해!
+ 사용자   : 고마워
+ 캡틴초이 : 뭐 그런거 가지고 그래! 해적은 사랑이니깐!
+</code></pre></div></div>
+
+                    <p>이 정도면 대화도 제법 자연스럽고 퀵하게 만들 수 있을 것 같네요!</p>
+
+                    <h3 id="챗봇-구현">챗봇 구현</h3>
+                    <p>이제 부턴 구현 과정을 살펴보겠습니다.
+                        처음부터 완벽하게 만들려고 하기 보다는, 챗봇빌더가 제공하는 학습기능, 대화흐름 웍플로우 기능, 테스트 기능을 이용해서 차근 차근 구현하면 됩니다. 우리가 작성한 시나리오를 보면, 가장 먼저 인사를 합니다. 인사의 한자를 보면 사람인(人), 일사(事). 즉, 사람의 일이라는 것이죠. 사람을 봤으면 인사를 해야지! 인간 세상에서 같이 살려면 우리의 챗봇이 가장 먼저 할 것도 인사입니다.</p>
+
+                    <h3 id="기본설정">기본설정</h3>
+                    <p>좌측메뉴에서 [챗봇 변경/생성하기 &gt; 챗봇 제작 &gt; 시작메시지]에 들어가면 시작 메시지를 설정할 수 있습니다. 생각하는 챗봇의 성격에 맞는 말투를 생각해보고 입력해보시기 바랍니다.</p>
+
+                    <p><span class="link"><a href="/settings_personality.html">대화 설정에 대해 더 알아보기</a></span></p>
+
+                    <h3 id="메인시나리오-시작을-인식할-수-있게-학습하기">메인시나리오 시작을 인식할 수 있게 학습하기</h3>
+                    <p>인사를 할 수 있게 작업이 되었네요.
+                        메인시나리오를 발동시키려는 의도를 파악하게 학습을 시켜야 합니다.</p>
+
+                    <p>시나리오를 다시 살펴보면, <br />
+                        <strong>캡틴초이 : 반갑네! 뭘 선택할지 고민이 된다고? 날 불러주게!</strong></p>
+
+                    <p>아마도 사용자는 ‘초이’, ‘캡틴’, ‘캡틴초이’라고 입력할 수 있겠네요.
+                        “선택장애해결”이라는 Intent(의도)에 초이, 캡틴, 캡틴초이와 같은 시작구호가 입력되어 있으면 됩니다.</p>
+
+                    <h3 id="메인시나리오를-대화흐름에-담기">메인시나리오를 대화흐름에 담기</h3>
+                    <p>메인시나리오를 Chatflow에 담아보면, 아래 그림과 같이 됩니다.</p>
+                    <figure><img class="docimage" src="https://doc.danbee.ai/images/tutorial/sample_captainchoi/captainchoi_flowsample.png" alt="" /><figcaption>메인시나리오 플로우</figcaption></figure>
+
+                    <p>최초 시작멘트를 보내고, 몇 가지 선택지가 있냐고 물어본후, 선택지의 수에 따라 반복해서 옵션을 물어봅니다.
+                        숫자가 아닌 값을 입력하면, 다시 몇 가지냐고 물어보게 되어있습니다.
+                        모든 옵션을 확인한 다음에는 “랜덤선택”이라는 단계에서 촥 하나 뽑아서 “답변”단계에서 대답하게 됩니다.</p>
+
+                    <h3 id="테스트-해보기">테스트 해보기</h3>
+                    <p>우측 테스트 패널에서 바로 테스트 해볼 수 있습니다.</p>
+                    <figure><img class="docimage" src="https://doc.danbee.ai/images/tutorial/sample_captainchoi/captainchoi_test.png" alt="" /><figcaption>메인시나리오를 테스트 패널에서 테스트해보자</figcaption></figure>
+
+                    <p>우리가 정한 시나리오데로 잘 동작하는 군요!</p>
+
+                    <h3 id="보완하기">보완하기</h3>
+                    <p>마지막에 “고마워”라고 했는데 대답을 못했네요. 이 부분을 보완해 보겠습니다. danbee.ai의 왼쪽 메뉴에서 [챗봇 변경/생성하기 &gt; 챗봇 제작 &gt; 대화의도]를 클릭합니다.</p>
+
+                    <p>우측 [대화의도 생성] 버튼의 옵션을 클릭하여 [+간편 대화의도 생성]을 클릭합니다. Intent명은 ‘감사’라고 정하죠.
+                        사용자 등록예문에 고마워라고 입력하고 엔터를 칩니다.
+                        고마워 말고도 고마움을 표현하는 다양한 표현이 있습니다. 학습시키겠습니다.
+                        ‘고마워’, ‘감사해요’, ‘땡큐’, ‘쌩유’, ‘메시’,’아리가또’,’씨에씨에’뭐든 좋습니다.
+                        오른쪽에는 고마움에 대한 답변을 다양하게 넣어보죠. 뭔가 해적스럽게 :)</p>
+
+                    <p>우측 상단에 [저장]을 클릭한후 오른쪽 테스트 패널에서 바로 고마워라고 입력해보겠습니다.</p>
+
+                    <figure><img class="docimage" src="https://doc.danbee.ai/images/tutorial/sample_captainchoi/choi_thankyou.png" alt="" /><figcaption>메인시나리오를 테스트 패널에서 테스트해보자</figcaption></figure>
+
+                    <p>보다 자연스러워 졌네요!</p>
+
+                    <h3 id="계속-키우기">계속 키우기</h3>
+                    <p>실제 사용자들이 어떻게 쓰고 있는지 [애널리틱스]에서 확인할 수 있습니다.
+                        사용자들이 우리가 만든 챗봇에게 어떤 것을 추가로 원하는지, 어떤 대화흐름이 부자연스러운지, 어떤 표현을 인식하지 못했는지 보이게 됩니다.</p>
+
+                    <h2 id="다른-페르소나">다른 페르소나?</h2>
+                    <p>여러분들은 캡틴초이보다 더 매력적인 캐릭터를 생각하실지도 모르겠네요. 그렇다면 캡틴초이가 아니라 다른 이름을 학습시켜야 겠죠?
+                        거의 동일한 시나리오로 만든 수달이를 참고해보시기 바랍니다.</p>
+
+                    <p><span class="link"><a href="http://pf.kakao.com/_hHxjxoC">수달이의 선택장애해결을 카카오톡에서 만나보기</a></span><br /></p>
+                    <figure><img class="docimage" src="https://doc.danbee.ai/images/tutorial/sample_captainchoi/soodal_kakao.png" alt="" /><figcaption>수달이는 캡틴초이보다 친근하고 부드럽다.</figcaption></figure>
+
+                    <h2 id="마무리">마무리</h2>
+                    <p>지금까지 캡틴초이를 만나보았습니다. 캡틴초이는 단순 질문에 답하는 챗봇은 아닙니다. Javascript 개발경험이 있다면 Function노드를 이용해 만들 수 있는 것들이 무궁무진합니다. 캡틴초이는 랜덤으로 선택했지만, 빅데이터 추천을 해줄 수 있는 알고리즘과 데이터가 있다면 API노드를 이용해 사용자에게 더 훌륭한 추천을 해줄 수 있을 것입니다.</p>
+
+                    <hr />
+
+                    <h2 id="함께해요-챗봇시대">함께해요! 챗봇시대:)</h2>
+                    <p>모든 사물, 디지털 매체와 말이 통하는 시대! 단비Ai와 함께 반드시 오게될 챗봇시대를 열어갔으면 좋겠습니다. <br />
+                        지금 여러분만의 챗봇을 🌱싹틔우세요!
+                        <br />
+                        <a class="button-cta" target="_blank" href="https://danbee.ai/landing.html" title="인공지능 챗봇빌더 단비Ai 홈페이지 바로가기">인공지능 챗봇빌더 단비Ai 시작하기</a></p>
+
+                    <h3 id="혹시-서비스-소개서를-찾고-있나요">혹시 서비스 소개서를 찾고 있나요?</h3>
+                    <p>단비Ai 서비스 소개서는 아래 링크를 클릭해 다운로드 하실 수 있습니다.
+                        <br />
+                        <a class="button-cta" target="_blank" href="https://doc.danbee.ai/assets/단비에이아이_서비스소개서_2020_v2.3.pdf" title="서비스 소개서 다운로드">서비스 소개서 다운로드</a></p>
+
+                    <h3 id="부족한-부분을-알려주세요">부족한 부분을 알려주세요!</h3>
+                    <p>꼼꼼히 빠짐없이 정리하기위해 늘 노력하고 있습니다.
+                        아래와 같이 의견을 주시면 적극적으로 개선하겠습니다.</p>
+
+                    <ol>
+                        <li>메뉴얼 하단에 댓글 또는 <a href="mailto:contact@danbee.ai">contact@danbee.ai</a>에 이메일 보내기</li>
+                        <li>단비Ai 플랫폼 내에 일하고 있는 [단비Ai 직원, 파브르]에게 문의사항 접수</li>
+                        <li>깃허브를 써보신 경험이 있다면! 제목 아래 [깃허브 수정요청] 버튼을 클릭!</li>
+                    </ol>
+
+                    <!--
+                    ### 사람은 단비를 만들고, 단비는 챗봇을 싹틔운다.
+                    함께할 멋진 *개발자*와 *기획자*를 찾습니다. 어쩌면 💧단비가 여러분이 찾던 직장일 지도 모르죠?
+
+                    - 단비아이엔씨 채용공고 [살펴보기](https://www.rocketpunch.com/companies/danbeeinc/jobs)
+                     -->
+                    <!-- 콘텐츠 페이지 맨 하단에 들어가는 영역임. 여기를 최신화 하면 전체가 파릇파릇 -->
+
+
+                    <div class="tags">
+
+                        <b>Tags: </b>
+
+
+
+                        <a href="tag_tutorial.html" class="btn btn-default navbar-btn cursorNorm" role="button">tutorial</a>
+
+
+
+                        <a href="tag_advanced.html" class="btn btn-default navbar-btn cursorNorm" role="button">advanced</a>
+
+
+
+                    </div>
+
+                    <ul class="posts posts--previous-next">
+
+                        <li>
+                            <h5 class="pagination-title"><a href="advanced_order_pizza_bot.html"><i class="fa fa-angle-left" aria-hidden="true"></i> 피자주문봇 만들기</a></h5>
+                        </li>
+
+
+                        <li>
+                            <h5 class="pagination-title"><a href="advanced_decision_tree_bot.html">의사결정나무봇 <i class="fa fa-angle-right" aria-hidden="true"></i></a></h5>
+                        </li>
+
+                    </ul>
+
+
+
+
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                         */
+
+                        var disqus_config = function () {
+                            this.page.url = "http://doc.danbee.Ai/advanced_choice_bot.html";  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = "advanced_choice_bot.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+
+                        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                            var d = document, s = d.createElement('script');
+
+                            s.src = 'https://danbeeai.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+                </div>
+
+                <hr class="shaded"/>
+
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            &copy;2020 danbee Inc. All rights reserved. <br />
+                            업데이트 : Apr 14, 2020
+                        </div>
+                        <div class="col-lg-6 footer">
+                            <img src="https://doc.danbee.ai/images/danbee_logo.png" alt="danbee.Ai"/>
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+
+            <div class="col-xl-2 col-lg-2 side-toc">
+
+                <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+                <script>
+                    $( document ).ready(function() {
+                        // Handler for .ready() called.
+
+                        $('#toc_side').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+                        /* this offset helps account for the space taken up by the floating toolbar. */
+                        $('#toc_side').on('click', 'a', function() {
+                            var target = $(this.getAttribute('href'))
+                                , scroll_target = target.offset().top
+
+                            $(window).scrollTop(scroll_target - 10);
+                            return false
+                        })
+
+                    });
+                </script>
+
+                <div id="toc_side"> <ul><li><a href="#샘플챗봇-살펴보기">샘플챗봇 살펴보기</a><a class="anchorjs-link " href="#샘플챗봇-살펴보기" aria-label="Anchor link for: 샘플챗봇 살펴보기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#선택결단봇-캡틴초이-살펴보기">선택결단봇, 캡틴초이 살펴보기</a><a class="anchorjs-link " href="#선택결단봇-캡틴초이-살펴보기" aria-label="Anchor link for: 선택결단봇 캡틴초이 살펴보기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a><ul><li><a href="#캡틴초이를-만들게된-배경">캡틴초이를 만들게된 배경</a><a class="anchorjs-link " href="#캡틴초이를-만들게된-배경" aria-label="Anchor link for: 캡틴초이를 만들게된 배경" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇의-목적">챗봇의 목적</a><a class="anchorjs-link " href="#챗봇의-목적" aria-label="Anchor link for: 챗봇의 목적" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇의-업무-분석">챗봇의 업무 분석</a><a class="anchorjs-link " href="#챗봇의-업무-분석" aria-label="Anchor link for: 챗봇의 업무 분석" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇-수준-정의">챗봇 수준 정의</a><a class="anchorjs-link " href="#챗봇-수준-정의" aria-label="Anchor link for: 챗봇 수준 정의" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇-페르소나-정의">챗봇 페르소나 정의</a><a class="anchorjs-link " href="#챗봇-페르소나-정의" aria-label="Anchor link for: 챗봇 페르소나 정의" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇-대화흐름-메인시나리오-설계">챗봇 대화흐름 메인시나리오 설계</a><a class="anchorjs-link " href="#챗봇-대화흐름-메인시나리오-설계" aria-label="Anchor link for: 챗봇 대화흐름 메인시나리오 설계" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#챗봇-구현">챗봇 구현</a><a class="anchorjs-link " href="#챗봇-구현" aria-label="Anchor link for: 챗봇 구현" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#기본설정">기본설정</a><a class="anchorjs-link " href="#기본설정" aria-label="Anchor link for: 기본설정" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#메인시나리오-시작을-인식할-수-있게-학습하기">메인시나리오 시작을 인식할 수 있게 학습하기</a><a class="anchorjs-link " href="#메인시나리오-시작을-인식할-수-있게-학습하기" aria-label="Anchor link for: 메인시나리오 시작을 인식할 수 있게 학습하기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#메인시나리오를-대화흐름에-담기">메인시나리오를 대화흐름에 담기</a><a class="anchorjs-link " href="#메인시나리오를-대화흐름에-담기" aria-label="Anchor link for: 메인시나리오를 대화흐름에 담기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#테스트-해보기">테스트 해보기</a><a class="anchorjs-link " href="#테스트-해보기" aria-label="Anchor link for: 테스트 해보기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#보완하기">보완하기</a><a class="anchorjs-link " href="#보완하기" aria-label="Anchor link for: 보완하기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#계속-키우기">계속 키우기</a><a class="anchorjs-link " href="#계속-키우기" aria-label="Anchor link for: 계속 키우기" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li></ul></li><li><a href="#다른-페르소나">다른 페르소나?</a><a class="anchorjs-link " href="#다른-페르소나" aria-label="Anchor link for: 다른 페르소나" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#마무리">마무리</a><a class="anchorjs-link " href="#마무리" aria-label="Anchor link for: 마무리" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#함께해요-챗봇시대">함께해요! 챗봇시대:)</a><a class="anchorjs-link " href="#함께해요-챗봇시대" aria-label="Anchor link for: 함께해요 챗봇시대" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a><ul><li><a href="#혹시-서비스-소개서를-찾고-있나요">혹시 서비스 소개서를 찾고 있나요?</a><a class="anchorjs-link " href="#혹시-서비스-소개서를-찾고-있나요" aria-label="Anchor link for: 혹시 서비스 소개서를 찾고 있나요" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li><li><a href="#부족한-부분을-알려주세요">부족한 부분을 알려주세요!</a><a class="anchorjs-link " href="#부족한-부분을-알려주세요" aria-label="Anchor link for: 부족한 부분을 알려주세요" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a></li></ul></li></ul></div>
+
+            </div>
+
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#main -->
+</div>
+
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "fade",
+            directionNav: true,
+            slideshowSpeed: 5000,
+            animationSpeed: 600,
+            slideshow: true,
+            slideshowSpeed: 7000,
+            pauseOnAction: true,
+            pauseOnHover: true,
+            controlNav : true,
+            itemWidth:400,
+            touch: true
+        });
+
+        $('.post-content figure > img').replaceWith(function () {
+            return ''
+                + '<a href="' + $(this).attr('src') + '" class="mg-link">'
+                + '<img src="' + $(this).attr('src') + '" width="'
+                + $(this).attr('width') + '"' + '/></a>'
+                + '<figcaption class="caption">' + $(this).attr('alt') + '</figcaption>'
+                + '';
+        });
+
+        $('.mg-link').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true
+        });
+    });
+</script>
+
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-91561921-4','auto');ga('require','displayfeatures');ga('send','pageview', window.location.href);</script>
+
+
+<div id="frogue-container"
+     class="position-right-bottom"
+     data-chatbot="a3e7230e-d0c7-4f7f-8817-4b79273d58d5"
+     data-user=""
+></div>
+
+<script>
+    (function(d, s, id){
+        if (d.getElementById(id)) {
+            var elem = d.getElementById(id);
+            elem.parentElement.removeChild(elem);
+        }
+        setTimeout(function() {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            js = d.createElement(s); js.id = id;
+            js.src = "https:\/\/keyview.danbee.ai/js/plugins/keyview-embed/keyview-embed.min.js";
+            //js.src="../../static/js/plugins/keyview-embed/keyview-embed.js"; // localhost test용
+            fjs.parentNode.insertBefore(js, fjs);
+        }, 1000);
+    }(document, 'script', 'frogue-embed'));
+</script>
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,1977 @@
+<!--  세션결과값에 따라 로그인 페이지 이동 -->
+
+<!DOCTYPE HTML>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="ko">
+<!--<![endif]-->
+<head>
+
+    <title>경영진 | 임원현황 | 기관현황 | 한국장학재단</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+    <meta http-equiv="cache-control" content="no-cache" >
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/common.css" />
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/sub.css" />
+
+
+
+
+    <script src="//static.kosaf.go.kr/www/js/n_skin/html5shiv.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//static.kosaf.go.kr/www/js/n_skin/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <script src="//static.kosaf.go.kr/www/js/n_skin/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="//static.kosaf.go.kr/www/js/n_skin/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//static.kosaf.go.kr/www/js/n_skin/submenu.js"></script>
+    <script type="text/javascript">
+        function MM_swapImgRestore() { //v3.0
+            var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+        }
+        function MM_preloadImages() { //v3.0
+            var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+                var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+                    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+        }
+
+        function MM_findObj(n, d) { //v4.01
+            var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+                d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+            if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+            for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+            if(!x && d.getElementById) x=d.getElementById(n); return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+                if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/info.css" />
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/board.css" />
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="//static.kosaf.go.kr/www/css/n_skin/content_ie7.css">
+    <![endif]-->
+    <script type="text/javascript" src="//static.kosaf.go.kr/www/js/jquery/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="//static.kosaf.go.kr/www/js/common/ko.common.js"></script>
+    <script type="text/javascript" src="//static.kosaf.go.kr/www/js/common/ko.board.js"></script>
+
+</head>
+<body>
+<div id="wrap">
+    <!-- header -->
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function(){
+            var rightMenu = $("div.con_right>ul.right_menu>li:lt(4)");
+            if(rightMenu.length > 0){
+                $(rightMenu).each(function(){
+                    $(this).find("a").focus(function(){
+                        $(document).scrollTop(0);
+                    });
+                });
+            }
+            // contab2 clas=on 텍스트 title 에 추가
+            var con_tab2_title = $('div.con_tab2 li.on').text();
+            if(con_tab2_title != ""){
+
+                // 공백제거하여 중복확인
+                var con_tab2_title_trim = con_tab2_title.replace(/(\s*)/g,'');
+                var title_tab2 = document.title;
+                title_tab2 = title_tab2.replace(/(\s*)/g,'');
+
+                // 중복으로 있으면 넣지 않는다.
+                if(title_tab2.indexOf(con_tab2_title_trim) == -1){
+                    window.parent.document.title = con_tab2_title + " | " + document.title;
+                }
+            }
+
+            $('table').addClass('th_summary');
+            /*
+            $(".th_summary").each(function(){
+                if(!(this).hasAttribute("summary"))
+                {
+                    var txtSum = [];
+                    $(this).find("th").each(function(){
+                        txtSummary = $(this).text();
+                        txtSum.push(txtSummary);
+                    });
+
+                    var txtDiv = txtSum.join(', ');
+                    $(this).attr("summary",txtDiv+ " 으로 구성된 표 입니다.");
+                }
+            });
+            */
+
+            $('table').each(function(){
+                var cap = $(this).find("caption");
+                if(!(this).hasAttribute("summary") || !cap || cap == undefined ){
+                    var txtSum = [];
+                    $(this).find("th").each(function(){
+                        txtSummary = $(this).text();
+                        txtSum.push(txtSummary);
+                    });
+
+                    var txtDiv = txtSum.join(', ');
+                }
+                if(!cap || cap == undefined){
+                    $(this).prepend("<caption>"+txtDiv+ " 으로 구성된 표 입니다.</caption>");
+                }
+                if(!(this).hasAttribute("summary")){
+                    $(this).attr("summary",txtDiv+ " 으로 구성된 표 입니다.");
+                }
+            });
+
+            $('#container').attr("tabindex","0");
+            $('body').prepend('<div id="skipNavi"><ul><li><a href="#container">본문으로 이동</a></li><li><a href="#header_layout_skipNavi">대메뉴로 이동</a></li><li><a href="#left_quick_skipNavi">왼쪽메뉴로 이동</a></li><li><a href="#footer_left_navi">하단정보 바로가기</a></li></ul></div>');
+        });
+
+    </script>
+
+    <style>
+        /* 스킵네비 */
+        #skipNavi li { font-size:0; line-height:0;}
+        #skipNavi li a {display:block; width:100%; padding:10px 0; color:#fff; position:absolute; left:0; top:-100px; text-align:center; z-index:9999; background:#413022; border:0 none;}
+        #skipNavi li a:active, #skipNavi li a:focus { top:0; font-weight:bold; font-size:16px; line-height:1.5; border-bottom:1px solid #fff;}
+    </style>
+    <header id="header">
+        <!-- 상단 로고, lnb, gnb S -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--  세션결과값에 따라 로그인 페이지 이동 -->
+
+        <div class="target_top"><a href="javascript:;" onclick="window.scrollTo(0,0); return false;" title="상단으로 이동"><span>▲</span>TOP</a></div>
+
+        <!-- 상단 로고, lnb, gnb S -->
+        <div class="header_layout" id="header_layout_skipNavi">
+            <div class="header_util">
+                <div class="InnerWrap">
+                    <ul>
+                        <li><a href="/ko/main.do">홈으로</a></li>
+
+                        <li><a href="/ko/login_sc.do">로그인</a></li>
+                        <li><a href="/ko/join.do">서비스 이용자 등록</a></li>
+
+                        <!-- <li><a href="javascript:;" onclick="guide_pop(); return false;" title="새창열림">홈페이지 이용가이드</a></li> -->
+                        <li><a href="/eng/" target="_blank" title="ENGLISH 새창열림"><span style="letter-spacing:0">ENGLISH</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="width_1200">
+                <div class="logo_top"> <a href="/ko/main.do" id="logo_top_01" title="한국장학재단 메인으로 이동"><img src="//static.kosaf.go.kr/www/images/n_skin/common/top_logo.png" alt="한국장학재단 로고" title="한국장학재단 메인으로 이동"></a> </div>
+                <!-- 메뉴 S -->
+                <div class="lnb_layout ">
+                    <!-- 태블릿, 모바일에서 전체메뉴 S -->
+                    <div class="btn_menu">
+                        <a href="javascript:;" title="전체메뉴"><img src="//static.kosaf.go.kr/www/images/n_skin/common/btn_menu.png" alt="전체메뉴" title="전체메뉴"></a>
+                    </div>
+                    <!-- 태블릿, 모바일에서 전체메뉴 E -->
+
+                    <ul>
+                        <li class="m_search">
+                            <form name="searchKwd1" method="get" action="/ko/search.do">
+                                <input type="text" name="kwd" class="search01" title="검색어 입력" />
+                                <button class="m_btn_search" title="검색"  onclick="searchKwd1.submit();">검색 </button>
+                            </form>
+                        </li>
+                        <li class="m_quick_top">
+                            <a href="/eng/" class="m_lang" title="ENG">ENG</a>
+                            <a href="/ko/sitemap.do" class="m_sitemap" title="전체메뉴">전체메뉴</a>
+
+                            <!-- 로그인 -->
+                            <a href="/ko/login_sc.do" title="로그인">로그인</a>
+                            <a href="/ko/join.do" title="서비스 이용자 등록">서비스 이용자 등록</a>
+                            <a href="#" onclick="fn_portal_linkNavi('SS', 'PTSMSlimMain', 'MK,01,00,00');return false;" style="width:100%;" title="스마트 학자금 맞춤설계">스마트 학자금 맞춤설계</a>
+
+                            <!--
+                            <a href="/ko/info.do?pg=contactus" title="오시는길">오시는길</a>
+                            -->
+                        </li>
+                        <li class="m_quick"><a href="javascript:;" title="재학생" class="m_quick01">재학생</a>
+                            <ul class="top_submenu">
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTJHScrsAply_M', 'JH,02,01,02');return false;" title="원클릭 신청으로 이동">원클릭 신청</a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTSBIncpCfmFordP','JH,01,04,00');return false;" title="학자금 지원구간정보조회"><span>학자금 지원구간정보조회</span></a></li>
+                                <li><a href="/ko/mypage.do" title="학자금 수혜 예측 정보"><span>학자금 수혜 예측 정보</span></a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCTFC','HD,08,02,27');return false;" title="증명서발급(학자금대출)"><span>증명서발급(학자금대출)</span></a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTJH_ADBK','JH,03,01,14');return false;" title="출근부 관리(국가근로장학금)"><span>출근부 관리(국가근로장학금)</span></a></li>
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDDbtrCmphInfo_01M');return false;" title="부실채무상환현황"><span>부실채무상환현황</span></a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKPgmInfoMngt_01M');return false;" title="차세대리더육성멘토링 활동관리"><span>차세대리더육성멘토링 활동관리</span></a></li>-->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인"><span>부채확인</span></a></li>
+                                <!-- <li><a href="javascript:;" onclick="fn_portal_linkNavi('ED', 'PTEDSubMain_01M','HD,09,00,00');return false;" title="금융교육"><span>금융교육</span></a></li> -->
+                                <li><a href="javascript:;" onclick="window.open('http://portal.kosaf.go.kr/CO/jspAction.do?forwardOnlyFlag=Y&forwardPage=pt/pg/PTPGLoanIntCalc_01M&ignoreSession=Y', '이자계산기', 'left=300, top=300, width=990, height=600, scrollbars=yes');return false;" title="새창으로 이동">이자계산기</a></li>
+                            </ul>
+                        </li>
+                        <li class="m_quick"><a href="javascript:;" title="졸업생" class="m_quick02">졸업생</a>
+                            <ul class="top_submenu">
+                                <!-- 수정 by whChoi 20160906 start -->
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                                <!-- 수정 by whChoi 20160906 end -->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCRSTMNGT','HD,08,01,01');return false;" title="대출내역">대출내역</a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCTFC','HD,08,02,27');return false;" title="증명서 발급(학자금대출)">증명서 발급(학자금대출)</a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDTsfrAgreMngt_02M','HD,08,01,07');return false;" title="취업 후 상환 학자금대출 이체약정 등록">취업 후 상환 학자금대출 이체약정 등록</a></li>
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDDbtrCmphInfo_01M');return false;" title="부실채무상환현황">부실채무상환현황</a></li> -->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인">부채확인</a></li>
+                            </ul>
+                        </li>
+                        <li class="m_quick"><a href="javascript:;" title="학부모" class="m_quick03">학부모</a>
+                            <ul class="top_submenu">
+                                <!-- 수정 by whChoi 20160906 start -->
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                                <!-- 수정 by whChoi 20160906 end -->
+                                <li><a href="가구원" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyInfoAgmt_01M','JH,01,02,00');return false;" title="가구원 정보제공 동의 하기">가구원 정보제공 동의 하기</a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTJHScprAlimi_01M');return false;" title="학부모 알리미">학부모 알리미</a></li>
+                                <!--
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDDbtrCmphInfo_01M');return false;" title="부실채무상환현황">부실채무상환현황</a></li> -->
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인">부채확인</a></li>
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_06M','HD,08,03,08');return false;" title="분할상환약정내역">분할상환약정내역</a></li>
+                                -->
+                            </ul>
+                        </li>
+                        <li class="m_quick"><a href="javascript:;" title="기업/기관" class="m_quick04">기업/기관</a>
+                            <ul class="top_submenu">
+                                <!-- 수정 by whChoi 20160906 start -->
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                                <!-- 수정 by whChoi 20160906 end -->
+                                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTJHHopeLbrOgnAply_01M');return false;"  title="근로장학기관 수요조사 신청현황">근로장학기관 수요조사 신청현황</a></li> -->
+                                <li><a href="javascript:setComLogin()" title="기업/기관 로그인">기업/기관 로그인</a></li>
+                                <li><a href="http://workstudy.kosaf.go.kr" title="근로장학기관 포털">근로장학기관 포털</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="장학금 메뉴열기" /><a href="https://keyview.danbee.ai/chat05/scholarship/index.html" id="top_submenu_a01" title="장학금">장학금</a>
+                            <div class="top_submenu" id="top_submenu01">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition04_09_01&type=scholar" title="학자금 지원구간">학자금 지원구간</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_09_01&type=scholar"  title="한눈에 보는 학자금 지원구간">한눈에 보는 학자금 지원구간</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBIncpCfmFordP','JH,01,04,00');return false;" title="나의 학자금 지원구간 확인">나의 학자금 지원구간 확인</a></dd>
+                                            <!-- dd><a href="/ko/mypageNwScrs.do" title="학자금 수혜 예측 정보">학자금 수혜 예측 정보</a></dd -->
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBCpnAplyCrstFordP','JH,01,05,00');return false;" title="학자금 지원구간 최신화 신청">학자금 지원구간 최신화 신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyInfoAgmt_01M','JH,01,02,00');return false;" title="(가구원용)가구원 정보제공 동의현황 및 동의하기">(가구원용)가구원 정보제공 동의현황 및 동의하기</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBFmlyInfoAgmtCrstFordP','JH,01,03,00');return false;" title="(학생용)가구원 정보제공 동의현황">(학생용)가구원 정보제공 동의현황</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBKrntincmprntFordP','JH,01,06,00');return false;" title="국외 소득&middot;재산 신고 현황">국외 소득&middot;재산 신고 현황</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBKrntIncmPrntMntrFordP','JH,01,08,00');return false;" title="국외 소득&middot;재산 신고결과 모니터링">국외 소득&middot;재산 신고결과 모니터링</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyIncpCfm_01M','JH,01,07,00');return false;" title="가구원 학자금 지원구간 산정 현황">가구원 학자금 지원구간 산정 현황</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/scholar.do?pg=scholarship_submain01" title="소득연계형 국가장학금">소득연계형 국가장학금 </a></dt>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_17" title="고교생 국가장학금 예비신청">고교생 국가장학금 예비신청</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_01_01" title="국가장학금 Ⅰ유형(학생직접지원형)">국가장학금 Ⅰ유형(학생직접지원형)</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_01_02" title="국가장학금 Ⅱ유형(대학연계지원형)">국가장학금 Ⅱ유형(대학연계지원형)</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_10" title="다자녀 국가장학금">다자녀 국가장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_11" title="지역인재장학금">지역인재장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_16" title="입학금 지원 장학금">입학금 지원 장학금</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/scholar.do?pg=scholarship_submain02" title="국가근로 및 취업연계 장학금">국가근로 및 취업연계 장학금</a></dt>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_04_01" title="국가근로장학금">국가근로장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_14_01" title="중소기업 취업연계 장학금(희망사다리 Ⅰ유형)">중소기업 취업연계 장학금(희망사다리 Ⅰ유형)</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_16_01" title="고졸 후학습자 장학금(희망사다리 Ⅱ유형)">고졸 후학습자 장학금(희망사다리 Ⅱ유형)</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_18_01" title="고교 취업연계 장려금">고교 취업연계 장려금</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/scholar.do?pg=scholarship05_11_01" title="기부장학금">기부장학금</a></dt>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_11_01" title="푸른등대 기부장학금">푸른등대 기부장학금</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/scholar.do?pg=scholarship_submain03" title="국가우수 장학금">국가우수 장학금</a></dt>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_05_01" title="대통령과학장학금">대통령과학장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_06_01" title="국가우수장학금(이공계)">국가우수장학금(이공계)</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_07_01" title="인문100년장학금">인문100년장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_15_01" title="예술체육비전장학금">예술체육비전장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_13_01" title="우수고등학생 해외유학 장학금(드림장학금)">우수고등학생 해외유학 장학금(드림장학금)</a></dd>
+                                            <!-- <dd><a href="/ko/scholar.do?pg=scholarship05_10_01" title="대학원생지원장학금">대학원생지원장학금</a></dd> -->
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_12_01" title="전문기술인재장학금">전문기술인재장학금</a></dd>
+                                            <dd><a href="/ko/scholar.do?pg=scholarship05_17_01" title="복권기금 꿈사다리 장학금">복권기금 꿈사다리 장학금</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('JH', 'PTJHScrsAplyGud_01M','JH,06,01,00');" title="장학금신청">장학금신청</a></dt>
+                                            <dd><a href="신청가이드" onclick="fn_portal_linkNavi('JH', 'PTJHScrsAplyGud_01M','JH,06,01,00');return false;" title="신청가이드">신청가이드</a></dd>
+                                            <dd><a href="신청서작성" onclick="fn_portal_linkNavi('JH', 'PTJH_SCRSAPLY', 'JH,06,02,00');return false;" title="신청서작성">신청서작성</a></dd>
+                                            <dd><a href="종합조회" onclick="fn_portal_linkNavi('JH', 'PTJH_SCRSCMPHMNGT','JH,06,03,00');return false;" title="종합조회">종합조회</a></dd>
+                                            <dd><a href="신청현황" onclick="fn_portal_linkNavi('JH', 'PTJH_SCRS','JH,06,04,00');return false;" title="신청현황">신청현황</a></dd>
+                                            <!-- 추가 by whChoi 201600901 start -->
+                                            <dd><a href="선정결과" onclick="fn_portal_linkNavi('JH', 'PTJHSlctRsltMngt_01M', 'JH,06,08,00');return false;" title="선정결과">선정결과</a></dd>
+                                            <!-- 추가 by whChoi 201600901 end -->
+                                            <dd><a href="수혜내역" onclick="fn_portal_linkNavi('JH', 'PTJH_SCRSBNFTMNGT','JH,06,05,00');return false;" title="수혜내역">수혜내역</a></dd>
+                                            <!--<dd><a href="제출서류내역" onclick="fn_portal_linkNavi('JH', 'PTJHItgnDocmCrstFordP');return false;" title="제출서류내역">제출서류내역</a></dd>-->
+                                            <dd><a href="서류제출현황" onclick="fn_portal_linkNavi('JH', 'PTJHItgnDocmCrstFordP','JH,06,06,00');return false;" title="서류제출현황">서류제출현황</a></dd>
+                                            <dd><a href="계좌정보수정" onclick="fn_portal_linkNavi('JH', 'PTJHScrsAplyAcnt_01M','JH,06,07,00');return false;" title="계좌정보수정">계좌정보수정</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('JH', 'PTJHAplyCtfcIsuMngt_01M','JH,07,01,00');" title="증명서발급">증명서발급</a></dt>
+                                            <dd><a href="신청증명서발급" onclick="fn_portal_linkNavi('JH', 'PTJHAplyCtfcIsuMngt_01M','JH,07,01,00');return false;" title="신청증명서발급">신청증명서발급</a></dd>
+                                            <dd><a href="장학증서발급" onclick="fn_portal_linkNavi('JH', 'PTJHScrsCtcfMngt_01M','JH,07,02,00');return false;" title="장학증서발급">장학증서발급</a></dd>
+                                            <dd><a href="증명서발급" onclick="fn_portal_linkNavi('JH', 'PTJH_SCRSCTFC','JH,07,03,00');return false;" title="증명서발급">증명서발급</a></dd>
+                                            <dd><a href="학자금 지원구간 통지서 발급" onclick="fn_portal_linkNavi('JH', 'PTSBIncpNtpp_01M','JH,07,04,00');return false;" title="학자금 지원구간 통지서 발급">학자금 지원구간 통지서 발급</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition11_01_01&type=scholar" title="학자금 중복지원방지">학자금 중복지원방지</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition11_01_01&type=scholar" title="중복지원방지 제도 안내">중복지원방지 제도 안내</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDDblSuptMngt_01M','JH,08,02,00');return false;" title="중복지원현황 조회">중복지원현황 조회</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HD', 'PTHDDblSuptAgre_01M','JH,08,03,00');return false;" title="분할상환약정신청">분할상환약정신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HD', 'PTHDDblSuptRpmtGrcDbtrAprv_01M','JH,08,04,00');return false;" title="상환유예 및 채무승인 신청">상환유예 및 채무승인 신청</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('SS', 'PTSMSlimMain', 'MK,01,00,00');" title="스마트학자금맞춤설계">스마트학자금맞춤설계</a></dt>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('SS', 'PTSMCstmDsgnGoods_10M', 'MK,01,01,01');return false;" title="학자금지원정보찾기">학자금지원정보찾기</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('SS', 'PTSMStaLgtc_01M', 'MK,01,02,01');return false;" title="학생생활정보찾기">학생생활정보찾기</a></dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="학자금대출 메뉴열기" /><a href="/ko/tuition.do?pg=tuition_main" id="top_submenu_a02" title="학자금대출">학자금대출</a>
+                            <div class="top_submenu" id="top_submenu02">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition04_09_01&type=tuition" title="학자금 지원구간">학자금 지원구간</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_09_01&type=tuition"  title="한눈에 보는 학자금 지원구간">한눈에 보는 학자금 지원구간</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBIncpCfmFordP','HD,01,04,00');return false;" title="나의 학자금 지원구간 확인">나의 학자금 지원구간 확인</a></dd>
+                                            <!-- dd><a href="/ko/mypageNwScrs.do" title="학자금 수혜 예측 정보">학자금 수혜 예측 정보</a></dd -->
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBCpnAplyCrstFordP','HD,01,05,00');return false;" title="학자금 지원구간 최신화 신청">학자금 지원구간 최신화 신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyInfoAgmt_01M','HD,01,02,00');return false;" title="(가구원용)가구원 정보제공 동의현황 및 동의하기">(가구원용)가구원 정보제공 동의현황 및 동의하기</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBFmlyInfoAgmtCrstFordP','HD,01,03,00');return false;" title="(학생용)가구원 정보제공 동의현황">(학생용)가구원 정보제공 동의현황</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTSBKrntincmprntFordP','HD,01,06,00');return false;" title="국외 소득&middot재산 신고 현황">국외 소득&middot;재산 신고 현황</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyIncpCfm_01M','HD,01,07,00');return false;" title="가구원 학자금 지원구간 산정 현황">가구원 학자금 지원구간 산정 현황</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition_info" title="학자금대출 안내">학자금대출 안내</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition_info" title="학자금대출 소개하기">학자금대출 소개하기</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_01_01" title="취업 후 상환 학자금대출">취업 후 상환 학자금대출</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_02_01" title="일반 상환 학자금대출">일반 상환 학자금대출</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_03" title="농촌출신대학생 학자금융자">농촌출신대학생 학자금융자</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=PTHDWestAply_01M" title="한·미 대학생 연수(WEST)프로그램 어학연수비대출">한·미 대학생 연수(WEST)프로그램 어학연수비대출</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition04_07_01" title="학자금유예대출">학자금유예대출</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <!--<dt><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTHDLoanCmphMngt_01M');return false;" title="종합조회">종합조회</a></dt>-->
+                                            <dt><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDLoanCmphMngt_01M','HD,03,00,00');return false;" title="종합조회">종합조회</a></dt>
+                                        </dl>
+                                        <dl>
+                                            <dl>
+                                                <dt><a href="javascript:fn_portal_linkNavi('HD', 'PTHD_LOANAPLYINFO','HD,04,00,00');" title="학자금대출 신청">학자금대출 신청</a></dt>
+                                                <dd><a href="#" onclick="fn_portal_linkNavi('HD', 'PTHDLoanAplyInfo_01M','HD,04,01,00');return false;" title="학자금대출 신청가이드">학자금대출 신청가이드</a></dd>
+                                                <dd><a href="#" onclick="fn_portal_linkNavi('JH', 'PTJHItgnAplyCrst','HD,04,02,00');return false;" title="사전신청현황">사전신청현황</a></dd>
+                                                <dd><a href="#" onclick="fn_portal_linkNavi('JH', 'PTJHItgnDocmCrstFordP','HD,04,05,00');return false;" title="서류제출현황">서류제출현황</a></dd>
+                                            </dl>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="#" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANAPLY','HD,12,00,00');return false;" title="학자금대출 실행(신청현황)">학자금대출 실행(신청현황)</a></dt>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="#" onclick="fn_portal_linkNavi('HD', 'PTHDFrmLoanAplyMngt_01M','HD,13,00,00');return false;" title="농어촌학자금융자 실행">농어촌학자금융자 실행</a></dt>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition11_01_01&type=tuition" title="학자금 중복지원방지">학자금 중복지원방지</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition11_01_01&type=tuition" title="중복지원방지 제도 안내">중복지원방지 제도 안내</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDDblSuptMngt_01M','HD,05,02,00');return false;" title="중복지원현황 조회">중복지원현황 조회</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition05_01_01" title="학자금대출 상환 안내">학자금대출 상환 안내</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition05_01_01" title="취업 후 상환 학자금대출">취업 후 상환 학자금대출</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition05_02_01" title="일반 상환 학자금대출 ">일반 상환 학자금대출 </a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition05_03_01" title="농어촌융자/무이자대여">농어촌융자/무이자대여</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition05_05" title="군복무이자면제">군복무이자면제</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07" title="지자체 이자지원">지자체 이자지원</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition12" title="체크카드 포인트 상환">체크카드 포인트 상환</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition07_01" title="학자금대출 신용회복관리">학자금대출 신용회복관리</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_01" title="신용회복지원제도 소개">신용회복지원제도 소개</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_02" title="분할상환제도">분할상환제도</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_03" title="손해금(지연배상금)감면제도">손해금(지연배상금)감면제도</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_11" title="중소기업 재직자 분할상환약정제도">중소기업 재직자 분할상환약정제도</a></dd>
+                                            <dd><a style="padding:4px 5% 4px 9%" href="/ko/tuition.do?pg=tuition07_10" title="분할상환약정 조건변경 제도 ">분할상환약정 조건변경 제도</a></dd>
+                                            <dd><a style="padding:4px 5% 4px 9%" href="/ko/tuition.do?pg=tuition07_09" title="사회적 배려계층 상환유예제도">사회적 배려계층 상환유예제도</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_04" title="신용도판단정보 회복제도">신용도판단정보 회복제도</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_06" title="정상화(기한이익회복)제도">정상화(기한이익회복)제도</a></dd>
+                                            <!-- <dd><a href="/ko/tuition.do?pg=tuition07_07" title="취업연계신용회복지원제도">취업연계신용회복지원제도</a></dd> -->
+                                            <dd><a href="/ko/tuition.do?pg=tuition07_08" title="전자채무승인제도">전자채무승인제도</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="https://keyview.danbee.ai/chat05/tuition/banking.html" title="학자금뱅킹">학자금뱅킹</a></dt>
+                                            <dd><a href="/ko/tuition.do?pg=banking_main" title="학자금대출 상환">학자금대출 상환</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=banking_main" title="학자금대출 상환지원">학자금대출 상환지원</a></dd>
+                                            <dd><a href="/ko/tuition.do?pg=banking_main" title="학자금대출 사후관리">학자금대출 사후관리</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/tuition.do?pg=tuition_cer" title="증명서발급">증명서발급</a></dt>
+                                        </dl>
+                                    </li>
+                                    <!--
+                                    <li>
+                                        <dl>
+                                            <dt><a href="javascript:;" onclick="fn_portal_linkNavi('ED', 'PTEDSubMain_01M','HD,09,00,00');return false;" title="금융교육">금융교육</a></dt>
+                                        </dl>
+                                    </li>
+                                     -->
+                                    <li>
+                                        <dl>
+                                            <dt><a href="https://keyview.danbee.ai/chat05/tuition/tuition.html" title="신용교육">신용교육</a></dt>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="인재육성 메뉴열기" /><a href="javascript:fn_portal_linkNavi('MK', 'PTMKSubMain_01M_02', 'MK,00,00,00');" id="top_submenu_a03" title="인재육성">인재육성</a>
+                            <div class="top_submenu" id="top_submenu03">
+                                <ul class="top_submenu_bg02">
+                                    <li>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('MK', 'PTMKSubMain_01M', 'MK,02,00,00');" title="사회리더 대학생 멘토링">사회리더 대학생 멘토링</a></dt>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKMntois_01M', 'MK,02,01,00');return false;" title="사회리더 대학생 멘토링 안내">사회리더 대학생 멘토링 안내</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKPgmInfoMngt_01M', 'MK,02,02,00');return false;" title="멘토소개">멘토소개</a></dd>
+                                            <dd><a href="http://www.kormentletter.co.kr/" target="_blank" title="활동엿보기">활동엿보기</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKMnteAppfWrt_01M', 'MK,02,04,01');return false;" title="멘토링 신청하기">멘토링 신청하기</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('MK', 'PTMKKsSrvMntoring_01M', 'MK,03,01,00');" title="대학생지식멘토링">대학생지식멘토링</a></dt>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKKsSrvMntoring_01M', 'MK,03,01,00');return false;" title="대학생지식멘토링이란">대학생지식멘토링이란</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKKsSrvMntoringCamp_01M', 'MK,03,02,01');return false;" title="대학생 재능봉사 캠프 사업">대학생 재능봉사 캠프 사업</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKKsSrvMntoringCult_01M', 'MK,03,03,01');return false;" title="다문화&middot;탈북학생 멘토링">다문화&middot;탈북학생 멘토링</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKKsSrvMntoringGive_01M', 'MK,03,04,01');return false;" style="padding:4px 0 4px 9%" title="대학생 청소년교육지원장학금">대학생 청소년교육지원장학금</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKKsNtceMttMngt_01M', 'MK,03,05,00');return false;" title="공지사항">공지사항</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/mkinfo.do?pg=blueladder" title="취약계층 해외연수 지원">취약계층 해외연수 지원</a></dt>
+                                            <dd><a href="/ko/mkinfo.do?pg=blueladder" title="파란사다리(대학생 단기 해외연수 지원) 사업">파란사다리(대학생 단기 해외연수 지원) 사업</a></dd>
+                                            <dd><a href="/ko/mkinfo.do?pg=univglobal" title="대학 글로벌 현장학습">대학 글로벌 현장학습</a></dd>
+                                            <dd><a href="/ko/prdnotice.do?ctgrId1=0000000001" title="공지사항">공지사항</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="javascript:fn_portal_linkNavi('SS', 'PTSMSlimMain', 'MK,01,00,00');" title="스마트학자금맞춤설계">스마트학자금맞춤설계</a></dt>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('SS', 'PTSMCstmDsgnGoods_10M', 'MK,01,01,01');return false;" title="학자금지원정보찾기">학자금지원정보찾기</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('SS', 'PTSMStaLgtc_01M', 'MK,01,02,01');return false;" title="학생생활정보찾기">학생생활정보찾기</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/mkinfo.do?pg=freesemester01" title="자유학기제">자유학기제</a></dt>
+                                            <dd><a href="/ko/mkinfo.do?pg=freesemester01" title="자유학기제 안내">자유학기제 안내</a></dd>
+                                            <dd><a href="/ko/mkinfo.do?pg=freesemester02" title="프로그램   일정">프로그램   일정</a></dd>
+                                            <dd><a href="/ko/mkinfo.do?pg=freesemester03" title="체험엿보기">체험엿보기</a></dd>
+                                            <dd><a href="/ko/mkinfo.do?pg=freesemester04" title="체험엿보기">운영현황</a></dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:;" target="_blank" onclick="fn_portal_linkNavi('DN', 'PRMain', 'DN,00,00,00');return false;" class="blank_menu" id="top_submenu_a04" title="기부">기부</a></li>
+                        <!-- 국가대학생 연합생활관 -->
+                        <li>
+                            <img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="생활관 메뉴열기" />
+                            <a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBMain_01M', 'HB,00,00,00');return false;" id="top_submenu_a05" title="생활관">생활관</a>
+                            <div class="top_submenu" id="top_submenu05">
+                                <ul class="top_submenu_bg03">
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/domitory.do?pg=PTHB_Domitory_01_01" title="생활관소개">생활관소개</a></dt>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_01_01" title="인사말">인사말</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_01_02" title="사업연혁">사업연혁</a></dd>
+                                            <!-- dd><a href="/ko/domitory.do?pg=PTHB_Domitory_01_03" title="조직및구성원">조직및구성원</a></dd -->
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_01_04" title="생활관현황">생활관현황</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_01_05" title="오시는길">오시는길</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/domitory.do?pg=PTHB_Domitory_02_01" title="시설안내">시설안내</a></dt>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_02_01" title="주요시설안내">주요시설안내</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_02_02" title="사생실/장애인실">사생실/장애인실</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_02_03" title="생활관전경">생활관전경</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_02_04" title="가족룸">가족룸</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/domitory.do?pg=PTHB_Domitory_03_01" title="입주및퇴실">입주및퇴실</a></dt>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_03_01" title="입주안내">입주안내</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_03_02" title="비용안내">비용안내</a></dd>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_03_03" title="퇴실안내">퇴실안내</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/domitory.do?pg=PTHB_Domitory_04_01" title="생활안내">생활안내</a></dt>
+                                            <dd><a href="/ko/domitory.do?pg=PTHB_Domitory_04_01" title="생활수칙">생활수칙</a></dd>
+                                            <!-- dd><a href="/ko/domitory.do?pg=PTHB_Domitory_04_02" title="상벌규정">상벌규정</a></dd -->
+                                            <!-- dd><a href="/ko/domitory.do?pg=PTHB_Domitory_04_03" title="인재육성프로그램안내">인재육성프로그램안내</a></dd -->
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/notice.do?ctgrId1=0000000009" title="커뮤니티">커뮤니티</a></dt>
+                                            <dd><a href="/ko/notice.do?ctgrId1=0000000009" title="공지사항">공지사항</a></dd>
+                                            <dd><a href="/ko/data.do?ctgrId1=0000000009" title="자료실">자료실</a></dd>
+                                            <dd><a href="http://www.kosaf.go.kr/ko/faq.do?searchType=s&searchStr=&ctgrId1=NODE0000001602&ctgrId2=&nodenm=%EC%97%B0%ED%95%A9%EC%83%9D%ED%99%9C%EA%B4%80&ttab1=8&ttab2=tabitemlstA" title="FAQ">FAQ</a></dd>
+                                            <dd><a href="/ko/info.do?pg=press01_01" title="보도자료">보도자료</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HB', 'PTHBBreakDownRep_01M', 'HB,05,04,00');return false;" title="시설고장신고">시설고장신고</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HB', 'PTHBMenuInfo_01M', 'HB,05,05,00');return false;" title="주간식단표">주간식단표</a></dd>
+                                            <!--
+                                            <dd><a href="/ko/data.do?searchStr=&searchType=&page=1&ctgrId1=0000000009" title="자료실">자료실</a></dd>
+                                            -->
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HB', 'PTHBGalleryBoard_01M', 'HB,05,07,00');return false;" title="포토갤러리">포토갤러리</a></dd>
+                                            <dd><a href="javascript:;" onclick="fn_portal_linkNavi('HB', 'PTHBGovernmentBoard_01M', 'HB,05,08,00');return false;" title="자치위원회">자치위원회</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBEnterApp_01M', 'HB,06,01,00');return false;" title="마이페이지">마이페이지</a></dt>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBEnterApp_01M', 'HB,06,01,00');return false;" title="입주신청">입주신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBEnterAppResult_01M', 'HB,06,02,00');return false;" title="신청정보조회">신청정보조회</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBReceiptProce_01M', 'HB,06,04,00');return false;" title="수납/고지서 발급">수납/고지서 발급</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBBaseInfo_01M', 'HB,06,03,00');return false;" title="나의정보">나의정보</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'StayOut_01M', 'HB,06,05,00');return false;" title="외출외박신청">외출외박신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBGuestRoomRes_01M', 'HB,06,06,00');return false;" title="가족룸신청">가족룸신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBPublicFac_01M', 'HB,06,07,00');return false;" title="공용시설신청">공용시설신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBRoomChangRes_01M', 'HB,06,08,00');return false;" title="호실변경신청">호실변경신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBCounselApp_01M', 'HB,06,09,00');return false;" title="상담신청">상담신청</a></dd>
+                                            <dd><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBMidCourseCheckOut_01M', 'HB,06,10,00');return false;" title="퇴실신청">퇴실신청</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="#" onclick="return false">창업지원형 기숙사</a></dt>
+
+                                            <dd><a href="/ko/login_sc.do" title="입주신청">입주신청</a></dd>
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="고객센터 메뉴열기" /><a href="/ko/customer.do" id="top_submenu_a06" title="고객센터">고객센터</a>
+                            <div class="top_submenu" id="top_submenu06">
+                                <ul class="top_submenu_bg03">
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/faq.do" title="먼저확인해요">먼저확인해요</a></dt>
+                                            <dd><a href="/ko/faq.do" title="자주묻는질문(FAQ)">자주묻는질문(FAQ)</a></dd>
+                                            <dd><a href="/ko/data.do" title="자료실">자료실</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/qna.do" title="질문있어요">질문있어요</a></dt>
+                                            <dd><a href="/ko/qna.do" title="온라인상담">온라인상담</a></dd>
+                                            <dd><a href="https://keyview.danbee.ai/chat05/customer/screenConsultation.html" title="화면공유상담">화면공유상담</a></dd>
+                                            <dd><a href="/ko/customer.do?pg=customer08" title="전화상담">전화상담</a></dd>
+                                            <dd><a href="https://keyview.danbee.ai/chat05/customer/visitConsultation.html" title="방문상담">방문상담</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/kind.do" title="의견있어요">의견있어요</a></dt>
+                                            <dd><a href="/ko/kind.do" title="칭찬합시다">칭찬합시다</a></dd>
+                                            <dd><a href="/ko/customer.do?pg=customer05_01" title="고객제안">고객제안</a></dd>
+                                            <dd><a href="/ko/minwon.do" title="전자민원">전자민원</a></dd>
+                                            <dd><a href="/ko/customer.do?pg=customer06_01" title="행정심판">행정심판</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/customer.do?pg=customer01_01" title="고객헌장">고객헌장</a></dt>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="재단소개 메뉴열기" /><a href="/ko/info.do?pg=greet01_01" id="top_submenu_a07" title="재단소개">재단소개</a>
+                            <div class="top_submenu" id="top_submenu07">
+                                <ul class="top_submenu_bg03">
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/info.do?pg=greet01_01" title="이사장소개">이사장소개</a></dt>
+                                            <dd><a href="/ko/info.do?pg=greet01_01" title="인사말">인사말</a></dd>
+                                            <dd><a href="/ko/info.do?pg=greet01_03" title="프로필">프로필</a></dd>
+                                            <dd><a href="/ko/info.do?pg=greet01_06" title="기관장동정">기관장동정</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/info.do?pg=officer" title="기관현황">기관현황</a></dt>
+                                            <dd><a href="https://keyview.danbee.ai/chat05/foundationIntro/agency/executive.html" title="임원현황">임원현황</a></dd>
+                                            <dd><a href="/ko/info.do?pg=organize01_02_01" title="조직현황">조직현황</a></dd>
+                                            <dd><a href="/ko/mou.do?pg=mou01" title="MOU 체결현황">MOU 체결현황</a></dd>
+                                            <dd><a href="/ko/info.do?pg=ci01_01" title="CI/캐릭터 소개">CI/캐릭터 소개</a></dd>
+                                            <dd><a href="/ko/media.do?pg=media01_01" title="홍보영상">홍보영상</a></dd>
+                                            <dd><a href="/ko/info.do?pg=contactus" title="오시는길">오시는길</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/info.do?pg=history" title="재단이 걸어온 길">재단이 걸어온 길</a></dt>
+                                            <dd><a href="/ko/info.do?pg=history" title="연혁">연혁</a></dd>
+                                            <dd><a href="/ko/info.do?pg=greet01_05" title="역대이사장">역대이사장</a></dd>
+                                            <dd><a href="/ko/info.do?pg=history_picture" title="한국장학재단 역사">한국장학재단 역사</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/info.do?pg=found" title="경영이념">경영이념</a></dt>
+                                            <dd><a href="/ko/info.do?pg=found" title="설립취지">설립취지</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/directorsboard.do" title="이사회">이사회</a></dt>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/ethics.do?pg=ethics15&ttab1=2" title="감사활동">감사활동</a></dt>
+                                            <dd><a href="/ko/ethics.do?pg=ethics15&ttab1=2" title="감사제보센터">감사제보센터</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/ethics.do?ctgrId1=0000000001&pg=ethics01" title="윤리경영">윤리경영</a></dt>
+                                            <dd><a href="/ko/ethics.do?ctgrId1=0000000001&pg=ethics01" title="윤리경영">윤리경영</a></dd>
+                                            <dd><a href="/ko/ethics.do?ctgrId1=0000000002&pg=ethics05_01&menu=0000000002" title="반부패 청렴">반부패 청렴</a></dd>
+                                            <dd><a href="/ko/ethics.do?pg=ethics14" title="외부주요평가">외부주요평가</a></dd>
+                                            <dd><a href="/ko/ethics.do?pg=ethics06_01" title="업무공개">업무공개</a></dd>
+                                            <dd><a href="/ko/social.do?pg=social01" title="사회공헌">사회공헌</a></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><a href="/ko/info.do?pg=hrm01" title="인권경영">인권경영</a></dt>
+                                            <dd><a href="/ko/info.do?pg=hrm01" title="인권경영">인권경영</a></dd>
+                                            <dd><a href="/ko/info.do?pg=hrm02" title="인권경영 추진실적">인권경영 추진실적</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/notice.do?pg=PTKONotice_List" title="알림">알림</a></dt>
+                                            <dd><a href="/ko/notice.do?pg=PTKONotice_List" title="공지사항">공지사항</a></dd>
+                                            <dd><a href="/ko/info.do?pg=press01_01" title="보도자료">보도자료</a></dd>
+                                            <dd><a href="/ko/ininfo.do" title="입찰정보">입찰정보</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=openinfo05_01" title="소송위임변호사공모">소송위임변호사공모</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/socials.do?pg=social01" title="사이버홍보실">사이버홍보실</a></dt>
+                                            <dd><a href="/ko/socials.do?pg=social01" title="소셜미디어">소셜미디어</a></dd>
+                                            <dd><a href="/ko/media.do?pg=media03" title="웹진 림(林)">웹진 림(林)</a></dd>
+                                            <dd><a href="/ko/media.do?pg=media06" title="한국장학 리뷰">한국장학 리뷰</a></dd>
+                                            <dd><a href="/ko/media.do?pg=media07" title="한국장학 매거진">한국장학 매거진</a></dd>
+                                            <dd><a href="/ko/ambassador.do?pg=ambassador01" title="대학생홍보대사">대학생홍보대사</a></dd>
+                                            <dd><a href="/ko/media.do?pg=media05_03" title="국제학자금포럼">국제학자금포럼</a></dd>
+                                            <dd><a href="/ko/sg.contest.do?pg=PTKOContestList_01M" title="공모전">공모전</a></dd>
+                                            <dd><a href="/ko/review.do?pg=review04_01" title="감사의 글">감사의 글</a></dd>
+                                            <dd><a href="/ko/bi.register.do?pg=review09_01" title="사업설명회">사업설명회</a></dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_open.png" class="menu_open" alt="정보공개 메뉴열기" /><a href="/ko/openinfo.do?pg=operation01" id="top_submenu_a08" title="정보공개">정보공개</a>
+                            <div class="top_submenu" id="top_submenu08">
+                                <ul class="top_submenu_bg03">
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/openinfo.do?pg=operation01" title="정보공개">정보공개</a></dt>
+                                            <dd><a href="/ko/openinfo.do?pg=operation01" title="정보공개제도">정보공개제도</a></dd>
+                                            <dd><a href="https://keyview.danbee.ai/chat05/disclosure/openInfo/category/all.html" title="사전정보공표">사전정보공표</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation06" title="정보공개청구">정보공개청구</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation03" title="정보공개현황">정보공개현황</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation05" title="사업실명제">사업실명제</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/openinfo.do?pg=operation07" title="경영공시">경영공시</a></dt>
+                                            <dd><a href="/ko/openinfo.do?pg=operation07" title="경영공시안내">경영공시 안내</a></dd>
+                                            <dd><a href="/ko/operation.do?pg=operation07_23" title="경영공시 연혁">경영공시 연혁</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation08" title="경영공시담당자">경영공시담당자</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation09" title="통합공시">통합공시</a></dd>
+                                            <dd><a href="/ko/openinfo.do?pg=operation10_24" title="자체공시">자체공시</a></dd>
+                                            <dd><a href="/ko/operation.do?pg=operation08_01" title="경영공시개선의견">경영공시개선의견</a></dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt><a href="/ko/openinfo.do?pg=operation04" id="operation04" title="공공데이터개방">공공데이터개방</a></dt>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 메뉴 E -->
+            </div>
+        </div>
+        <!-- 상단 로고, lnb, gnb E -->
+        <!-- 로케이션 S -->
+        <div class="location_layout">
+            <div class="width_1200">
+                <ul class="location">
+                    <li class="location_home"><a href="/ko/main.do?currentMain=1" id="location_home_a" title="메인으로 이동" style="height:0;"><span style="font-size:0;">홈</span></a></li>
+                    <!--1Depth S-->
+                    <li>
+
+
+                        <a href="/ko/info.do?pg=greet01_01" id="navi_depth1_a" title="재단소개">재단소개</a>
+
+
+                        <ul id="navi_depth1">
+                            <li><a href="https://keyview.danbee.ai/chat05/scholarship/index.html" title="장학금">장학금</a></li>
+                            <li><a href="/ko/tuition.do?pg=tuition_main" title="학자금대출">학자금대출</a></li>
+                            <li><a href="javascript:;" onclick="fn_portal_linkNavi('MK', 'PTMKSubMain_01M_02', 'MK,00,00,00');return false;"  title="인재육성">인재육성</a></li>
+                            <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" target="_blank" class="blank_menu" title="기부">기부</a></li>
+                            <li><a href="#" onclick="fn_portal_linkNavi('HB', 'PTHBMain_01M', 'HB,00,00,00');return false;" title="생활관">생활관</a></li>
+                            <li><a href="/ko/customer.do" title="고객센터">고객센터</a></li>
+                            <li><a href="/ko/info.do?pg=greet01_01" title="재단소개">재단소개</a></li>
+                            <li><a href="/ko/openinfo.do?pg=operation01" title="정보공개">정보공개</a></li>
+
+                        </ul>
+                    </li>
+                    <!--1Depth E-->
+
+                    <!--2Depth S-->
+                    <li>
+
+
+
+                        <a href="/ko/info.do?pg=officer" id="navi_depth2_a" title="기관현황">기관현황</a>
+
+                        <ul id="navi_depth2">
+                            <li><a href="/ko/info.do?pg=greet01_01" title="이사장소개">이사장소개</a></li>
+                            <li><a href="/ko/info.do?pg=found" title="경영이념">경영이념</a></li>
+                            <li><a href="/ko/info.do?pg=history" title="재단이 걸어온 길">재단이 걸어온 길</a></li>
+                            <li><a href="/ko/info.do?pg=officer" title="기관현황">기관현황</a></li>
+                            <li><a href="/ko/directorsboard.do" title="이사회">이사회</a></li>
+                            <li><a href="/ko/ethics.do?pg=ethics15&ttab1=2" title="감사활동">감사활동</a></li>
+                            <li><a href="/ko/ethics.do?ctgrId1=0000000001&pg=ethics01" title="윤리경영">윤리경영</a></li>
+                            <li><a href="/ko/info.do?pg=hrm01" title="인권경영">인권경영</a></li>
+                            <li><a href="/ko/notice.do?pg=PTKONotice_List" title="알림">알림</a></li>
+                            <li><a href="/ko/socials.do?pg=social01" title="사이버홍보실">사이버홍보실</a></li>
+                        </ul>
+
+
+
+                    </li>
+                    <!--2Depth E-->
+
+                    <!--3Depth S-->
+                    <li>
+
+                        <!-- 장학 > 학자금 이중 지원 방지 3Depth E -->
+
+                        <!-- 학자금대출 > 소득분위 3Depth S -->
+
+
+                        <!-- 인재육성 > 스마트학자금맞춤설계 3Depth S -->
+
+
+
+                        <!-- 고객센터 > 먼저확인해요 3Depth S -->
+
+                        <!-- 고객센터 > 의견있어요 3Depth E -->
+
+                        <!-- 재단소개 > 이사장소개 3Depth S -->
+
+
+                        <a href="/ko/info.do?pg=officer" id="navi_depth3_a" title="임원현황">임원현황</a>
+
+                        <ul id="navi_depth3">
+                            <li><a href="/ko/info.do?pg=officer" title="임원현황">임원현황</a></li>
+                            <li><a href="/ko/info.do?pg=organize01_02_01" title="조직현황">조직현황</a></li>
+                            <li><a href="/ko/mou.do?pg=mou01" title="MOU 체결현황">MOU 체결현황</a></li>
+                            <li><a href="/ko/info.do?pg=ci01_01" title="CI/캐릭터 소개">CI/캐릭터 소개</a></li>
+                            <li><a href="/ko/media.do?pg=media01_01" title="홍보영상">홍보영상</a></li>
+                            <li><a href="/ko/info.do?pg=contactus" title="오시는길">오시는길</a></li>
+                        </ul>
+
+                        <!-- 재단소개 > 기관현황 3Depth E -->
+
+                        <!-- 재단소개 > 감사활동 3Depth S -->
+
+                        <!-- 재단소개 > 사이버홍보실 3Depth E -->
+
+
+                        <!-- 정보공개 > 정보공개 3Depth S -->
+
+                        <!-- 정보공개 > 경영공시 3Depth S -->
+
+                        <!-- 마이페이지 S -->
+
+                        <!-- 마이페이지 E -->
+
+                        <!-- 국가대학생 연합생활관 3Depth S -->
+
+                        <!-- 국가대학생 연합생활관 3Depth E -->
+
+                    </li>
+                    <!--3Depth E-->
+
+                    <!--4Depth S-->
+                    <li>
+
+                        <!-- 장학 > 기부장학금 > 푸른등대 기부장학금 4Depth E -->
+
+
+                        <!-- 학자금대출 > 소득분위 > 소득분위란 4Depth S -->
+
+                        <!-- 학자금대출 > 학자금뱅킹 > 학자금대출 사후관리 4Depth E -->
+
+                        <!-- 추가 by whChoi 20160905 start -->
+                        <!-- 재단소개 > 사이버홍보실 > 사업설명회 4Depth S -->
+
+                        <!-- 재단소개 > 사이버홍보실 > 사업설명회 4Depth E -->
+                        <!-- 추가 by whChoi 20160905 end -->
+
+                    </li>
+                    <!--4Depth E-->
+                </ul>
+
+
+                <ul class="sns">
+                    <li><a class="fontUp" id="navi_fontUp_a" href="javascript:;none" title="화면확대" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','//static.kosaf.go.kr/www/images/n_skin/common/icon_zoomin_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_zoomin_gray.png" alt="화면확대" title="화면확대" name="Image10" ></a></li>
+                    <li><a class="fontDown" href="javascript:;none" title="화면축소" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image11','','//static.kosaf.go.kr/www/images/n_skin/common/icon_zoomout_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_zoomout_gray.png" alt="화면축소" title="화면축소"  name="Image11" ></a></li>
+                    <li><a onclick="pageprint(); return false;" href="#none" title="프린트" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image12','','//static.kosaf.go.kr/www/images/n_skin/common/icon_print_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_print_gray.png" alt="화면프린트" title="화면프린트"  name="Image12" ></a></li>
+                    <li><a href="https://www.facebook.com/kosafdream" title="페이스북 새창열림" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image13','','//static.kosaf.go.kr/www/images/n_skin/common/icon_facebook_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_facebook_gray.png" alt="페이스북" title="페이스북"  name="Image13" ></a></li>
+                    <li><a href="https://twitter.com/kosaf_loan" title="트위터 새창열림" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image14','','//static.kosaf.go.kr/www/images/n_skin/common/icon_twitter_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_twitter_gray.png" alt="트위터" title="트위터"  name="Image14" ></a></li>
+                    <li><a href="http://dreamcampus.blog.me/" title="블로그 새창열림" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image15','','//static.kosaf.go.kr/www/images/n_skin/common/icon_blog_black.png',0)"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_blog_gray.png" alt="블로그" title="블로그"  name="Image15" ></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 로케이션 E -->
+
+        <script type="text/javascript">
+            function guide_pop(){
+                var strOption = "status=no,resizable=no,scrollbars=no,width=1000,height=700, "+ "left = " + (window.screen.width -1000)/2 + ", top =" + (window.screen.height -700)/2
+                window.open("/html/guide/guide.html","univFind",strOption);
+            }
+        </script>
+
+        <script type="text/javascript">
+
+            $("#logo_top_01").focus(function(){
+                $("#top_submenu01").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a01").focus(function(){
+                $("#top_submenu01").css("display","block");
+                $("#top_submenu02").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a02").focus(function(){
+                $("#top_submenu01").css("display","none");
+                $("#top_submenu02").css("display","block");
+                $("#top_submenu03").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a03").focus(function(){
+                $("#top_submenu02").css("display","none");
+                $("#top_submenu03").css("display","block");
+                $("#top_submenu04").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a04").focus(function(){
+                $("#top_submenu03").css("display","none");
+                $("#top_submenu04").css("display","block");
+                $("#top_submenu05").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a05").focus(function(){
+                $("#top_submenu04").css("display","none");
+                $("#top_submenu05").css("display","block");
+                $("#top_submenu06").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a06").focus(function(){
+                $("#top_submenu05").css("display","none");
+                $("#top_submenu06").css("display","block");
+                $("#top_submenu07").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a07").focus(function(){
+                $("#top_submenu06").css("display","none");
+                $("#top_submenu07").css("display","block");
+                $("#top_submenu08").css("display","none");
+                return false ;
+            });
+
+            $("#top_submenu_a08").focus(function(){
+                $("#top_submenu07").css("display","none");
+                $("#top_submenu08").css("display","block");
+                return false ;
+            });
+
+            $("#top_submenu08>ul>li:last>dl>dt:last>a:last").blur(function(){
+                $("div[id^=top_submenu]").css("display","none");
+                return false ;
+            });
+
+            $("#operation04").blur(function(){
+                $("#top_submenu07").css("display","none");
+                return false ;
+            });
+
+
+            // 웹 접근성 탭 포커스 이동 소스
+            $("#location_home_a").focus(function(){
+                $("#navi_depth1").css("display","none");
+                return false ;
+            });
+
+            $("#navi_depth1_a").focus(function(){
+                $("#navi_depth1").css("display","block");
+                $("#navi_depth2").css("display","none");
+                return false ;
+            });
+
+            $("#navi_depth2_a").focus(function(){
+                $("#navi_depth1").css("display","none");
+                $("#navi_depth2").css("display","block");
+                $("#navi_depth3").css("display","none");
+                return false ;
+            });
+
+            $("#navi_depth3_a").focus(function(){
+                $("#navi_depth2").css("display","none");
+                $("#navi_depth3").css("display","block");
+                $("#navi_depth4").css("display","none");
+                return false ;
+            });
+
+            $("#navi_depth4_a").focus(function(){
+                $("#navi_depth3").css("display","none");
+                $("#navi_depth4").css("display","block");
+                return false ;
+            });
+
+            $("#navi_fontUp_a").focus(function(){
+                $("#navi_depth1").css("display","none");
+                $("#navi_depth2").css("display","none");
+                $("#navi_depth3").css("display","none");
+                $("#navi_depth4").css("display","none");
+                return false ;
+            });
+
+        </script>
+        <!-- 상단 로고, lnb, gnb E -->
+        <script type="text/javascript">
+            var RIGHT_MENU_OPEN = function(index, on){
+                $(".right_menu > li").eq(index).att("class","on");
+            }
+            var LOCATION_SCROLL_SIZE_CHECKED = function(){
+                $(".location li ul").each(function(index1,element1){
+                    if($(element1).children("li").length <= 7){
+                        $(element1).css("height","auto");
+                        $(element1).css("overflow-y","hidden");
+                    }
+                });
+            }
+            LOCATION_SCROLL_SIZE_CHECKED();
+        </script>
+    </header>
+    <!-- //header -->
+
+    <!-- 본문 S -->
+    <div id="container">
+        <div class="width_1200 info">
+            <!-- 왼쪽 S -->
+            <div class="con_left_80">
+                <h1>임원현황</h1>
+                <!-- 탭 S -->
+                <div class="con_tab2">
+                    <ul class="tab2">
+                        <li class="on"><a href="https://keyview.danbee.ai/chat05/foundationIntro/agency/executive.html" title="경영진">경영진</a></li>
+                        <li class=""><a href="https://keyview.danbee.ai/chat05/foundationIntro/agency/auditor.html" title="감사">감사</a></li>
+                    </ul>
+                </div>
+                <!-- 탭 E -->
+
+
+                <div class="tableScroll">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_black" summary="경영진표입니다">
+                        <colgroup><col width="25%" /><col width="12%" /><col width="20%" /><col width="*" /></colgroup>
+                        <thead>
+                        <tr>
+                            <th>성명</th>
+                            <th>직위</th>
+                            <th>현직</th>
+                            <th>주요경력</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="cnt">
+                            <td><img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer41.gif" style="vertical-align:middle;" class="m_r20" alt="이정우" />이정우</td>
+                            <td class="blue_st">이사장</td>
+                            <td>한국장학재단<br />이사장</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>대통령 비서실 정책실장</li>
+                                    <li>대통령 정책특보 겸 정책기획위원회 위원장</li>
+                                    <li>경북대학교 명예교수</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer35.gif" style="vertical-align:middle;" class="m_r20" alt="이계영" />
+                                이계영
+                            </td>
+                            <td class="blue_st">상임이사</td>
+                            <td>한국장학재단<br />상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>제주특별자치도 교육청 부교육감</li>
+                                    <li>대한민국학술원 사무국 국장</li>
+                                    <li>교육과학기술연수원 원장</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer36.gif" style="vertical-align:middle;" class="m_r20" alt="조성철" />
+                                조성철
+                            </td>
+                            <td class="blue_st">상임이사</td>
+                            <td>한국장학재단<br />상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>기획재정부 회계결산과장</li>
+                                    <li>기획재정부 총사업비관리과장</li>
+                                    <li>기획재정부 기금운용계획과장</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer43.gif" style="vertical-align:middle;" class="m_r20" alt="이승복" />
+                                이승복
+                            </td>
+                            <td class="blue_st">비상임이사<br />(당연직)</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>교육부 대학학술정책관(현)</li>
+                                    <li>세종특별차지시교육청 부교육감</li>
+                                    <li>교육부 대학지원관</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer20.gif" style="vertical-align:middle;" class="m_r20" alt="최상대" />
+                                최상대
+                            </td>
+                            <td class="blue_st">비상임이사<br />(당연직)</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>기획재정부 사회예산심의관(현)</li>
+                                    <li>기획재정부 재정혁신국장</li>
+                                    <li>경제부총리 겸 기획재정부장관 비서실장</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer46.gif" style="vertical-align:middle;" class="m_r20" alt="이명순" />
+                                이명순
+                            </td>
+                            <td class="blue_st">비상임이사<br />(당연직)</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>금융위원회 금융소비자국장(현)</li>
+                                    <li>금융위원회 금융정보분석원 기획행정실장</li>
+                                    <li>금융위원회 자본시장과장</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer24.gif" style="vertical-align:middle;" class="m_r20" alt="채재은" />
+                                채재은
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>가천대학교 행정학과 교수(현)</li>
+                                    <li>교육부 교육정책자문위원</li>
+                                    <li>기획재정부 재정정책자문위원</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer37.gif" style="vertical-align:middle;" class="m_r20" alt="강명숙" />
+                                강명숙
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>배재대학교 교직부 교수(현)</li>
+                                    <li>국가교육회의 고등교육전문위원</li>
+                                    <li>교육부 교육정책자문위원</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer38.gif" style="vertical-align:middle;" class="m_r20" alt="엄창옥" />
+                                엄창옥
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>경북대학교 경제통상학부 교수(현)</li>
+                                    <li>지역발전위원회 위원</li>
+                                    <li>혁신도시특별위원회 위원</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer39.gif" style="vertical-align:middle;" class="m_r20" alt="이원창" />
+                                이원창
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>법무법인 대구 변호사(현)</li>
+                                    <li>대구고등검찰청 검찰시민심사위원</li>
+                                    <li>이원창 법률사무소 변호사</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer40.gif" style="vertical-align:middle;" class="m_r20" alt="장지호" />
+                                장지호
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>한국외국어대학교 행정학과 교수(현)</li>
+                                    <li>한국연구재단 전문위원</li>
+                                    <li>한국외국어대학교 기획조정처 처장</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="cnt">
+                            <td>
+                                <img src="//static.kosaf.go.kr/www/images/n_skin/info/img_officer45.gif" style="vertical-align:middle;" class="m_r20" alt="박병춘" />
+                                박병춘
+                            </td>
+                            <td class="blue_st">비상임이사</td>
+                            <td>한국장학재단<br />비상임이사</td>
+                            <td>
+                                <ul class="list_style02">
+                                    <li>계명대학교 경영공학과 교수(현)</li>
+                                    <li>국회(산자위) 입법지원 위원</li>
+                                    <li>행정안전부 정책자문위원회 기획조정분과위원장</li>
+                                    <li>한국은행 객원 연구원</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+            <!-- 왼쪽 E -->
+
+            <!-- 오른쪽 S -->
+            <div class="con_right">
+                <ul class="right_menu">
+                    <li><a href="/ko/info.do?pg=officer" title="임원현황으로 이동">임원현황</a></li>
+                    <li><a href="/ko/info.do?pg=organize01_02_01" title="조직현황으로 이동">조직현황</a></li>
+                    <li><a href="/ko/mou.do?pg=mou01" title="MOU체결현황으로 이동">MOU체결현황</a></li>
+                    <li><a href="/ko/info.do?pg=ci01_01" title="CI/캐릭터 소개로 이동">CI/캐릭터 소개</a></li>
+                    <li><a href="/ko/media.do?pg=media01_01" title="홍보영상으로 이동">홍보영상</a></li>
+                    <li><a href="/ko/info.do?pg=contactus" title="오시는길로 이동">오시는길</a></li>
+                </ul>
+            </div>
+            <!-- 오른쪽 E -->
+            <script type="text/javascript">
+                //<![CDATA[
+
+                var star_per = 0;				// 별 수치
+                var star_val = 0;				// 별 결과 수치
+                var star_beforeX = 0;			// 이전 좌표
+                var star_currentX = 0;			// 현재 좌표
+                var star_init_locX = 383;		// 초기 좌표 오차점 조정
+                var star_mouse_diff = 3;		// 별과 마우스 좌표 오차점 조정
+                var star_point_add_diff = 17;	// 별 갯수당 더해지는 값
+                var star_point_diff = 20;		// 별 갯수당 계산되는 값
+                var move = false;				// 이동 여부
+
+                // 별점
+                // //
+                $(function(){
+
+                    $("input[name=grade]").change(function(){
+                        //star_val = Math.floor(Math.max(0, Math.min(star_per / star_point_diff, 5)));
+                        star_val = $("input[name=grade]:checked").val();
+                        $("#star_point").val(star_val);
+                    });
+                    /*
+                    $(".point_star").hover(function(){
+                        move = true;
+                    }, function(){
+                        move = false;
+
+                        //star_val = Math.floor(Math.max(0, Math.min(star_per / star_point_diff, 5)) * 10) / 10;
+                        star_val = Math.floor(Math.max(0, Math.min(star_per / star_point_diff, 5)));
+                        $("#star-point").val(star_val);
+                    });
+                    $(".point_star").mousemove(function(e){
+
+                        star_init_locX = $(this).offset().left;
+                        star_currentX = e.pageX - star_init_locX;
+
+                        //$("#debug").text("this.left : "+offSet.left+", e.pageX : " + e.pageX);
+
+                        if(move){
+
+                            star_per = star_currentX - star_mouse_diff;
+
+                            if(star_beforeX < star_currentX) star_per += star_point_add_diff;
+                            else star_per -= star_point_add_diff;
+
+                            //$("#debug").text("star_beforeX : " + star_beforeX + ", star_currentX : " + star_currentX + ", per : " + star_per);
+                            if(star_per > 100) star_per = 100;
+                            else if(star_per < 0) star_per = 0;
+
+                            $("#star").css("width", star_per + "%");
+                            star_beforeX = star_currentX;
+
+                            //star_val = Math.round(Math.max(0, Math.min(star_per / star_point_diff, 5)) * 10) / 10;
+                            star_val = Math.floor(Math.max(0, Math.min(star_per / star_point_diff, 5)));
+                            $("#star_point").val(star_val);
+                            $('#star').attr( 'title' , '별점' + star_val + '개' );
+                        }
+                    });
+                    */
+                    $("#star_submit").click(function(){
+
+                        $("#url").val(location.href);
+
+                        /*
+                        var i = 0;
+                        var path = "";
+                        $("div.navi").children().each(function(){
+                            if(i++ > 0) path += $(this).text() + " > ";
+                        });
+
+                        path = path.substring(0, path.length - 3);
+                        */
+                        // 현재 네비게이션 경로 가져오기 by whChoi 20160825 start
+                        var path = "";
+                        var pathCnt = $(".location").children("li").children("ul").next("a").length;
+
+                        $(".location > li").each(function(i){
+                            path += $(this).children("ul").siblings().text();
+                            if(i > 0 && i < pathCnt){
+                                path += " > ";
+                            }
+                        });
+                        // 현재 네비게이션 경로 가져오기 by whChoi 20160825 end
+
+                        $("#path").val(path);
+                        $("#star_form").submit();
+
+                        return false;
+                    });
+
+                    //키보드 사용자용 별점
+                    $('.skb_btn').focus(function(){
+                        $(this).parent('.star_keyB').css('z-index', '1000');
+                        $(this).click(function(){
+                            $(this).hide().next('ul').slideDown();
+                            return false;
+                        })
+                    })
+
+                    $('.skb_list a').click(function(){
+                        $('.skb_list').hide();
+                        var selected = $(this).html();
+
+                        if(selected.indexOf("img_star_00.jpg")>-1) {
+                            $("#star_point").val(0);
+                        }else if(selected.indexOf("img_star_01.jpg")>-1) {
+                            $("#star_point").val(1);
+                        }else if(selected.indexOf("img_star_02.jpg")>-1) {
+                            $("#star_point").val(2);
+                        }else if(selected.indexOf("img_star_03.jpg")>-1) {
+                            $("#star_point").val(3);
+                        }else if(selected.indexOf("img_star_04.jpg")>-1) {
+                            $("#star_point").val(4);
+                        }else if(selected.indexOf("img_star_05.jpg")>-1) {
+                            $("#star_point").val(5);
+                        }
+
+                        $('.skb_btn').show().html(selected);
+                        return false;
+                    })
+
+                    $('a,input,textarea,select,button').not($('.star_keyB a')).focus(function(){
+                        $('.skb_list').hide();
+                        $('.skb_btn').show();
+                    })
+                });
+                //]]>
+            </script>
+
+            <!-- 컨텐츠담당자 S -->
+
+            <div class="sub_contents">
+
+                <form id="star_form" method="post" action="/ko/star.do"	target="star-send">
+
+                    <dl>
+                        <dt class="grade">정보에 대해 만족하십니까?</dt>
+                        <dd>
+                            <legend>정보에 대해 만족하십니까?</legend>
+                            <input type="radio" id="grade5" name="grade" value="5" checked /> <label for="grade5">매우만족</label>
+                            <input type="radio" id="grade4" name="grade" value="4" /> <label for="grade4">만족</label>
+                            <input type="radio" id="grade3" name="grade" value="3" /> <label for="grade3">보통</label>
+                            <input type="radio" id="grade2" name="grade" value="2" /> <label for="grade2">불만족</label>
+                            <input type="radio" id="grade1" name="grade" value="1" /> <label for="grade1">매우불만족</label>
+                            <input type="hidden" id="star_point" name="point" readonly="readonly" value="5" />
+                            <input type="hidden" id="menu_cd" name="menu_cd" readonly="readonly" value="2140" />
+                            <input type="hidden" id="url" name="url" readonly="readonly" />
+                            <input type="hidden" id="path" name="path" readonly="readonly" />
+                            <div class="btn_group02" align="right">
+                                <a href="#" id="star_submit" title="평가하기" class="btn_gray_line">평가하기</a>
+                            </div>
+                        </dd>
+                    </dl>
+                </form>
+
+                <dl>
+                    <dt class="people">콘텐츠 담당자</dt>
+                    <dd>
+
+                        <!-- 1. 장학 영역 시작 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- 1. 장학 영역 끝 -->
+                        <!-- 2. 대출 영역 시작 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- 2. 대출 영역 끝 -->
+                        <!-- 3. 고객센터 영역 시작 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- 3. 고객센터 영역 끝 -->
+                        <!-- 4. 재단소개 영역 시작 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- 4. 재단소개 영역 끝 -->
+
+                        <!-- 5. 정보공개 영역 시작 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        기획조정부 &nbsp;|&nbsp; 백혜란 ( ☎ 1599-2000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- 5. 정보공개 영역 끝 -->
+                        <div class="btn_group02">
+                            <a href="/ko/qna.do" title="온라인고객상담 바로가기" class="btn_gray">온라인고객상담</a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <iframe id="star-send" name="star-send" style="display: none" title='내용없음'></iframe></div>
+        <!-- 컨첸츠담당자 E -->
+    </div>
+    <!-- 본문 E -->
+
+    <!-- 하단 S -->
+    <footer id="footer">
+        <div class="width_1200">
+
+            <div class="footer_left" id="footer_left_navi">
+                <ul>
+                    <li class="personal first"><a href="/ko/privacy.do" title="개인정보처리방침으로 이동" class="pointer">개인정보처리방침</a></li>
+                    <li class="email"><a href="#none" onclick="refusal_cyber(); return false;" title="이메일집단수집거부 새 창으로 이동">이메일집단수집거부</a></li>
+                    <li><a href="javascript:;" onclick="window.open('http://portal.kosaf.go.kr/CO/jspAction.do?forwardOnlyFlag=Y&forwardPage=pt/pg/PTPGLoanAgreDl_01M&ignoreSession=Y', '이용약관', 'left=300, top=300, width=990, height=600, scrollbars=yes');return false;" title="새창으로 이동">이용약관</a></li>
+                    <li><a href="/ko/copyright.do" title="저작권정책으로 이동">저작권정책</a></li>
+                    <!--  <li><a href="https://cp.kosaf.go.kr" target="_blank" title="입찰안내 새 창으로 이동">입찰안내</a></li> -->
+                    <li><a href="/ko/info.do?pg=contactus" title="오시는길로 이동">오시는길</a></li>
+                </ul>
+                <address>
+                    <p class="addr">(41200) 대구광역시 동구 신암로 125(신암동 819-1) 한국장학재단&nbsp;<span>콜센터 1599-2000</span></p>
+                    <p class="addr"><span class="bluegreen">ARS 기부(한통화에 2,000원이 기부됩니다.) 060-700-1003</span></p>
+                    <p>COPYRIGHT ⓒ 2015 KOREA STUDENT AID FOUNDATION. ALL RIGHT RESERVED.</p>
+                </address>
+            </div>
+            <form name="family" method="get" action="">
+                <div class="footer_right">
+                    <ul class="bottom_icon">
+                        <li><a href="http://www.instagram.com/kosaf_official" target="_blank" title="한국장학재단 인스타그램 새 창으로 이동" class="fico"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_instagram_bottom.png" alt="한국장학재단 인스타그램 바로가기" /></a></li>
+                        <li><a href="http://www.facebook.com/kosafdream" target="_blank" title="한국장학재단 페이스북 새 창으로 이동" class="fico"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_facebook_bottom.png" alt="한국장학재단 페이스북 바로가기" /></a></li>
+                        <li><a href="http://twitter.com/KOSAF_Loan" target="_blank" title="한국장학재단 트위터 새 창으로 이동" class="fico"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_twitter_bottom.png" alt="한국장학재단 트위터 바로가기" /></a></li>
+                        <li><a href="http://blog.naver.com/dreamcampus" title="한국장학재단 블로그 새 창으로 이동" target="_blank" class="fico"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_blog_bottom.png" alt="한국장학재단 블로그 바로가기" /></a></li>
+                        <li><a href="https://story.kakao.com/ch/kosafdream" target="_blank" title="카카오스토리 새 창으로 이동" class="fico"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_kakaostory_bottom.png" alt="한국장학재단 카카오스토리 바로가기" /></a></li>
+                        <li><a href="javascript:;" onclick="openCert('report_01');return false;" title="정보보호 관리체계 인증서 새 창으로 이동"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_mark01.png" alt="정보보호 관리체계 인증서" /></a></li>
+                        <li><a href="javascript:;" onclick="openCert('report_04');return false;" title="웹접근성 품질인증서 새 창으로 이동"><img src="//static.kosaf.go.kr/www/images/n_skin/common/icon_mark02.png" alt="웹접근성 품질인증서" /></a></li>
+                    </ul>
+                    <select id="relation_cite" title="관련기관 바로가기">
+                        <option value="" selected="selected">관련기관 바로가기</option>
+                        <option title="교육부 " value="http://www.moe.go.kr/">교육부</option>
+                        <option title="국세청 취업 후 학자금 상환" value="http://icl.go.kr">국세청 취업 후 학자금 상환</option>
+                        <option title="국민권익위원회 공익신고" value="http://www.acrc.go.kr">국민권익위원회 공익신고</option>
+                        <option title="임직원 부조리 익명신고시스템" value="http://me2.do/Fjhvw9rX">임직원 부조리 익명신고시스템</option>
+                        <option title="준법질의 시스템" value="http://me2.do/Fsz6UYAH">준법질의 시스템</option>
+                        <option title="공공기관 알리오 " value="http://www.alio.go.kr">공공기관 알리오</option>
+
+
+
+                    </select>
+                    <!-- 웹접근성 관련 추가  -->
+                    <input type="image" src="//static.kosaf.go.kr/www/images/n_skin/common/foot_go.gif" alt="GO 새창으로 이동" class="searchBtn cursor" onclick="cite_move(); return false;" />
+                    <!-- //웹접근성 관련 추가  -->
+                </div>
+
+            </form>
+
+
+            <script type="text/javascript">
+
+                function refusal_cyber(){
+                    // 홈페이지 개편으로 팝업창 사이즈 커짐  by shjeon 20160619
+                    // footer 에는 없어 신규로 추가
+                    //	var strOption = "status=no,resizable=no,scrollbars=no,width=560,height=433, "+ "left = " + (window.screen.width -560)/2 + ", top =" + (window.screen.height -433)/2
+                    var strOption = "status=no,resizable=no,scrollbars=no,width=560,height=523, "+ "left = " + (window.screen.width -560)/2 + ", top =" + (window.screen.height -433)/2
+                    window.open("/ko/refusal.do","univFind",strOption);
+
+                }
+
+            </script>
+
+            <script type="text/javascript">
+                //<![CDATA[
+                function cite_move(){
+                    var cite = document.getElementById("relation_cite");
+                    var cite_url = cite.options[cite.selectedIndex].value;
+                    if (cite_url == "CAFE" ){
+                        fn_sso('CAFE');
+                    }else if (cite_url){
+                        window.open(cite_url);
+                    }
+                }
+                function familysite_opne(){
+                    alert('family');
+                    $("#relation_cite").trigger("click");
+                }
+
+                // 웹접근성 관련 주석처리
+                //$("#relation_cite").bind("change", {}, cite_move);
+                // //웹접근성 관련 주석처리
+
+                $($(".familysiteBtn")[0]).bind("click", {}, familysite_opne);
+                function openCert(pg) {
+                    var strOption = "menubar=no,resizable=no,width=550,height=780,scrollbars=no,status=no, "+ "left = " + (window.screen.width - 500)/2 + ", top =50 ";
+                    var url = "/jsp/include/"+pg+".jsp";
+                    window.open(url,pg,strOption);
+                }
+                //]]>
+            </script>
+            <form name="allSearchForm" action=""></form>
+            <form name="hiddenFrm"  action=""></form>
+
+
+            <!-- This script is for AceCounter START -->
+            <script type="text/javascript">
+                //<![CDATA[
+                var _ag   = 0 ;         // 로그인사용자 나이
+                var _id   = '';    		// 로그인사용자 아이디
+                var _mr   = '';        	// 로그인사용자 결혼여부 ('single' , 'married' )
+                var _gd   = '';         // 로그인사용자 성별 ('man' , 'woman')
+                var _skey = '' ;        // 내부검색어
+
+                var _jn = '' ;          //  가입탈퇴 ( 'join','withdraw' )
+                var _jid = '' ;			// 가입시입력한 ID
+
+                var _ud1 = '' ;			// 사용자 정의변수 1 ( 1 ~ 10 정수값)
+                var _ud2 = '' ;			// 사용자 정의변수 2 ( 1 ~ 10 정수값)
+                var _ud3 = '' ;			// 사용자 정의변수 3 ( 1 ~ 10 정수값)
+                //]]>
+            </script>
+            <!-- AceCounter END -->
+            <!-- AceCounter Log Gathering Script V.71.2010011401 -->
+            <script type="text/javascript">
+                //<![CDATA[
+                if(typeof EL_GUL == 'undefined'){
+                    var EL_GUL = 'count.kosaf.go.kr';var EL_GPT='80'; var _SGPT='443';var _AIMG = new Image(); var _bn=navigator.appName; var _PR = location.protocol=="https:"?"https://"+EL_GUL+":"+_SGPT:"http://"+EL_GUL+":"+EL_GPT;if( _bn.indexOf("Netscape") > -1 || _bn=="Mozilla"){ setTimeout("_AIMG.src = _PR+'/?cookie';",1); } else{ _AIMG.src = _PR+'/?cookie'; };
+                    document.writeln("<scr"+"ipt type='text/javascript' src='http://static.kosaf.go.kr/www/acecounter/acecounter_V70.js'><\/scr"+"ipt>");
+                }
+                //]]>
+            </script>
+            <noscript><img src='http://count.kosaf.go.kr:80/?uid=1&amp;je=n&amp;' border='0' width='0' height='0' alt='' /></noscript>
+            <!-- AceCounter Log Gathering Script End -->
+
+
+
+
+
+        </div>
+    </footer>
+    <!-- 하단 E -->
+</div>
+
+<!-- 왼쪽 퀵메뉴 S -->
+
+<div class="left_quick" id="left_quick_skipNavi">
+    <ul>
+        <li class="quick_title">
+            <h7>QUICK<br/>MENU</h7>
+        </li>
+        <li class="quick_search">
+            <a href="/ko/search.do" id="quick_search_a" title="검색"><span>검 색</span></a>
+            <form name="searchKwd1" method="get" action="/ko/search.do">
+                <div class="search_input" id="quick_search">
+					<span>
+						<input type="text" name="kwd" class="search01" title="검색어 입력" /><button class="btn_search" alt="검색"  onclick="this.parent.submit();">검색</button>
+					</span>
+                </div>
+            </form>
+        </li>
+        <!-- <li class="quick_lang"><a href="/eng/" id="quick_lang_a" target="_blank" title="잉글리쉬"><span>ENGLISH</span></a></li> -->
+        <li class="quick_menu"><a href="/ko/sitemap.do" id="quick_menu_a" title="전체메뉴보기"><span>전체메뉴</span></a></li>
+        <!-- li class="quick_map"><a href="/pt/ko/info/contactus.jsp" title="오시는길"><span>오시는길</span></a></li -->
+        <li class="quick_student"><a href="javascript:;" id="quick_student_a" title="재학생"><span>재학생</span></a>
+            <ul id="quick_student">
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTJHScrsAply_M', 'JH,02,01,02');return false;" title="원클릭 신청으로 이동">원클릭 신청</a></li>
+                <!-- 수정 by whChoi 20160812 start -->
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTSBIncpCfmFordP','JH,01,04,00');return false;"  title="학자금 지원구간 정보조회"><span>학자금 지원구간 정보조회</span></a></li>
+                <!--<li><a href="/ko/tuition.do?pg=tuition04_09_01&type=scholar"  title="학자금 지원구간정보조회"><span>학자금 지원구간정보조회</span></a></li>-->
+                <!-- 수정 by whChoi 20160812 end -->
+                <li><a href="/ko/mypageNwScrs.do" title="학자금 수혜 예측 정보"><span>학자금 수혜 예측 정보</span></a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCTFC','HD,08,02,27');return false;" title="증명서발급(학자금대출)"><span>증명서발급(학자금대출)</span></a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('JH', 'PTJH_ADBK','JH,03,01,14');return false;" title="출근부 관리(국가근로장학금)"><span>출근부 관리(국가근로장학금)</span></a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인"><span>부채확인</span></a></li>
+                <!--<li><a href="/pt/mk/scdmngt/PTMKScdMngt_01M.jsp" title="차세대리더육성멘토링 활동관리"><span>차세대리더육성멘토링 활동관리</span></a></li>-->
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('ED', 'PTEDSubMain_01M','HD,09,00,00');return false;" title="금융교육"><span>금융교육</span></a></li>
+                <li><a href="javascript:;" onclick="window.open('http://portal.kosaf.go.kr/CO/jspAction.do?forwardOnlyFlag=Y&forwardPage=pt/pg/PTPGLoanIntCalc_01M&ignoreSession=Y', '이자계산기', 'left=300, top=300, width=990, height=600, scrollbars=yes');return false;" title="새창으로 이동">이자계산기</a></li>
+                <li><a href="javascript:;" onclick="window.open('http://portal.kosaf.go.kr/CO/jspAction.do?forwardOnlyFlag=Y&amp;forwardPage=pt/pg/PTPGIclRpmtAmtCalc_01M&amp;ignoreSession=Y', 'ICL상환금계산', 'left=300, top=300, width=990, height=600, scrollbars=yes');return false;" title="새창으로 이동"><span style="letter-spacing:0">ICL</span>상환금계산</a></li>
+                <li><a href="javascript:;" onclick="window.open('http://portal.kosaf.go.kr/CO/jspAction.do?forwardOnlyFlag=Y&forwardPage=pt/pg/PTPGLoanAgreDl_01M&ignoreSession=Y', '약관및동의서', 'left=300, top=300, width=990, height=600, scrollbars=yes');return false;" title="새창으로 이동">약관 및 동의서 등</a></li>
+            </ul>
+        </li>
+        <li class="quick_finish"><a href="javascript:;" id="quick_finish_a" title="졸업생"><span>졸업생</span></a>
+            <ul id="quick_finish">
+                <!-- 수정 by whChoi 20160906 start -->
+                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                <!-- 수정 by whChoi 20160906 end -->
+                <li><a href="javascript:;" title="대출내역" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCRSTMNGT','HD,08,01,01');return false;">대출내역</a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHD_LOANCTFC','HD,08,02,27');return false;" title="증명서 발급(학자금대출)">증명서 발급(학자금대출)</a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDTsfrAgreMngt_02M','HD,08,01,07');return false;" title="취업후 상환 학자금대출 이체약정 등록">취업후 상환 학자금대출 이체약정 등록</a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인">부채확인</a></li>
+            </ul>
+        </li>
+        <li class="quick_parent"><a href="javascript:;"  id="quick_parent_a" title="학부모"><span>학부모</span></a>
+            <ul id="quick_parent">
+                <!-- 수정 by whChoi 20160906 start -->
+                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                <!-- 수정 by whChoi 20160906 end -->
+
+
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyInfoAgmt_01M','JH,01,02,00');return false;"  title="가구원 동의 하기">가구원 동의 하기</a></li>
+
+
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTJHGzvtAgmt_01M','');return false;"  title="만 14세미만 법정대리인 동의 하기">만 14세미만 법정대리인 동의 하기</a></li>
+
+
+
+
+                <!--학부모 알리미는 로그아웃에서만 페이지 조회 가능. 로그인일 경우 로그아웃 하라는 메세지 출력-->
+
+                <li><a href="javascript:;" onclick="fn_portal_link('SB', 'PTJHScprAlimi_01M');return false;"  title="학부모 알리미">학부모 알리미</a></li>
+
+                <!--
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_01M','HD,08,03,03');return false;" title="부채확인">부채확인</a></li>
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('HD', 'PTHDCmbdSplRpmtMngt_06M','HD,08,03,08');return false;" title="분할상환약정내역">분할상환약정내역</a></li>
+                -->
+
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('SB', 'PTJHFmlyIncpCfm_01M','SB,01,07,00');return false;"  title="가구원 학자금 지원구간 산정 현황">가구원 학자금 지원구간 산정 현황</a></li>
+
+            </ul>
+        </li>
+        <li class="quick_society"><a href="javascript:;" id="quick_society_a" title="기업/기관"><span>기업/기관</span></a>
+            <ul id="quick_society">
+                <!-- 수정 by whChoi 20160906 start -->
+                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PRMain','DN,00,00,00');return false;" title="기부하기">기부하기</a></li>-->
+                <li><a href="javascript:;" onclick="fn_portal_linkNavi('DN', 'PTDN_SUBMAIN_01M','DN,03,00,00');return false;" title="기부하기">기부하기</a></li>
+                <!-- 수정 by whChoi 20160906 end -->
+                <li><a href="javascript:setComLogin()" title="기업/기관 로그인">기업/기관 로그인</a></li>
+                <!--<li><a href="javascript:;" onclick="fn_portal_linkNavi('CO', 'CO_LOGIN');return false;" title="기업/기관 로그인">기업/기관 로그인</a></li>-->
+                <li><a href="http://workstudy.kosaf.go.kr" title="근로장학기관 포털">근로장학기관 포털</a></li>
+            </ul>
+        </li>
+
+        <!-- 로그인 -->
+        <li class="quick_login"><a href="/ko/login_sc.do" id="quick_login_a" title="로그인"><span>로그인</span></a></li>
+        <li class="quick_join"><a href="/ko/join.do" title="서비스 이용자 등록"><span>서비스 이용자 등록</span></a></li>
+        <li class="quick_smart"><a href="#" onclick="fn_portal_linkNavi('SS', 'PTSMSlimMain', 'MK,01,00,00');return false;" title="스마트 학자금 맞춤설계"><span>스마트 학자금 맞춤설계</span></a></li>
+
+    </ul>
+</div>
+
+<script type="text/javascript">
+    // gnb 반응형 버튼 클릭 이벤트 by whChoi 20160831 start
+    $(function(){
+        $(".lnb_layout .btn_menu").click(function(){
+            var $ul_area = $(".header_layout .lnb_layout .btn_menu+ul");
+            if($(this).css("display") !=  "none"){
+                if($ul_area.css("display") != "none"){
+                    $ul_area.css("display","none");
+                }else{
+                    $ul_area.css("display","inline-block");
+                }
+            }
+        });
+
+        // 창크기 변경시 gnb메뉴 이벤트 추가 by whChoi 20160901 start
+        $(window).resize(function(){
+            $(".lnb_layout > ul").find(".top_submenu").css("display","");
+            $(".header_layout .lnb_layout > ul li .top_submenu ul dl dd").css("display","");
+            if($(window).width() >= 1183){
+                $(".header_layout .lnb_layout > ul").css("display","inline-block");
+            }else{
+                $(".header_layout .lnb_layout .btn_menu+ul").css("display","none");
+            }
+        });
+        // 창크기 변경시 gnb메뉴 이벤트 추가 by whChoi 20160901 end
+
+        // 1depth 열기/닫기
+        // jquery-1.4.4.js 에서 off() 지원안함
+        //$(".header_layout .lnb_layout .m_quick > a, .menu_open").off("click").click(function(event){
+        $(".header_layout .lnb_layout .m_quick > a, .menu_open").click(function(event){
+            if($(window).width() < 1183){
+                var $div_obj = $(this).parents("li").children(".top_submenu");
+                if($div_obj.css("display") == "none"){
+                    // 열려있는 항목 모두 닫기
+                    $(".header_layout .lnb_layout > ul").find(".top_submenu").css("display","none");
+                    // 열려있는 2차 항목 모두 닫기
+                    $(".header_layout .lnb_layout > ul li .top_submenu ul").find("dd").css("display","none");
+                    $div_obj.css("display","inline-block");
+                }else{
+                    $div_obj.css("display","none");
+                }
+                return false;
+            }
+        });
+
+        // 2depth 열기/닫기
+        // jquery-1.4.4.js 에서 off() 지원안함
+        //$(".header_layout .lnb_layout > ul li .top_submenu ul dl dt > a").off("click").click(function(){
+        $(".header_layout .lnb_layout > ul li .top_submenu ul dl dt > a").click(function(){
+            if($(window).width() < 1183){
+                var $dd_obj = $(this).parents("dl").children("dd");
+                // 하위항목 있을 때만 이벤트 발생
+                if($dd_obj.length){
+                    if($dd_obj.css("display") == "none"){
+                        // 열려있는 항목 모두 닫기
+                        $(".header_layout .lnb_layout > ul li .top_submenu ul").find("dd").css("display","none");
+                        $dd_obj.css("display","inline-block");
+                    }else{
+                        $dd_obj.css("display","none");
+                    }
+                    return false;
+                }
+            }
+        });
+
+        // 반응형 gnb 바깥 영역 클릭 시 gnb 닫기 by whChoi 20160909 start
+        $("#wrap").click(function(e){
+            if($(window).width() < 1183){
+                if(!$(".header_layout .lnb_layout").has(e.target).length){
+                    $(".header_layout .lnb_layout .btn_menu+ul").hide();
+                    // 열려있는 항목 모두 닫기
+                    $(".header_layout .lnb_layout > ul").find(".top_submenu").css("display","none");
+                    // 열려있는 2차 항목 모두 닫기
+                    $(".header_layout .lnb_layout > ul li .top_submenu ul").find("dd").css("display","none");
+                }
+            }
+        });
+        // 반응형 gnb 바깥 영역 클릭 시 gnb 닫기 by whChoi 20160909 end
+    });
+
+    $("#quick_lang_a").focus(function(){
+        $("#quick_search").css("display","none");
+        return false ;
+    });
+
+    $("#quick_search_a").focus(function(){
+        $("#quick_search").css("display","block");
+        return false ;
+    });
+
+    $("#quick_lang_a").focus(function(){
+        $("#quick_search").css("display","none");
+        return false ;
+    });
+
+    $("#quick_menu_a").focus(function(){
+        $("#quick_student").css("display","none");
+        return false ;
+    });
+
+    $("#quick_student_a").focus(function(){
+        $("#quick_student").css("display","block");
+        $("#quick_finish").css("display","none");
+        return false ;
+    });
+
+    $("#quick_finish_a").focus(function(){
+        $("#quick_student").css("display","none");
+        $("#quick_finish").css("display","block");
+        $("#quick_parent").css("display","none");
+        return false ;
+    });
+
+    $("#quick_parent_a").focus(function(){
+        $("#quick_finish").css("display","none");
+        $("#quick_parent").css("display","block");
+        $("#quick_society").css("display","none");
+        return false ;
+    });
+
+    $("#quick_society_a").focus(function(){
+        $("#quick_parent").css("display","none");
+        $("#quick_society").css("display","block");
+        return false ;
+    });
+
+    $("#quick_login_a").blur(function(){
+        $("#quick_society").css("display","none");
+        return false ;
+    });
+
+</script>
+<!-- 왼쪽 퀵메뉴 E -->
+
+<!-- 오늘쪽 마이메뉴 S -->
+<!--
+<div class="right_mymenu">
+  <a href="" class="btn_mymenu">마이메뉴</a>
+</div>
+-->
+<!-- 오늘쪽 마이메뉴 E -->
+
+<div id="frogue-container"
+     class="position-right-bottom"
+     data-chatbot="a3e7230e-d0c7-4f7f-8817-4b79273d58d5"
+     data-user=""
+></div>
+
+<script>
+    (function(d, s, id){
+        if (d.getElementById(id)) {
+            var elem = d.getElementById(id);
+            elem.parentElement.removeChild(elem);
+        }
+        setTimeout(function() {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            js = d.createElement(s); js.id = id;
+            js.src = "https:\/\/keyview.danbee.ai/js/plugins/keyview-embed/keyview-embed.min.js";
+            // js.src="../../assets/ui-sample/frogue-embed.js"; // localhost test용
+            fjs.parentNode.insertBefore(js, fjs);
+        }, 1000);
+    }(document, 'script', 'frogue-embed'));
+</script>
+</body>
+</html>
