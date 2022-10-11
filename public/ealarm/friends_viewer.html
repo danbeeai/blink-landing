@@ -134,6 +134,7 @@
         //model viewer animation
         (() => {
             const modelViewer = document.querySelector('#modelViewer1');
+            modelViewer.scale = "0.8 0.8 0.8";
 
             self.setInterval(() => {
                 modelViewer.animationName = modelViewer.animationName === 'idle' ?
