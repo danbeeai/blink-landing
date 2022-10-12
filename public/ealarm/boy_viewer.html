@@ -140,7 +140,15 @@
                 modelViewer.animationName = modelViewer.animationName === 'idle' ?
                     "forward" : "idle";
             }, 1500.0);
+
+            const aniArray = ["forward", "strentch", "victory", "whatever", "jumppingjack"];
+            modelViewer.addEventListener('click', event => {
+                var aniIndex = Math.floor(Math.random()*5);
+                var ani = modelViewer.animationName === 'idle' ? aniArray[aniIndex] : 'idle';
+                modelViewer.setAttribute('animation-name', ani);
+            });
         })();
+
     </script>
 
 </div>
