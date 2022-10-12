@@ -137,10 +137,10 @@
             const modelViewer = document.querySelector('#modelViewer1');
             modelViewer.scale = "0.75 0.75 0.75";
 
-            self.setInterval(() => {
-                modelViewer.animationName = modelViewer.animationName === 'idle' ?
-                    "forward" : "idle";
-            }, 1500.0);
+            // self.setInterval(() => {
+            //     modelViewer.animationName = modelViewer.animationName === 'idle' ?
+            //         "forward" : "idle";
+            // }, 1500.0);
 
             const aniArray = ["forward", "strentch", "victory", "whatever", "jumppingjack"];
             modelViewer.addEventListener('click', event => {
