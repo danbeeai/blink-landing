@@ -102,7 +102,7 @@
 
 <body>
 <div class="model-box">
-    <model-viewer id="modelViewer1" alt="girl model" src="model/girl2.gltf"
+    <model-viewer id="modelViewer1" alt="girl model" src="model/girl.gltf"
                   seamless-poster
                   shadow-intensity="1"
                   camera-controls
@@ -135,12 +135,7 @@
         //model viewer animation
         (() => {
             const modelViewer = document.querySelector('#modelViewer1');
-            modelViewer.scale = "0.75 0.75 0.75";
-
-            // self.setInterval(() => {
-            //     modelViewer.animationName = modelViewer.animationName === 'idle' ?
-            //         "forward" : "idle";
-            // }, 1500.0);
+            modelViewer.scale = "0.7 0.7 0.7";
 
             const aniArray = ["forward", "strentch", "victory", "whatever", "jumppingjack"];
             modelViewer.addEventListener('click', event => {
