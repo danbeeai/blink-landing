@@ -109,7 +109,7 @@ var ft,bt,gt,vt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
             </div>
           </div>
         </div>
-        ${this.iframeUrl?T`        <iframe id="background-iframe" src="${this.iframeUrl}" @load="${this._onload}" style="width:100%;height:100%; background:#fff; position:fixed; top:-9999px;" />
+        ${this.iframeUrl?T`        <iframe id="background-iframe" src="${this.iframeUrl}" @load="${this._onload}" style="width:100%;height:100%; background:#fff; position:fixed; top:-9999px; left: 0;" />
         `:""}
       </div>
 
