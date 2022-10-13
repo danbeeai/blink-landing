@@ -246,6 +246,7 @@ var ft,vt,gt,wt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
       /*height: 100%;*/
       padding: 2.2% 2.2% 0;
       margin: auto;
+      height:0;
     }
     h1 {
       font-family: 'Short Stack', Noto Sans KR, Roboto, sans-serif;
