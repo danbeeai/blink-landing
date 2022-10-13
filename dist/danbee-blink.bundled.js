@@ -236,17 +236,17 @@ var ft,bt,gt,vt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
     }
 
     .wrap {
-      width: 100%;
+      /*width: 100%;
       height: 100%;
-      color: #fff;
+      color: #fff;*/
     }
     .container {
       /*position: relative;*/
       /*max-width: 1440px;*/
       /*height: 100%;*/
-      padding: 2.2% 2.2% 0;
+      /*padding: 2.2% 2.2% 0;
       margin: auto;
-      height:0;
+      height:0;*/
     }
     h1 {
       font-family: 'Short Stack', Noto Sans KR, Roboto, sans-serif;
@@ -292,6 +292,7 @@ var ft,bt,gt,vt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
       right: 2.2%;
       bottom: 4%;
       z-index: 1;
+      color: #fff;
     }
     .chatbot-wrap .chatbot-inner {
       display: flex;
