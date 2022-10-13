@@ -90,10 +90,7 @@ var ft,bt,gt,vt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
                     </div>
                   `:null}
                 <div class="btn" @click="${this._toggleActive}">
-                  <img src="${this.isActive?"stt"===this.blinkMode?this.sttIconImage:this.activeIconImage:this.defaultIconImage}" style="width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;"/>
+                  <img src="${this.isActive?"stt"===this.blinkMode?this.sttIconImage:this.activeIconImage:this.defaultIconImage}" />
                 </div>
                 <!--                            <div class="btn"><img src="assets/images/profile-keyboard.png" /></div>-->
               </div>
@@ -310,6 +307,8 @@ var ft,bt,gt,vt=function(t,i,e,s){for(var o,n=arguments.length,r=n<3?i:null===s?
     .chatbot-wrap .btn img {
       display: block;
       width: 114px;
+      border-radius: 50%;
+      object-fit: cover;
     }
     .chatbot-wrap .action-wrap {
       display: flex;
