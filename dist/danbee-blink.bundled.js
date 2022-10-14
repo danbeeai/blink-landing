@@ -278,7 +278,7 @@ var bt,gt,ft,vt=function(t,i,s,e){for(var o,n=arguments.length,r=n<3?i:null===e?
     }
 
     @media (max-width: 1024px) {
-      .chatbot-wrap .chatbot-inner {
+      .chatbot-wrap.action .chatbot-inner {
         font-size: 1.8rem;
         line-height: 2rem;
         height: 100px;
@@ -308,7 +308,7 @@ var bt,gt,ft,vt=function(t,i,s,e){for(var o,n=arguments.length,r=n<3?i:null===e?
     }
 
     @media (max-width: 768px) {
-      .chatbot-wrap .chatbot-inner {
+      .chatbot-wrap.action .chatbot-inner {
         font-size: 1.6rem;
         line-height: 1.8rem;
         height: 80px;
@@ -336,7 +336,7 @@ var bt,gt,ft,vt=function(t,i,s,e){for(var o,n=arguments.length,r=n<3?i:null===e?
     }
 
     @media (max-width: 425px) {
-      .chatbot-wrap .chatbot-inner {
+      .chatbot-wrap.action .chatbot-inner {
         font-size: 1.2rem;
         line-height: 1.4rem;
         height: 60px;
