@@ -11,6 +11,8 @@
 <div class="model-box">
     <div class="bg">
         <img src="model/img/cha_choice_bg.png" class="bg-friends" />
+        <img src="model/img/boy_bg.png" class="bg-boy" />
+        <img src="model/img/girl_bg.png" class="bg-girl" />
     </div>
     <model-viewer id="modelViewer1" alt="friends model" src="model/friends.gltf"
                   seamless-poster
@@ -53,11 +55,11 @@
                 modelViewer.scale = "0.8 .8 0.8";
                 modelViewer.src = './model/friends.gltf';
             } else if(type === 'boy') {
-                modelViewer.scale = "0.9 0.9 0.9";
+                modelViewer.scale = "0.75 0.75 0.75";
                 modelViewer.src = './model/boy.gltf';
                 setModelViewerEventListener();
             } else if(type === 'girl') {
-                modelViewer.scale = "0.9 0.9 0.9";
+                modelViewer.scale = "0.75 0.75 0.75";
                 modelViewer.src = './model/girl.gltf';
                 setModelViewerEventListener();
             }

@@ -14,15 +14,36 @@ html, body {
 
 .bg {
     position: absolute;
-    width: 100%;
+    width: calc(100% - 40px);
     height: 100%;
+    padding: 0 20px;
 }
-
 .bg img {
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+.friends .bg-friends {
+    display: block;
+}
+.friends .bg-boy,
+.friends .bg-girl {
+    display: none;
+}
+.boy .bg-boy {
+    display: block;
+}
+.boy .bg-friends,
+.boy .bg-girl {
+    display: none;
+}
+.girl .bg-girl {
+    display: block;
+}
+.girl .bg-friends,
+.girl .bg-boy {
+    display: none;
 }
 
 model-viewer {
