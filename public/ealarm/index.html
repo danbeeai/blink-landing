@@ -57,12 +57,19 @@
             } else if(type === 'boy') {
                 modelViewer.scale = "0.75 0.75 0.75";
                 modelViewer.src = './model/boy.gltf';
+                setModelBoxClassList("model-box boy");
                 setModelViewerEventListener();
             } else if(type === 'girl') {
                 modelViewer.scale = "0.75 0.75 0.75";
                 modelViewer.src = './model/girl.gltf';
+                setModelBoxClassList("model-box girl");
                 setModelViewerEventListener();
             }
+        }
+
+        function setModelBoxClassList(classList) {
+            const modelBox = document.querySelector('.model-box');
+            modelBox.classList = classList;
         }
 
         function setModelViewerEventListener() {
